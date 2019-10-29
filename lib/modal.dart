@@ -1,7 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Modal {
+  String _email, _password;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool _showError = false;
+
   mainBottomSheet(BuildContext context) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
@@ -31,6 +36,7 @@ class Modal {
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       Form(
+                        key: _formKey,
                         child: Padding(
                           padding: EdgeInsets.only(
                               left: 16.0, right: 16.0, top: 16.0),
@@ -54,7 +60,12 @@ class Modal {
                                           ScreenUtil.getInstance().setSp(26),
                                       color: Colors.white)),
                               TextFormField(
-                                //nSaved: (input) => _email = input,
+                                validator: (input) {
+                                  if (input.isEmpty) {
+                                    return 'Please provide an email';
+                                  }
+                                },
+                                onSaved: (input) => _email = input,
                                 cursorColor: Colors.white,
                                 autofocus: true,
                                 style: TextStyle(color: Colors.white),
@@ -76,8 +87,7 @@ class Modal {
                               TextFormField(
                                 obscureText: true,
                                 style: TextStyle(color: Colors.white),
-
-                                //onSaved: (input) => _password = input,
+                                onSaved: (input) => _password = input,
                                 decoration: InputDecoration(
                                     hintText: "Password",
                                     hintStyle: TextStyle(
@@ -90,7 +100,9 @@ class Modal {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
                                   FlatButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      signIn(context);
+                                    },
                                     color: Color(0xFF5d74e3),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
@@ -104,7 +116,8 @@ class Modal {
                               ),
                               SizedBox(
                                 height: 20,
-                              )
+                              ),
+                              _showError ? Text('error') : Container()
                             ],
                           ),
                         ),
@@ -116,5 +129,24 @@ class Modal {
             ),
           );
         });
+  }
+
+  Future<void> signIn(BuildContext context) async {
+    print('Called');
+    final formState = _formKey.currentState;
+    print(_email);
+    if (formState.validate()) {
+      formState.save();
+      try {
+        AuthResult result = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(email: _email, password: _password);
+        FirebaseUser user = result.user;
+        user.sendEmailVerification();
+        Navigator.of(context).pop();
+      } catch (e) {
+        _showError = true;
+        print(e.message);
+      }
+    }
   }
 }

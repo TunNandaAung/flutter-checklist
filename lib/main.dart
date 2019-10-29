@@ -26,9 +26,23 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String _email, _password;
+  String _email, _password, _errorMessage;
+  bool _showError = false;
+  final _controller = TextEditingController();
+  final _focusNode = FocusNode();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   Modal modal = new Modal();
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        _showError = false;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                       FlatButton(
                         onPressed: () {
                           modal.mainBottomSheet(context);
+                          _showError = false;
                         },
                         color: Color(0xFF5d74e3),
                         shape: RoundedRectangleBorder(
@@ -181,6 +196,7 @@ class _LoginPageState extends State<LoginPage> {
                       fontFamily: "Poppins-Medium",
                       fontSize: ScreenUtil.getInstance().setSp(26))),
               TextFormField(
+                focusNode: _focusNode,
                 onSaved: (input) => _email = input,
                 decoration: InputDecoration(
                     hintText: "email",
@@ -204,8 +220,17 @@ class _LoginPageState extends State<LoginPage> {
                 height: ScreenUtil.getInstance().setHeight(35),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: _showError
+                    ? MainAxisAlignment.spaceBetween
+                    : MainAxisAlignment.end,
                 children: <Widget>[
+                  _showError
+                      ? Text("Error Occured!",
+                          style: TextStyle(
+                              fontFamily: "Poppins-Medium",
+                              color: Colors.red,
+                              fontSize: ScreenUtil.getInstance().setSp(26)))
+                      : Text(''),
                   Text(
                     "Forgot Password?",
                     style: TextStyle(
@@ -223,9 +248,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> signIn() async {
-    print('Called');
+    _showError = false;
     final formState = _formKey.currentState;
-    print(_email);
     if (formState.validate()) {
       formState.save();
       try {
@@ -234,7 +258,14 @@ class _LoginPageState extends State<LoginPage> {
         FirebaseUser user = result.user;
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home(user)));
+        _showError = false;
       } catch (e) {
+        setState(() {
+          _showError = true;
+        });
+        setState(() {
+          _errorMessage = e.message;
+        });
         print(e.message);
       }
     }
