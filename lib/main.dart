@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'modal.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -26,6 +28,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _email, _password;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  Modal modal = new Modal();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               end: Alignment.topCenter,
               tileMode: TileMode.clamp)),
       child: Scaffold(
+          resizeToAvoidBottomInset: true,
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
             child: Padding(
@@ -89,6 +93,41 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       )
                     ],
+                  ),
+                  SizedBox(
+                    height: ScreenUtil.getInstance().setHeight(40.0),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      horizontalLine(),
+                      Text(
+                        'New User?',
+                        style: TextStyle(
+                            fontSize: 16.0,
+                            fontFamily: 'Poppins-Medium',
+                            color: Colors.white),
+                      ),
+                      horizontalLine(),
+                    ],
+                  ),
+                  SizedBox(height: ScreenUtil.getInstance().setHeight(30)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      FlatButton(
+                        onPressed: () {
+                          modal.mainBottomSheet(context);
+                        },
+                        color: Color(0xFF5d74e3),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5.0)),
+                        child: Text('Sign Up',
+                            style: TextStyle(
+                                fontFamily: 'Poppins-Bold',
+                                color: Colors.white)),
+                      ),
+                    ],
                   )
                 ],
               ),
@@ -96,6 +135,14 @@ class _LoginPageState extends State<LoginPage> {
           )),
     );
   }
+
+  Widget horizontalLine() => Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      child: Container(
+        width: ScreenUtil.getInstance().setHeight(120),
+        height: 1.0,
+        color: Colors.white30.withOpacity(.2),
+      ));
 
   Container buildFormCard() {
     return Container(
