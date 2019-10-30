@@ -28,6 +28,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String _email, _password, _errorMessage;
   bool _showError = false;
+  bool _isLoading = false;
   final _controller = TextEditingController();
   final _focusNode = FocusNode();
 
@@ -73,8 +74,19 @@ class _LoginPageState extends State<LoginPage> {
                   buildFormCard(),
                   SizedBox(height: ScreenUtil.getInstance().setHeight(40)),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment: _isLoading
+                        ? MainAxisAlignment.spaceBetween
+                        : MainAxisAlignment.end,
                     children: <Widget>[
+                      _isLoading
+                          ? SizedBox(
+                              height: 40,
+                              width: 40,
+                              child: CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Color(0xFF17ead9)),
+                              ))
+                          : Text(''),
                       InkWell(
                         child: Container(
                           width: ScreenUtil.getInstance().setWidth(330),
@@ -105,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                   SizedBox(
@@ -248,26 +260,33 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Future<void> signIn() async {
-    _showError = false;
     final formState = _formKey.currentState;
     if (formState.validate()) {
       formState.save();
       try {
+        setState(() {
+          _showError = false;
+          _isLoading = true;
+        });
+
         AuthResult result = await FirebaseAuth.instance
             .signInWithEmailAndPassword(email: _email, password: _password);
         FirebaseUser user = result.user;
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => Home(user)));
-        _showError = false;
       } catch (e) {
         setState(() {
           _showError = true;
-        });
-        setState(() {
-          _errorMessage = e.message;
+          _isLoading = false;
         });
         print(e.message);
       }
     }
+  }
+
+  @override
+  void dispose() {
+    _isLoading = false;
+    super.dispose();
   }
 }
