@@ -12,6 +12,7 @@ class RegisterButton extends StatelessWidget {
     return FlatButton(
       onPressed: _onPressed,
       color: Color(0xFF5d74e3),
+      disabledColor: Colors.grey,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       child: Text('Sign Up',
           style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),

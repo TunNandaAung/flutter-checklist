@@ -38,7 +38,8 @@ class SigninButton extends StatelessWidget {
                           colors: [Color(0xFF17ead9), Color(0xFF6078ea)],
                         )
                       : LinearGradient(
-                          colors: [Color(0xffbdc3c7), Color(0xff2c3e50)]),
+                          colors: [Colors.grey, Colors.grey],
+                        ),
                   borderRadius: BorderRadius.circular(6.0),
                   boxShadow: [
                     BoxShadow(
