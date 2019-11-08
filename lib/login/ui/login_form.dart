@@ -1,7 +1,7 @@
 import 'package:firebase_integrations/authentication_bloc/bloc.dart';
 import 'package:firebase_integrations/data/user_repository.dart';
 import 'package:firebase_integrations/login/bloc/login_barrel.dart';
-import 'package:firebase_integrations/modal.dart';
+import 'package:firebase_integrations/register/ui/register_modal.dart';
 import 'package:firebase_integrations/utils/custom_icons.dart';
 import 'package:firebase_integrations/utils/social_icons.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,7 @@ class _LoginFormState extends State<LoginForm> {
 
   final _focusNode = FocusNode();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  Modal modal = new Modal();
+  Modal registerModal = new Modal();
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
@@ -332,7 +332,8 @@ class _LoginFormState extends State<LoginForm> {
                           ),
                           InkWell(
                             onTap: () {
-                              modal.mainBottomSheet(context);
+                              registerModal.mainBottomSheet(
+                                  context, _userRepository);
                             },
                             child: Text(
                               'SignUp',
