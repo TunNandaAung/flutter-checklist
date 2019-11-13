@@ -2,6 +2,12 @@ import 'package:firebase_integrations/data/user_repository.dart';
 import 'package:firebase_integrations/home_page.dart';
 import 'package:firebase_integrations/login/ui/login_page.dart';
 import 'package:firebase_integrations/splash_screen.dart';
+import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
+import 'package:firebase_integrations/todo/bloc/stats/stats_barrel.dart';
+import 'package:firebase_integrations/todo/bloc/tabs/tabs_barrel.dart';
+import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:firebase_integrations/todo/screens/screen.dart';
+import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:firebase_integrations/utils/bloc_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,23 +52,76 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Firebase',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-          builder: (context, state) {
-        if (state is Unauthenticated) {
-          return LoginPage(userRepository: _userRepository);
-        }
-        if (state is Authenticated) {
-          return HomePage(name: state.displayName);
-        }
-        return SplashScreen();
-        // if (state is Authenticated) {
-        //   return HomeScreen(name: state.displayName);
-        // }
-      }),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<TodosBloc>(
+          builder: (context) {
+            return TodosBloc(
+              todosRepository: FirebaseTodosRepository(),
+            )..add(LoadTodos());
+          },
+        )
+      ],
+      child: MaterialApp(
+        title: 'Firestore Todos',
+        routes: {
+          '/': (context) {
+            return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              builder: (context, state) {
+                if (state is Authenticated) {
+                  return MultiBlocProvider(
+                    providers: [
+                      BlocProvider<TabBloc>(
+                        builder: (context) => TabBloc(),
+                      ),
+                      BlocProvider<FilteredTodosBloc>(
+                        builder: (context) => FilteredTodosBloc(
+                          todosBloc: BlocProvider.of<TodosBloc>(context),
+                        ),
+                      ),
+                      BlocProvider<StatsBloc>(
+                        builder: (context) => StatsBloc(
+                          todosBloc: BlocProvider.of<TodosBloc>(context),
+                        ),
+                      ),
+                    ],
+                    child: HomeScreen(),
+                  );
+                }
+                if (state is Unauthenticated) {
+                  return LoginPage(userRepository: _userRepository);
+                }
+                return SplashScreen();
+                ;
+              },
+            );
+          },
+          '/addTodo': (context) {
+            return AddEditScreen(
+              onSave: (task, note) {
+                BlocProvider.of<TodosBloc>(context).add(
+                  AddTodo(Todo(task, note: note)),
+                );
+              },
+              isEditing: false,
+            );
+          },
+        },
+      ),
     );
   }
 }
+
+// BlocBuilder<AuthenticationBloc, AuthenticationState>(
+//           builder: (context, state) {
+//         if (state is Unauthenticated) {
+//           return LoginPage(userRepository: _userRepository);
+//         }
+//         if (state is Authenticated) {
+//           return HomePage(name: state.displayName);
+//         }
+//         return SplashScreen();
+//         // if (state is Authenticated) {
+//         //   return HomeScreen(name: state.displayName);
+//         // }
+//       })
