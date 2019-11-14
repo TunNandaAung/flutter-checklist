@@ -63,6 +63,7 @@ class _MyAppState extends State<MyApp> {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Firestore Todos',
         routes: {
           '/': (context) {

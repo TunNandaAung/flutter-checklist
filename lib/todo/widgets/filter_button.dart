@@ -1,7 +1,9 @@
 import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
 import 'package:firebase_integrations/todo/model/models.dart';
+import 'package:firebase_integrations/utils/custom_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class FilterButton extends StatelessWidget {
   final bool visible;
@@ -10,11 +12,15 @@ class FilterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultStyle = Theme.of(context).textTheme.body1;
-    final activeStyle = Theme.of(context)
-        .textTheme
-        .body1
-        .copyWith(color: Theme.of(context).accentColor);
+    final defaultStyle =
+        TextStyle(color: Colors.white, fontFamily: 'Poppins-Medium');
+    // final activeStyle = Theme.of(context)
+    //     .textTheme
+    //     .body1
+    //     .copyWith(color: Theme.of(context).accentColor);
+    final activeStyle =
+        TextStyle(color: Colors.blueAccent, fontFamily: 'Poppins-Medium');
+
     return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(
         builder: (context, state) {
       final button = _Button(
@@ -54,6 +60,8 @@ class _Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return PopupMenuButton<VisibilityFilter>(
       tooltip: 'Filter Todos',
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+      color: Color(0xFF2d3447),
       onSelected: onSelected,
       itemBuilder: (BuildContext context) => <PopupMenuItem<VisibilityFilter>>[
         PopupMenuItem<VisibilityFilter>(
@@ -84,7 +92,7 @@ class _Button extends StatelessWidget {
           ),
         ),
       ],
-      icon: Icon(Icons.filter_list),
+      icon: Icon(MdiIcons.filter),
     );
   }
 }
