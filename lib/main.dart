@@ -5,6 +5,7 @@ import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_ba
 import 'package:firebase_integrations/todo/bloc/stats/stats_barrel.dart';
 import 'package:firebase_integrations/todo/bloc/tabs/tabs_barrel.dart';
 import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:firebase_integrations/todo/modal/add_modal.dart';
 import 'package:firebase_integrations/todo/screens/screen.dart';
 import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:firebase_integrations/utils/bloc_delegate.dart';

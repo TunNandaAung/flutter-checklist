@@ -1,4 +1,5 @@
 import 'package:firebase_integrations/todo/bloc/tabs/tabs_barrel.dart';
+import 'package:firebase_integrations/todo/modal/add_modal.dart';
 import 'package:firebase_integrations/todo/model/models.dart';
 import 'package:firebase_integrations/todo/widgets/widgets.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/addTodo');
+                  AddModal().mainBottomSheet(context);
                 },
               ),
             ),
