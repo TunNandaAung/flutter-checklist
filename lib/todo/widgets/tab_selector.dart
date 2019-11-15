@@ -3,6 +3,7 @@ import 'package:firebase_integrations/todo/model/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class TabSelector extends StatelessWidget {
   final AppTab activeTab;
@@ -17,17 +18,23 @@ class TabSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BubbleBottomBar(
+      backgroundColor: Colors.grey[600],
       opacity: 1,
-      elevation: 6.0,
+      elevation: 0.0,
       currentIndex: AppTab.values.indexOf(activeTab),
       onTap: (index) => onTabSelected(AppTab.values[index]),
       items: AppTab.values.map((tab) {
         return BubbleBottomBarItem(
+          backgroundColor: Colors.black,
           icon: Icon(
-            tab == AppTab.todos ? Icons.list : Icons.show_chart,
+            tab == AppTab.todos
+                ? MdiIcons.formatListCheckbox
+                : MdiIcons.chartLineVariant,
+            color: Colors.white,
           ),
           title: Text(
             tab == AppTab.stats ? 'Stats' : 'Todos',
+            style: TextStyle(fontFamily: 'Poppins-Medium', color: Colors.white),
           ),
         );
       }).toList(),
