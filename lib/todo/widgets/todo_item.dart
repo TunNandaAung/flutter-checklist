@@ -29,15 +29,31 @@ class TodoItem extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               boxShadow: [
                 BoxShadow(
-                    color: Colors.black.withOpacity(.12),
+                    color: Colors.white70.withOpacity(.18),
                     offset: Offset(0, 10),
                     blurRadius: 30)
               ]),
           child: ListTile(
             onTap: onTap,
-            leading: Checkbox(
-              value: todo.complete,
-              onChanged: onCheckboxChanged,
+            leading: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ClipOval(
+                child: SizedBox(
+                  width: Checkbox.width,
+                  height: Checkbox.width,
+                  child: Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 2),
+                        borderRadius: BorderRadius.circular(100)),
+                    child: Checkbox(
+                      value: todo.complete,
+                      onChanged: onCheckboxChanged,
+                      activeColor: Color(0xFF17ead9),
+                      checkColor: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
             ),
             title: Hero(
               tag: '${todo.id}__heroTag',
@@ -45,7 +61,10 @@ class TodoItem extends StatelessWidget {
                 width: MediaQuery.of(context).size.width,
                 child: Text(
                   todo.task,
-                  style: Theme.of(context).textTheme.title,
+                  style: TextStyle(
+                      fontFamily: 'Poppins-Bold',
+                      fontSize: 23.0,
+                      color: Colors.black),
                 ),
               ),
             ),
@@ -54,7 +73,10 @@ class TodoItem extends StatelessWidget {
                     todo.note,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.subhead,
+                    style: TextStyle(
+                        fontFamily: 'Poppins-Medium',
+                        fontSize: 16.0,
+                        color: Colors.black),
                   )
                 : null,
           ),

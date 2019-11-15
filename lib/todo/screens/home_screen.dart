@@ -22,6 +22,8 @@ class HomeScreen extends StatelessWidget {
           child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
               title: Text('Firestore Todos'),
               actions: [
                 FilterButton(visible: activeTab == AppTab.todos),
@@ -29,12 +31,38 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/addTodo');
-              },
-              child: Icon(Icons.add),
-              tooltip: 'Add Todo',
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () {
+            //     Navigator.pushNamed(context, '/addTodo');
+            //   },
+            //   child: Icon(Icons.add),
+            //   tooltip: 'Add Todo',
+            // ),
+            floatingActionButton: Container(
+              width: 65.0,
+              height: 65.0,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF17ead9), Color(0xFF6078ea)],
+                  ),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color(0xFF6078ea).withOpacity(.3),
+                        offset: Offset(0.0, 8.0),
+                        blurRadius: 8.0)
+                  ]),
+              child: RawMaterialButton(
+                shape: CircleBorder(),
+                child: Icon(
+                  Icons.add,
+                  size: 35.0,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/addTodo');
+                },
+              ),
             ),
             bottomNavigationBar: TabSelector(
               activeTab: activeTab,
