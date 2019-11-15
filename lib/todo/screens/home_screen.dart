@@ -9,26 +9,38 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TabBloc, AppTab>(
       builder: (context, activeTab) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Firestore Todos'),
-            actions: [
-              FilterButton(visible: activeTab == AppTab.todos),
-              ExtraActions(),
-            ],
-          ),
-          body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
-          floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/addTodo');
-            },
-            child: Icon(Icons.add),
-            tooltip: 'Add Todo',
-          ),
-          bottomNavigationBar: TabSelector(
-            activeTab: activeTab,
-            onTabSelected: (tab) =>
-                BlocProvider.of<TabBloc>(context).add(UpdateTab(tab)),
+        return Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [
+                Color(0xFF1b1e44),
+                Color(0xFF2d3447),
+              ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  tileMode: TileMode.clamp)),
+          child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              title: Text('Firestore Todos'),
+              actions: [
+                FilterButton(visible: activeTab == AppTab.todos),
+                ExtraActions(),
+              ],
+            ),
+            body: activeTab == AppTab.todos ? FilteredTodos() : Stats(),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/addTodo');
+              },
+              child: Icon(Icons.add),
+              tooltip: 'Add Todo',
+            ),
+            bottomNavigationBar: TabSelector(
+              activeTab: activeTab,
+              onTabSelected: (tab) =>
+                  BlocProvider.of<TabBloc>(context).add(UpdateTab(tab)),
+            ),
           ),
         );
       },

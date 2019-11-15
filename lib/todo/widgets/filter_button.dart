@@ -91,7 +91,7 @@ class _Button extends StatelessWidget {
           ),
         ),
       ],
-      icon: Icon(MdiIcons.filter),
+      icon: Icon(Icons.filter_list),
     );
   }
 }
