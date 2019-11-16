@@ -76,6 +76,12 @@ flutter:
       fonts:
         - asset: assets/custom_social_icons.ttf
     
+    - family: back_icon
+      fonts:
+        - asset: assets/back_icon.ttf
+    
+    
+    
   
     - family: Poppins-Bold
       fonts:

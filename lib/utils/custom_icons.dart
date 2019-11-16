@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 class CustomIcons {
   static const IconData menu = IconData(0xe900, fontFamily: "CustomIcons");
   static const IconData option = IconData(0xe902, fontFamily: "CustomIcons");
+  static const IconData back_icon =
+      const IconData(0xe900, fontFamily: "back_icon");
 
   static const IconData twitter =
       IconData(0xe900, fontFamily: "CustomSocialIcons");
