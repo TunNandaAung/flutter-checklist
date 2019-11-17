@@ -20,6 +20,7 @@ class TabSelector extends StatelessWidget {
     return BubbleBottomBar(
       backgroundColor: Colors.transparent,
       opacity: 1,
+      iconSize: 27.0,
       elevation: 0.0,
       currentIndex: AppTab.values.indexOf(activeTab),
       onTap: (index) => onTabSelected(AppTab.values[index]),
@@ -34,7 +35,10 @@ class TabSelector extends StatelessWidget {
           ),
           title: Text(
             tab == AppTab.stats ? 'Stats' : 'Todos',
-            style: TextStyle(fontFamily: 'Poppins-Medium', color: Colors.white),
+            style: TextStyle(
+                fontFamily: 'Poppins-Medium',
+                color: Colors.white,
+                fontSize: 18.0),
           ),
         );
       }).toList(),
