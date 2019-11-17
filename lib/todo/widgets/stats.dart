@@ -14,48 +14,79 @@ class Stats extends StatelessWidget {
         } else if (state is StatsLoaded) {
           return Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    'Completed Todos',
-                    style: TextStyle(
-                        fontFamily: 'Poppins-Bold',
-                        color: Colors.white,
-                        fontSize: 25.0),
-                  ),
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: Container(
+                      height: 200,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 10.0,
+                              offset: Offset(0, 10),
+                            )
+                          ],
+                          gradient: LinearGradient(
+                              colors: [Color(0xFF4B79A1), Color(0xFF283E51)])),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.only(top: 12.0, bottom: 30.0),
+                            child: Text(
+                              'Completed Todos',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins-Medium',
+                                  color: Colors.white,
+                                  fontSize: 18.0),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 0.0),
+                            child: Text(
+                              '${state.numCompleted}',
+                              style: TextStyle(
+                                  fontFamily: 'Poppins-Medium',
+                                  color: Colors.white,
+                                  fontSize: 30.0),
+                            ),
+                          ),
+                        ],
+                      )),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 24.0),
-                  child: Text(
-                    '${state.numCompleted}',
-                    style: TextStyle(
-                        fontFamily: 'Poppins-Medium',
-                        color: Colors.white,
-                        fontSize: 20.0),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 8.0),
-                  child: Text(
-                    'Active Todos',
-                    style: TextStyle(
-                        fontFamily: 'Poppins-Bold',
-                        color: Colors.white,
-                        fontSize: 25.0),
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 24.0),
-                  child: Text(
-                    "${state.numActive}",
-                    style: TextStyle(
-                        fontFamily: 'Poppins-Bold',
-                        color: Colors.white,
-                        fontSize: 20.0),
-                  ),
-                )
+                SizedBox(height: 50.0),
+                Container(
+                    height: 200,
+                    width: 200,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30.0),
+                        color: Colors.white),
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 8.0),
+                          child: Text(
+                            'Active Todos',
+                            style: TextStyle(
+                                fontFamily: 'Poppins-Bold',
+                                color: Colors.white,
+                                fontSize: 25.0),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 24.0),
+                          child: Text(
+                            "${state.numActive}",
+                            style: TextStyle(
+                                fontFamily: 'Poppins-Bold',
+                                color: Colors.white,
+                                fontSize: 20.0),
+                          ),
+                        ),
+                      ],
+                    )),
               ],
             ),
           );

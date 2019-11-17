@@ -28,6 +28,7 @@ dependencies:
   bubble_bottom_bar: ^1.2.0
   material_design_icons_flutter: ^3.3.4595
   firebase_core: ^0.4.1+5
+  circular_check_box: ^1.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
