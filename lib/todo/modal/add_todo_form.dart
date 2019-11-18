@@ -27,6 +27,8 @@ class _AddTodoFormState extends State<AddTodoForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity,
+      height: 600,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -70,7 +72,10 @@ class _AddTodoFormState extends State<AddTodoForm> {
                           },
                           onSaved: (value) => _task = value,
                           cursorColor: Colors.white,
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Poppins-Medium',
+                              fontSize: 21.0),
                           decoration: InputDecoration(
                               fillColor: Colors.white,
                               hintText: "What needs to be done?",
@@ -88,7 +93,10 @@ class _AddTodoFormState extends State<AddTodoForm> {
                           initialValue: isEditing ? widget.todo.note : '',
                           maxLines: 7,
                           onSaved: (value) => _note = value,
-                          style: TextStyle(color: Colors.white),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: 'Poppins-Medium',
+                              fontSize: 21.0),
                           decoration: InputDecoration(
                               hintText: "Say something about task ...",
                               errorStyle:
@@ -115,10 +123,11 @@ class _AddTodoFormState extends State<AddTodoForm> {
                               color: Color(0xFF5d74e3),
                               disabledColor: Colors.grey,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(5.0)),
+                                  borderRadius: BorderRadius.circular(50.0)),
                               child: Text('Add',
                                   style: TextStyle(
                                       fontFamily: 'Poppins-Bold',
+                                      fontSize: 18.0,
                                       color: Colors.white)),
                             )
                           ],

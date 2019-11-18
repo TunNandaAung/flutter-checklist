@@ -1,5 +1,6 @@
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:firebase_integrations/todo/modal/edit_modal.dart';
 import 'package:firebase_integrations/todo/screens/screen.dart';
 import 'package:firebase_integrations/utils/custom_icons.dart';
 import 'package:flutter/foundation.dart';
@@ -151,30 +152,50 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                   ]),
-            floatingActionButton: FloatingActionButton(
-              tooltip: 'Edit Todo',
-              child: Icon(Icons.edit),
-              onPressed: todo == null
-                  ? null
-                  : () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return AddEditScreen(
-                              onSave: (task, note) {
-                                BlocProvider.of<TodosBloc>(context).add(
-                                  UpdateTodo(
-                                    todo.copyWith(task: task, note: note),
-                                  ),
-                                );
-                              },
-                              isEditing: true,
-                              todo: todo,
-                            );
-                          },
-                        ),
-                      );
-                    },
+            floatingActionButton: Container(
+              width: 65.0,
+              height: 65.0,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFF17ead9), Color(0xFF6078ea)],
+                  ),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                        color: Color(0xFF6078ea).withOpacity(.3),
+                        offset: Offset(0.0, 8.0),
+                        blurRadius: 8.0)
+                  ]),
+              child: RawMaterialButton(
+                shape: CircleBorder(),
+                child: Icon(
+                  Icons.edit,
+                  size: 35.0,
+                  color: Colors.white,
+                ),
+                onPressed: todo == null
+                    ? null
+                    : () {
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return AddEditScreen(
+                        //         onSave: (task, note) {
+                        //           BlocProvider.of<TodosBloc>(context).add(
+                        //             UpdateTodo(
+                        //               todo.copyWith(task: task, note: note),
+                        //             ),
+                        //           );
+                        //         },
+                        //         isEditing: true,
+                        //         todo: todo,
+                        //       );
+                        //     },
+                        //   ),
+                        // );
+                        EditModal().mainBottomSheet(context, todo);
+                      },
+              ),
             ),
           ),
         );
