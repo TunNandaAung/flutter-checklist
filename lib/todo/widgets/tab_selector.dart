@@ -30,11 +30,15 @@ class TabSelector extends StatelessWidget {
           icon: Icon(
             tab == AppTab.todos
                 ? MdiIcons.formatListCheckbox
-                : MdiIcons.chartLineVariant,
+                : tab == AppTab.stats
+                    ? MdiIcons.chartLineVariant
+                    : MdiIcons.accountOutline,
             color: Colors.white,
           ),
           title: Text(
-            tab == AppTab.stats ? 'Stats' : 'Todos',
+            tab == AppTab.stats
+                ? 'Stats'
+                : tab == AppTab.todos ? 'Todos' : 'Profile',
             style: TextStyle(
                 fontFamily: 'Poppins-Medium',
                 color: Colors.white,
