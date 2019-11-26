@@ -12,8 +12,9 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Stack(alignment: Alignment.center, children: <Widget>[
       Padding(
-        padding: const EdgeInsets.only(
-            top: 45.0, left: 20.0, right: 20, bottom: 10.0),
+        // padding: const EdgeInsets.only(
+        //     top: 45.0, left: 20.0, right: 20, bottom: 10.0),
+        padding: const EdgeInsets.only(top: kToolbarHeight + 45),
         child: Container(
           height: double.infinity,
           width: double.infinity,
@@ -22,9 +23,16 @@ class _ProfileState extends State<Profile> {
                 BoxShadow(
                     color: Colors.black54,
                     blurRadius: 30.0,
-                    offset: Offset(0, 10))
+                    offset: Offset(0, -30))
               ],
-              color: Color(0xFF2d3447),
+              gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF1b1e44),
+                    Color(0xFF2d3447),
+                  ],
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  tileMode: TileMode.clamp),
               borderRadius: BorderRadius.circular(30.0)),
           child: Padding(
             padding: EdgeInsets.only(top: 60.0),
@@ -46,7 +54,7 @@ class _ProfileState extends State<Profile> {
         ),
       ),
       Positioned(
-          top: 0.0,
+          top: 45.0,
           right: 35.0,
           child: Container(
             width: 50.0,
@@ -71,7 +79,7 @@ class _ProfileState extends State<Profile> {
             ),
           )),
       Positioned(
-        top: 5.0,
+        top: 45.0,
         child: Container(
           width: 90.0,
           height: 90.0,

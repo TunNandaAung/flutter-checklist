@@ -23,15 +23,17 @@ class HomeScreen extends StatelessWidget {
                   tileMode: TileMode.clamp)),
           child: Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              title: Text('Firestore Todos'),
-              actions: [
-                FilterButton(visible: activeTab == AppTab.todos),
-                ExtraActions(),
-              ],
-            ),
+            appBar: activeTab == AppTab.profile
+                ? null
+                : AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0.0,
+                    title: Text('Firestore Todos'),
+                    actions: [
+                      FilterButton(visible: activeTab == AppTab.todos),
+                      ExtraActions(),
+                    ],
+                  ),
             body: activeTab == AppTab.todos
                 ? FilteredTodos()
                 : activeTab == AppTab.stats ? Stats() : Profile(),
