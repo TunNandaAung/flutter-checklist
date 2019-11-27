@@ -15,7 +15,7 @@ class EditModal {
             onSave: (task, note) {
               BlocProvider.of<TodosBloc>(context).add(
                 UpdateTodo(
-                  todo.copyWith(task: task, note: note),
+                  todo.copyWith(task: task, note: note, userId: todo.userId),
                 ),
               );
             },

@@ -14,7 +14,7 @@ class AddModal {
           return AddTodoForm(
             onSave: (task, note) {
               BlocProvider.of<TodosBloc>(context).add(
-                AddTodo(Todo(task, note: note)),
+                AddTodo(Todo(task, note: note, userId: userId)),
               );
             },
             isEditing: false,
