@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddModal {
-  mainBottomSheet(
-    BuildContext context,
-  ) {
+  mainBottomSheet(BuildContext context, String userId) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,

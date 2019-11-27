@@ -116,7 +116,10 @@ class _AddTodoFormState extends State<AddTodoForm> {
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
                                   _formKey.currentState.save();
-                                  widget.onSave(_task, _note);
+                                  widget.onSave(
+                                    _task,
+                                    _note,
+                                  );
                                   Navigator.pop(context);
                                 }
                               },

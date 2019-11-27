@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        AddModal().mainBottomSheet(context);
+                        AddModal().mainBottomSheet(context, user.uid);
                       },
                     ),
                   )

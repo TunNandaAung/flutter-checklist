@@ -22,8 +22,9 @@ class FirebaseTodosRepository implements TodosRepository {
   }
 
   @override
-  Stream<List<Todo>> todos() {
-    return todoCollection.snapshots().map((snapshot) {
+  Stream<List<Todo>> todos(String userId) {
+    Query userTodo = todoCollection.where('userId', isEqualTo: userId);
+    return userTodo.snapshots().map((snapshot) {
       return snapshot.documents
           .map((doc) => Todo.fromEntity(TodoEntity.fromSnapshot(doc)))
           .toList();

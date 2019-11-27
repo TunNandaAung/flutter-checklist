@@ -6,8 +6,9 @@ class TodoEntity extends Equatable {
   final String id;
   final String note;
   final String task;
+  final String userId;
 
-  const TodoEntity(this.task, this.id, this.note, this.complete);
+  const TodoEntity(this.task, this.id, this.note, this.complete, this.userId);
 
   Map<String, Object> toJson() {
     return {
@@ -15,6 +16,7 @@ class TodoEntity extends Equatable {
       "task": task,
       "note": note,
       "id": id,
+      "userId": userId
     };
   }
 
@@ -23,7 +25,7 @@ class TodoEntity extends Equatable {
 
   @override
   String toString() {
-    return 'TodoEntity { complete: $complete, task: $task, note: $note, id: $id }';
+    return 'TodoEntity { complete: $complete, task: $task, note: $note, id: $id ,userId: $userId }';
   }
 
   static TodoEntity fromJson(Map<String, Object> json) {
@@ -32,23 +34,16 @@ class TodoEntity extends Equatable {
       json["id"] as String,
       json["note"] as String,
       json["complete"] as bool,
+      json["userId"] as String,
     );
   }
 
   static TodoEntity fromSnapshot(DocumentSnapshot snap) {
-    return TodoEntity(
-      snap.data['task'],
-      snap.documentID,
-      snap.data['note'],
-      snap.data['complete'],
-    );
+    return TodoEntity(snap.data['task'], snap.documentID, snap.data['note'],
+        snap.data['complete'], snap.data['userId']);
   }
 
   Map<String, Object> toDocument() {
-    return {
-      "complete": complete,
-      "task": task,
-      "note": note,
-    };
+    return {"complete": complete, "task": task, "note": note, "userId": userId};
   }
 }

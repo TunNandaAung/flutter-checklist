@@ -57,6 +57,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider<TodosBloc>(
           builder: (context) {
             return TodosBloc(
+              _userRepository,
               todosRepository: FirebaseTodosRepository(),
             )..add(LoadTodos());
           },

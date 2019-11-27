@@ -1,14 +1,17 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_integrations/data/user_repository.dart';
 import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
 import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:meta/meta.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
+  final UserRepository _userRepository;
+
   StreamSubscription _todosSubscription;
 
-  TodosBloc({@required TodosRepository todosRepository})
+  TodosBloc(this._userRepository, {@required TodosRepository todosRepository})
       : assert(todosRepository != null),
         _todosRepository = todosRepository;
 
@@ -36,7 +39,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   Stream<TodosState> _mapLoadTodosToState() async* {
     _todosSubscription?.cancel();
-    _todosSubscription = _todosRepository.todos().listen(
+    final user = await _userRepository.getUser();
+    _todosSubscription = _todosRepository.todos(user.uid).listen(
           (todos) => add(TodosUpdated(todos)),
         );
   }
