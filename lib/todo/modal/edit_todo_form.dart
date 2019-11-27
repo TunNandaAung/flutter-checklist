@@ -29,8 +29,8 @@ class _EditTodoFormState extends State<EditTodoForm> {
     return Padding(
       padding: const EdgeInsets.only(top: 0),
       child: Container(
-        width: double.infinity,
         height: 600,
+        width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
@@ -59,13 +59,43 @@ class _EditTodoFormState extends State<EditTodoForm> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 22.0),
-                            child: Text("Edit Task",
-                                style: TextStyle(
-                                    fontFamily: "Poppins-Medium",
-                                    fontSize: 21.0,
-                                    color: Colors.white)),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(left: 22.0),
+                                child: Text("Cancel",
+                                    style: TextStyle(
+                                        fontFamily: "Poppins-Medium",
+                                        fontSize: 21.0,
+                                        color: Color(0xFF5d74e3))),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 22.0),
+                                child: FlatButton(
+                                  onPressed: () {
+                                    if (_formKey.currentState.validate()) {
+                                      _formKey.currentState.save();
+                                      widget.onSave(_task, _note);
+                                      Navigator.pop(context);
+                                    }
+                                  },
+                                  color: Color(0xFF5d74e3),
+                                  disabledColor: Colors.grey,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(50.0)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text('Update',
+                                        style: TextStyle(
+                                            fontFamily: 'Poppins-Bold',
+                                            fontSize: 18.0,
+                                            color: Colors.white)),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                           SizedBox(height: 16.0),
                           // TextFormField(
@@ -144,7 +174,10 @@ class _EditTodoFormState extends State<EditTodoForm> {
                           SizedBox(height: 30.0),
                           Container(
                             width: double.infinity,
-                            height: 250,
+                            height: null,
+                            constraints: BoxConstraints(
+                              maxHeight: 100.0,
+                            ),
                             margin: EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
                                 color: Color(0xFF2d3447),
@@ -158,32 +191,34 @@ class _EditTodoFormState extends State<EditTodoForm> {
                             child: Center(
                               child: Padding(
                                 padding: EdgeInsets.only(left: 18.0, right: 12),
-                                child: TextFormField(
-                                  initialValue:
-                                      isEditing ? widget.todo.note : '',
-                                  maxLines: 7,
-                                  onSaved: (value) => _note = value,
-                                  autofocus: !isEditing,
-                                  validator: (val) {
-                                    return val.trim().isEmpty
-                                        ? 'Please enter some text'
-                                        : null;
-                                  },
-                                  cursorColor: Colors.white,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins-Medium',
-                                      fontSize: 21.0),
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    hintText: "What needs to be done?",
-                                    suffixIcon: Icon(Icons.description),
-                                    errorStyle:
-                                        TextStyle(fontFamily: 'Poppins-Medium'),
-                                    hintStyle: TextStyle(
+                                child: SingleChildScrollView(
+                                  child: TextFormField(
+                                    initialValue:
+                                        isEditing ? widget.todo.note : '',
+                                    maxLines: null,
+                                    onSaved: (value) => _note = value,
+                                    autofocus: !isEditing,
+                                    validator: (val) {
+                                      return val.trim().isEmpty
+                                          ? 'Please enter some text'
+                                          : null;
+                                    },
+                                    cursorColor: Colors.white,
+                                    style: TextStyle(
+                                        color: Colors.white,
                                         fontFamily: 'Poppins-Medium',
-                                        color: Colors.white30,
                                         fontSize: 21.0),
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "What needs to be done?",
+                                      suffixIcon: Icon(Icons.description),
+                                      errorStyle: TextStyle(
+                                          fontFamily: 'Poppins-Medium'),
+                                      hintStyle: TextStyle(
+                                          fontFamily: 'Poppins-Medium',
+                                          color: Colors.white30,
+                                          fontSize: 21.0),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -192,36 +227,6 @@ class _EditTodoFormState extends State<EditTodoForm> {
 
                           SizedBox(
                             height: 35,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                FlatButton(
-                                  onPressed: () {
-                                    if (_formKey.currentState.validate()) {
-                                      _formKey.currentState.save();
-                                      widget.onSave(_task, _note);
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                  color: Color(0xFF5d74e3),
-                                  disabledColor: Colors.grey,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(50.0)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Update',
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins-Bold',
-                                            fontSize: 18.0,
-                                            color: Colors.white)),
-                                  ),
-                                )
-                              ],
-                            ),
                           ),
                         ],
                       ),

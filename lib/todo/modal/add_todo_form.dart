@@ -56,11 +56,40 @@ class _AddTodoFormState extends State<AddTodoForm> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Your Task",
-                            style: TextStyle(
-                                fontFamily: "Poppins-Medium",
-                                fontSize: 21.0,
-                                color: Colors.white)),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () => Navigator.pop(context),
+                              child: Text("Cancel",
+                                  style: TextStyle(
+                                      fontFamily: "Poppins-Medium",
+                                      fontSize: 21.0,
+                                      color: Color(0xFF5d74e3))),
+                            ),
+                            FlatButton(
+                              onPressed: () {
+                                if (_formKey.currentState.validate()) {
+                                  _formKey.currentState.save();
+                                  widget.onSave(
+                                    _task,
+                                    _note,
+                                  );
+                                  Navigator.pop(context);
+                                }
+                              },
+                              color: Color(0xFF5d74e3),
+                              disabledColor: Colors.grey,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0)),
+                              child: Text('Add',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins-Bold',
+                                      fontSize: 18.0,
+                                      color: Colors.white)),
+                            )
+                          ],
+                        ),
                         SizedBox(height: 16.0),
                         TextFormField(
                           initialValue: isEditing ? widget.todo.task : '',
@@ -89,51 +118,33 @@ class _AddTodoFormState extends State<AddTodoForm> {
                         SizedBox(
                           height: 30,
                         ),
-                        TextFormField(
-                          initialValue: isEditing ? widget.todo.note : '',
-                          maxLines: 7,
-                          onSaved: (value) => _note = value,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Poppins-Medium',
-                              fontSize: 21.0),
-                          decoration: InputDecoration(
-                              hintText: "Say something about task ...",
-                              errorStyle:
-                                  TextStyle(fontFamily: 'Poppins-Medium'),
-                              hintStyle: TextStyle(
+                        Container(
+                          height: null,
+                          constraints: BoxConstraints(
+                            maxHeight: 100.0,
+                          ),
+                          child: SingleChildScrollView(
+                            child: TextFormField(
+                              initialValue: isEditing ? widget.todo.note : '',
+                              maxLines: null,
+                              onSaved: (value) => _note = value,
+                              style: TextStyle(
+                                  color: Colors.white,
                                   fontFamily: 'Poppins-Medium',
-                                  color: Colors.white30,
-                                  fontSize: 21.0)),
+                                  fontSize: 21.0),
+                              decoration: InputDecoration(
+                                  hintText: "Say something about task ...",
+                                  errorStyle:
+                                      TextStyle(fontFamily: 'Poppins-Medium'),
+                                  hintStyle: TextStyle(
+                                      fontFamily: 'Poppins-Medium',
+                                      color: Colors.white30,
+                                      fontSize: 21.0)),
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: 35,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: <Widget>[
-                            FlatButton(
-                              onPressed: () {
-                                if (_formKey.currentState.validate()) {
-                                  _formKey.currentState.save();
-                                  widget.onSave(
-                                    _task,
-                                    _note,
-                                  );
-                                  Navigator.pop(context);
-                                }
-                              },
-                              color: Color(0xFF5d74e3),
-                              disabledColor: Colors.grey,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0)),
-                              child: Text('Add',
-                                  style: TextStyle(
-                                      fontFamily: 'Poppins-Bold',
-                                      fontSize: 18.0,
-                                      color: Colors.white)),
-                            )
-                          ],
                         ),
                       ],
                     ),
