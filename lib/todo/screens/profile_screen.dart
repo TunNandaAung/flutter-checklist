@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_integrations/authentication_bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Profile extends StatefulWidget {
   final FirebaseUser user;
@@ -79,6 +81,35 @@ class _ProfileState extends State<Profile> {
                 color: Colors.white,
               ),
               onPressed: () {},
+            ),
+          )),
+      Positioned(
+          top: 45.0,
+          left: 35.0,
+          child: Container(
+            width: 50.0,
+            height: 50.0,
+            decoration: BoxDecoration(
+                color: Colors.black.withOpacity(.25),
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                      color: Colors.black54.withOpacity(.3),
+                      offset: Offset(0.0, 8.0),
+                      blurRadius: 8.0)
+                ]),
+            child: RawMaterialButton(
+              shape: CircleBorder(),
+              child: Icon(
+                Icons.exit_to_app,
+                size: 25.0,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                BlocProvider.of<AuthenticationBloc>(context).add(
+                  LoggedOut(),
+                );
+              },
             ),
           )),
       Positioned(
