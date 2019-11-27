@@ -86,7 +86,7 @@ class _MyAppState extends State<MyApp> {
                         ),
                       ),
                     ],
-                    child: HomeScreen(),
+                    child: HomeScreen(user: state.displayUser),
                   );
                 }
                 if (state is Unauthenticated) {

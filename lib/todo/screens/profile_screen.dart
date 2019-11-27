@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatefulWidget {
-  Profile({Key key}) : super(key: key);
+  final FirebaseUser user;
+
+  Profile({Key key, this.user}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -43,7 +46,7 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                         fontFamily: 'Poppins-Bold',
                         fontSize: 25.0)),
-                Text('vader@sithlord.com',
+                Text(widget.user.email,
                     style: TextStyle(
                         color: Colors.white54,
                         fontFamily: 'Poppins-Bold',

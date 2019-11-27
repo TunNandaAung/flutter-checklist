@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_integrations/todo/bloc/tabs/tabs_barrel.dart';
 import 'package:firebase_integrations/todo/modal/add_modal.dart';
 import 'package:firebase_integrations/todo/model/models.dart';
@@ -7,6 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
+  final FirebaseUser user;
+
+  const HomeScreen({Key key, this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TabBloc, AppTab>(
@@ -36,7 +41,11 @@ class HomeScreen extends StatelessWidget {
                   ),
             body: activeTab == AppTab.todos
                 ? FilteredTodos()
-                : activeTab == AppTab.stats ? Stats() : Profile(),
+                : activeTab == AppTab.stats
+                    ? Stats()
+                    : Profile(
+                        user: user,
+                      ),
             // floatingActionButton: FloatingActionButton(
             //   onPressed: () {
             //     Navigator.pushNamed(context, '/addTodo');
