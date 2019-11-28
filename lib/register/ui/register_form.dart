@@ -15,11 +15,14 @@ class RegisterForm extends StatefulWidget {
 class _RegisterFormState extends State<RegisterForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
 
   RegisterBloc _registerBloc;
 
   bool get isPopulated =>
-      _emailController.text.isNotEmpty && _passwordController.text.isNotEmpty;
+      _emailController.text.isNotEmpty &&
+      _passwordController.text.isNotEmpty &&
+      _nameController.text.isNotEmpty;
 
   bool isRegisterButtonEnabled(RegisterState state) {
     return state.isFormValid && isPopulated && !state.isSubmitting;
@@ -31,6 +34,7 @@ class _RegisterFormState extends State<RegisterForm> {
   void initState() {
     super.initState();
     _registerBloc = BlocProvider.of<RegisterBloc>(context);
+    _nameController.addListener(_onNameChanged);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
   }
@@ -40,54 +44,55 @@ class _RegisterFormState extends State<RegisterForm> {
     return BlocListener<RegisterBloc, RegisterState>(
       listener: (context, state) {
         if (state.isSubmitting) {
-          Scaffold.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                elevation: 6.0,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                backgroundColor: Color(0xFF2d3447),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Registering...',
-                      style: TextStyle(fontFamily: 'Poppins-Bold'),
-                    ),
-                    CircularProgressIndicator(),
-                  ],
-                ),
-              ),
-            );
+          // Scaffold.of(context)
+          //   ..hideCurrentSnackBar()
+          //   ..showSnackBar(
+          //     SnackBar(
+          //       elevation: 6.0,
+          //       behavior: SnackBarBehavior.floating,
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(10.0)),
+          //       backgroundColor: Color(0xFF2d3447),
+          //       content: Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Registering...',
+          //             style: TextStyle(fontFamily: 'Poppins-Bold'),
+          //           ),
+          //           CircularProgressIndicator(),
+          //         ],
+          //       ),
+          //     ),
+          //   );
+          CircularProgressIndicator();
         }
         if (state.isSuccess) {
           BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
           Navigator.of(context).pop();
         }
         if (state.isFailure) {
-          Scaffold.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(
-              SnackBar(
-                elevation: 6.0,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Register Failure',
-                      style: TextStyle(fontFamily: 'Poppins-Bold'),
-                    ),
-                    Icon(Icons.error)
-                  ],
-                ),
-                backgroundColor: Colors.red,
-              ),
-            );
+          // Scaffold.of(context)
+          //   ..hideCurrentSnackBar()
+          //   ..showSnackBar(
+          //     SnackBar(
+          //       elevation: 6.0,
+          //       behavior: SnackBarBehavior.floating,
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(10.0)),
+          //       content: Row(
+          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //         children: [
+          //           Text(
+          //             'Register Failure',
+          //             style: TextStyle(fontFamily: 'Poppins-Bold'),
+          //           ),
+          //           Icon(Icons.error)
+          //         ],
+          //       ),
+          //       backgroundColor: Colors.red,
+          //     ),
+          //   );
         }
       },
       child:
@@ -129,6 +134,35 @@ class _RegisterFormState extends State<RegisterForm> {
                                     fontFamily: "Poppins-Bold",
                                     letterSpacing: .6,
                                     color: Colors.white)),
+                            SizedBox(
+                              height: ScreenUtil.getInstance().setHeight(30),
+                            ),
+                            Text("Name",
+                                style: TextStyle(
+                                    fontFamily: "Poppins-Medium",
+                                    fontSize:
+                                        ScreenUtil.getInstance().setSp(26),
+                                    color: Colors.white)),
+                            TextFormField(
+                              controller: _nameController,
+                              autocorrect: false,
+                              autovalidate: true,
+                              validator: (_) {
+                                return !state.isNameValid
+                                    ? 'Plase enter a name'
+                                    : null;
+                              },
+                              cursorColor: Colors.white,
+                              autofocus: true,
+                              style: TextStyle(color: Colors.white),
+                              decoration: InputDecoration(
+                                  fillColor: Colors.white,
+                                  hintText: "name",
+                                  errorStyle:
+                                      TextStyle(fontFamily: 'Poppins-Medium'),
+                                  hintStyle: TextStyle(
+                                      color: Colors.white30, fontSize: 12.0)),
+                            ),
                             SizedBox(
                               height: ScreenUtil.getInstance().setHeight(30),
                             ),
@@ -214,6 +248,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
   @override
   void dispose() {
+    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
@@ -231,9 +266,16 @@ class _RegisterFormState extends State<RegisterForm> {
     );
   }
 
+  void _onNameChanged() {
+    _registerBloc.add(
+      NameChanged(name: _nameController.text),
+    );
+  }
+
   void _onFormSubmitted() {
     _registerBloc.add(
       Submitted(
+        name: _nameController.text,
         email: _emailController.text,
         password: _passwordController.text,
       ),

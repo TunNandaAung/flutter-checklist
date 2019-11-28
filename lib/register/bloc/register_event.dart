@@ -8,6 +8,18 @@ abstract class RegisterEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class NameChanged extends RegisterEvent {
+  final String name;
+
+  const NameChanged({@required this.name});
+
+  @override
+  List<Object> get props => [name];
+
+  @override
+  String toString() => 'NameChanged { name :$name }';
+}
+
 class EmailChanged extends RegisterEvent {
   final String email;
 
@@ -33,19 +45,21 @@ class PasswordChanged extends RegisterEvent {
 }
 
 class Submitted extends RegisterEvent {
+  final String name;
   final String email;
   final String password;
 
   const Submitted({
+    @required this.name,
     @required this.email,
     @required this.password,
   });
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [name, email, password];
 
   @override
   String toString() {
-    return 'Submitted { email: $email, password: $password }';
+    return 'Submitted { name:$name ,email: $email, password: $password }';
   }
 }

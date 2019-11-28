@@ -43,12 +43,15 @@ class _ProfileState extends State<Profile> {
             padding: EdgeInsets.only(top: 60.0),
             child: Column(
               children: <Widget>[
-                Text('Darth Vader',
+                Text(widget.user.email,
                     style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Poppins-Bold',
                         fontSize: 25.0)),
-                Text(widget.user.email,
+                Text(
+                    widget.user.displayName == null
+                        ? 'No Name'
+                        : widget.user.displayName,
                     style: TextStyle(
                         color: Colors.white54,
                         fontFamily: 'Poppins-Bold',

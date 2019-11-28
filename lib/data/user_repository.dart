@@ -44,10 +44,15 @@ class UserRepository {
     return (await _firebaseAuth.currentUser());
   }
 
-  Future<void> signUp({String email, String password}) async {
-    return await _firebaseAuth.createUserWithEmailAndPassword(
+  Future<void> signUp({String name, String email, String password}) async {
+    AuthResult auth = await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
+    UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
+    userUpdateInfo.displayName = name;
+
+    await auth.user.updateProfile(userUpdateInfo);
+    await auth.user.reload();
   }
 }
