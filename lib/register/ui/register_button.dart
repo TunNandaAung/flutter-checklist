@@ -9,13 +9,18 @@ class RegisterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
-      onPressed: _onPressed,
-      color: Color(0xFF5d74e3),
-      disabledColor: Colors.grey,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
-      child: Text('Sign Up',
-          style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
+    return Container(
+      width: 70.0,
+      height: 30.0,
+      child: FlatButton(
+        onPressed: _onPressed,
+        color: Color(0xFF5d74e3),
+        disabledColor: Colors.grey,
+        shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+        child: Text('Next',
+            style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
+      ),
     );
   }
 }
