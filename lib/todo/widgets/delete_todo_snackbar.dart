@@ -16,7 +16,7 @@ class DeleteTodoSnackBar extends SnackBar {
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(fontFamily: 'Poppins-Bold')),
-          backgroundColor: Color(0xFF2d3447),
+          backgroundColor: Color(0xFF5d74e3),
           duration: Duration(seconds: 2),
           action: SnackBarAction(
             label: 'Undo',

@@ -115,7 +115,7 @@ class _LoginFormState extends State<LoginForm> {
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0)),
-                        backgroundColor: Color(0xFF2d3447),
+                        backgroundColor: Color(0xFF5d74e3),
                         content: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
