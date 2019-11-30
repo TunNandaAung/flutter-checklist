@@ -117,13 +117,18 @@ class _RegisterFormState extends State<RegisterForm> {
                           Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
-                                Text("Cancel",
-                                    style: TextStyle(
-                                        fontSize:
-                                            ScreenUtil.getInstance().setSp(30),
-                                        fontFamily: "Poppins-Medium",
-                                        letterSpacing: .6,
-                                        color: Color(0xFF5d74e3))),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: Text("Cancel",
+                                      style: TextStyle(
+                                          fontSize: ScreenUtil.getInstance()
+                                              .setSp(30),
+                                          fontFamily: "Poppins-Medium",
+                                          letterSpacing: .6,
+                                          color: Color(0xFF5d74e3))),
+                                ),
                                 RegisterButton(
                                   onPressed: isRegisterButtonEnabled(state)
                                       ? _onFormSubmitted

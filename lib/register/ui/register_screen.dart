@@ -12,14 +12,6 @@ class RegisterScreen extends StatelessWidget {
         _userRepository = userRepository,
         super(key: key);
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return
-  //   BlocProvider<RegisterBloc>(
-  //       builder: (context) => RegisterBloc(userRepository: _userRepository),
-  //       child: RegisterForm());
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Container(
