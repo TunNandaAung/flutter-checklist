@@ -64,7 +64,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                               child: Text("Cancel",
                                   style: TextStyle(
                                       fontFamily: "Poppins-Medium",
-                                      fontSize: 21.0,
+                                      fontSize: 18.0,
                                       color: Color(0xFF5d74e3))),
                             ),
                             FlatButton(
@@ -78,15 +78,15 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                   Navigator.pop(context);
                                 }
                               },
-                              color: Color(0xFF5d74e3),
+                              color: Colors.black.withOpacity(.40),
                               disabledColor: Colors.grey,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50.0)),
-                              child: Text('Add',
+                              child: Text('Update',
                                   style: TextStyle(
                                       fontFamily: 'Poppins-Bold',
-                                      fontSize: 18.0,
-                                      color: Colors.white)),
+                                      fontSize: 15.0,
+                                      color: Color(0xFF5d74e3))),
                             )
                           ],
                         ),

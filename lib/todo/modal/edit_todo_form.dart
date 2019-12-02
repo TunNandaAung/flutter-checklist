@@ -64,11 +64,14 @@ class _EditTodoFormState extends State<EditTodoForm> {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.only(left: 22.0),
-                                child: Text("Cancel",
-                                    style: TextStyle(
-                                        fontFamily: "Poppins-Medium",
-                                        fontSize: 21.0,
-                                        color: Color(0xFF5d74e3))),
+                                child: GestureDetector(
+                                  onTap: () => Navigator.of(context).pop(),
+                                  child: Text("Cancel",
+                                      style: TextStyle(
+                                          fontFamily: "Poppins-Medium",
+                                          fontSize: 18.0,
+                                          color: Color(0xFF5d74e3))),
+                                ),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(right: 22.0),
@@ -80,19 +83,18 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                       Navigator.pop(context);
                                     }
                                   },
-                                  color: Color(0xFF5d74e3),
+                                  color: Colors.black.withOpacity(.40),
                                   disabledColor: Colors.grey,
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(50.0)),
                                   child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text('Update',
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins-Bold',
-                                            fontSize: 18.0,
-                                            color: Colors.white)),
-                                  ),
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text('Update',
+                                          style: TextStyle(
+                                              fontFamily: 'Poppins-Bold',
+                                              fontSize: 15.0,
+                                              color: Color(0xFF5d74e3)))),
                                 ),
                               ),
                             ],
