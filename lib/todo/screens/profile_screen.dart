@@ -3,6 +3,8 @@ import 'package:firebase_integrations/authentication_bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'edit_profile_screen.dart';
+
 class Profile extends StatefulWidget {
   final FirebaseUser user;
 
@@ -83,7 +85,10 @@ class _ProfileState extends State<Profile> {
                 size: 25.0,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => EditProfileScreen()));
+              },
             ),
           )),
       Positioned(
