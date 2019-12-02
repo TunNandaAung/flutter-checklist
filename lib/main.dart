@@ -66,6 +66,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Firestore Todos',
+        theme: ThemeData(primaryColor: Color(0xFF5d74e3)),
         routes: {
           '/': (context) {
             return BlocBuilder<AuthenticationBloc, AuthenticationState>(

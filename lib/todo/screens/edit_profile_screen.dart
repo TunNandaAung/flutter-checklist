@@ -230,7 +230,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           fontFamily: 'Poppins-Medium',
                           fontSize: 15.0),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
                   ),
                 )),
             Positioned(

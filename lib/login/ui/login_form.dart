@@ -242,7 +242,7 @@ class _LoginFormState extends State<LoginForm> {
                                       Text(
                                         "Forgot Password?",
                                         style: TextStyle(
-                                            color: Colors.blue,
+                                            color: Color(0xFF5d74e3),
                                             fontFamily: "Poppins-Medium",
                                             fontSize: ScreenUtil.getInstance()
                                                 .setSp(28)),
