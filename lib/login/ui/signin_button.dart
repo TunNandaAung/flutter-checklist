@@ -42,10 +42,12 @@ class SigninButton extends StatelessWidget {
                         ),
                   borderRadius: BorderRadius.circular(6.0),
                   boxShadow: [
-                    BoxShadow(
-                        color: Color(0xFF6078ea).withOpacity(.3),
-                        offset: Offset(0.0, 8.0),
-                        blurRadius: 8.0)
+                    _enable
+                        ? BoxShadow(
+                            color: Color(0xFF6078ea).withOpacity(.3),
+                            offset: Offset(0.0, 8.0),
+                            blurRadius: 8.0)
+                        : BoxShadow()
                   ]),
               child: Material(
                 color: Colors.transparent,
