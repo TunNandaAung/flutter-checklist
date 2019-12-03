@@ -1,5 +1,6 @@
 import 'package:firebase_integrations/data/user_repository.dart';
 import 'package:firebase_integrations/login/ui/login_page.dart';
+import 'package:firebase_integrations/profile_bloc/profile_barrel.dart';
 import 'package:firebase_integrations/splash_screen.dart';
 import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
 import 'package:firebase_integrations/todo/bloc/stats/stats_barrel.dart';
@@ -61,7 +62,7 @@ class _MyAppState extends State<MyApp> {
               todosRepository: FirebaseTodosRepository(),
             )..add(LoadTodos());
           },
-        )
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -86,6 +87,11 @@ class _MyAppState extends State<MyApp> {
                         builder: (context) => StatsBloc(
                           todosBloc: BlocProvider.of<TodosBloc>(context),
                         ),
+                      ),
+                      BlocProvider<ProfileBloc>(
+                        builder: (context) => ProfileBloc(
+                          userRepository: _userRepository,
+                        )..add(LoadProfile()),
                       ),
                     ],
                     child: HomeScreen(user: state.displayUser),

@@ -55,4 +55,15 @@ class UserRepository {
     await auth.user.updateProfile(userUpdateInfo);
     await auth.user.reload();
   }
+
+  Future<FirebaseUser> updateProfile(
+      {FirebaseUser user, String name, String email}) async {
+    UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
+    userUpdateInfo.displayName = name;
+
+    await user.updateEmail(email);
+    await user.updateProfile(userUpdateInfo);
+
+    return this.getUser();
+  }
 }
