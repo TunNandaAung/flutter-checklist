@@ -18,6 +18,28 @@ class FilteredTodos extends StatelessWidget {
           return LoadingIndicator();
         } else if (state is FilteredTodosLoaded) {
           final todos = state.filteredTodos;
+          if (todos.length <= 0) {
+            return SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 60.0),
+                child: Container(
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset('assets/task-complete.png'),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text('You have no task! Enjoy your day',
+                          style: TextStyle(
+                              fontFamily: 'Poppins-Bold',
+                              color: Colors.white,
+                              fontSize: 18.0))
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
           return ListView.builder(
             itemCount: todos.length,
             itemBuilder: (context, index) {
