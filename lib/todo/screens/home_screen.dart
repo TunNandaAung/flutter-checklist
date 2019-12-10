@@ -33,7 +33,10 @@ class HomeScreen extends StatelessWidget {
                 : AppBar(
                     backgroundColor: Colors.transparent,
                     elevation: 0.0,
-                    title: Text('Firestore Todos'),
+                    title: Text(
+                      'Firestore Todos',
+                      style: TextStyle(fontFamily: 'Poppins-Bold'),
+                    ),
                     actions: [
                       FilterButton(visible: activeTab == AppTab.todos),
                       ExtraActions(),
