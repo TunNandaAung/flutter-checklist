@@ -17,12 +17,12 @@ class ExtraActions extends StatelessWidget {
             child: PopupMenuButton<ExtraAction>(
               icon: Icon(
                 CustomIcons.option,
-                color: Colors.white,
+                color: Theme.of(context).dividerColor,
                 size: 9,
               ),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
-              color: Color(0xFF2d3447),
+              color: Theme.of(context).popupMenuTheme.color,
               onSelected: (action) {
                 switch (action) {
                   case ExtraAction.clearCompleted:
@@ -40,13 +40,15 @@ class ExtraActions extends StatelessWidget {
                   child: Text(
                       allComplete ? 'Mark all incomplete' : 'Mark all complete',
                       style: TextStyle(
-                          fontFamily: 'Poppins-Medium', color: Colors.white)),
+                          fontFamily: 'Poppins-Medium',
+                          color: Theme.of(context).dividerColor)),
                 ),
                 PopupMenuItem<ExtraAction>(
                   value: ExtraAction.clearCompleted,
                   child: Text('Clear completed',
                       style: TextStyle(
-                          fontFamily: 'Poppins-Medium', color: Colors.white)),
+                          fontFamily: 'Poppins-Medium',
+                          color: Theme.of(context).dividerColor)),
                 ),
               ],
             ),

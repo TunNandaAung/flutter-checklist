@@ -20,8 +20,8 @@ class HomeScreen extends StatelessWidget {
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   colors: [
-                Color(0xFF1b1e44),
-                Color(0xFF2d3447),
+                Theme.of(context).backgroundColor,
+                Theme.of(context).canvasColor
               ],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                     elevation: 0.0,
                     title: Text(
                       'Firestore Todos',
-                      style: TextStyle(fontFamily: 'Poppins-Bold'),
+                      style: Theme.of(context).textTheme.display1,
                     ),
                     actions: [
                       FilterButton(visible: activeTab == AppTab.todos),

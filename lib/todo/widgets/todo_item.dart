@@ -32,7 +32,7 @@ class TodoItem extends StatelessWidget {
                 width: double.infinity,
                 height: 80.0,
                 decoration: BoxDecoration(
-                    color: Color(0xFF2d3447),
+                    color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(8),
                     boxShadow: [
                       BoxShadow(
@@ -71,14 +71,8 @@ class TodoItem extends StatelessWidget {
                       tag: '${todo.id}__heroTag',
                       child: Container(
                         width: MediaQuery.of(context).size.width,
-                        child: Text(
-                          todo.task,
-                          style: TextStyle(
-                              fontFamily: 'Poppins-Bold',
-                              fontSize: 23.0,
-                              decoration: TextDecoration.none,
-                              color: Colors.white),
-                        ),
+                        child: Text(todo.task,
+                            style: Theme.of(context).textTheme.title),
                       ),
                     ),
                     subtitle: todo.note.isNotEmpty
@@ -88,11 +82,7 @@ class TodoItem extends StatelessWidget {
                               todo.note,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontFamily: 'Poppins-Medium',
-                                  fontSize: 16.0,
-                                  decoration: TextDecoration.none,
-                                  color: Colors.white),
+                              style: Theme.of(context).textTheme.body1,
                             ))
                         : null,
                   ),

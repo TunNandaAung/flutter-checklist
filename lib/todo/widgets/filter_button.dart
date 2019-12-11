@@ -10,14 +10,14 @@ class FilterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultStyle =
-        TextStyle(color: Colors.white, fontFamily: 'Poppins-Medium');
+    final defaultStyle = TextStyle(
+        color: Theme.of(context).dividerColor, fontFamily: 'Poppins-Medium');
     // final activeStyle = Theme.of(context)
     //     .textTheme
     //     .body1
     //     .copyWith(color: Theme.of(context).accentColor);
-    final activeStyle =
-        TextStyle(color: Colors.blueAccent, fontFamily: 'Poppins-Medium');
+    final activeStyle = TextStyle(
+        color: Theme.of(context).primaryColor, fontFamily: 'Poppins-Medium');
 
     return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(
         builder: (context, state) {
@@ -59,7 +59,7 @@ class _Button extends StatelessWidget {
     return PopupMenuButton<VisibilityFilter>(
       tooltip: 'Filter Todos',
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-      color: Color(0xFF2d3447),
+      color: Theme.of(context).popupMenuTheme.color,
       onSelected: onSelected,
       itemBuilder: (BuildContext context) => <PopupMenuItem<VisibilityFilter>>[
         PopupMenuItem<VisibilityFilter>(
@@ -90,7 +90,10 @@ class _Button extends StatelessWidget {
           ),
         ),
       ],
-      icon: Icon(Icons.filter_list),
+      icon: Icon(
+        Icons.filter_list,
+        color: Theme.of(context).dividerColor,
+      ),
     );
   }
 }

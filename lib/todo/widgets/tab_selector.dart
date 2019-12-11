@@ -26,23 +26,20 @@ class TabSelector extends StatelessWidget {
       onTap: (index) => onTabSelected(AppTab.values[index]),
       items: AppTab.values.map((tab) {
         return BubbleBottomBarItem(
-          backgroundColor: Colors.black,
+          backgroundColor: Theme.of(context).bottomAppBarTheme.color,
           icon: Icon(
             tab == AppTab.todos
                 ? MdiIcons.formatListCheckbox
                 : tab == AppTab.stats
                     ? MdiIcons.chartLineVariant
                     : MdiIcons.accountOutline,
-            color: Colors.white,
+            color: Theme.of(context).dividerColor,
           ),
           title: Text(
             tab == AppTab.stats
                 ? 'Stats'
                 : tab == AppTab.todos ? 'Todos' : 'Profile',
-            style: TextStyle(
-                fontFamily: 'Poppins-Medium',
-                color: Colors.white,
-                fontSize: 18.0),
+            style: Theme.of(context).textTheme.display2,
           ),
         );
       }).toList(),
