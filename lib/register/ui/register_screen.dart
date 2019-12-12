@@ -27,7 +27,7 @@ class RegisterScreen extends StatelessWidget {
                 offset: Offset(3.0, 6.0),
                 blurRadius: 10.0)
           ],
-          color: Color(0xFF2d3447),
+          color: Theme.of(context).bottomSheetTheme.backgroundColor,
         ),
         child: Scaffold(
             resizeToAvoidBottomPadding: true,

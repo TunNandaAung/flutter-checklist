@@ -147,17 +147,12 @@ class _RegisterFormState extends State<RegisterForm> {
                                           ScreenUtil.getInstance().setSp(42),
                                       fontFamily: "Poppins-Bold",
                                       letterSpacing: .6,
-                                      color: Colors.white)),
+                                      color: Theme.of(context).dividerColor)),
                             ],
                           ),
                           SizedBox(
                             height: ScreenUtil.getInstance().setHeight(30),
                           ),
-                          Text("Name",
-                              style: TextStyle(
-                                  fontFamily: "Poppins-Medium",
-                                  fontSize: ScreenUtil.getInstance().setSp(26),
-                                  color: Colors.white)),
                           TextFormField(
                             controller: _nameController,
                             autocorrect: false,
@@ -167,25 +162,21 @@ class _RegisterFormState extends State<RegisterForm> {
                                   ? 'Plase enter a name'
                                   : null;
                             },
-                            cursorColor: Colors.white,
+                            cursorColor: Color(0xFF5d74e3),
                             autofocus: true,
-                            style: TextStyle(color: Colors.white),
+                            style: Theme.of(context).textTheme.display4,
                             decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 hintText: "name",
                                 errorStyle:
                                     TextStyle(fontFamily: 'Poppins-Medium'),
-                                hintStyle: TextStyle(
-                                    color: Colors.white30, fontSize: 12.0)),
+                                hintStyle: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle),
                           ),
                           SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(10),
+                            height: ScreenUtil.getInstance().setHeight(15),
                           ),
-                          Text("Email",
-                              style: TextStyle(
-                                  fontFamily: "Poppins-Medium",
-                                  fontSize: ScreenUtil.getInstance().setSp(26),
-                                  color: Colors.white)),
                           TextFormField(
                             controller: _emailController,
                             autocorrect: false,
@@ -195,25 +186,21 @@ class _RegisterFormState extends State<RegisterForm> {
                                   ? 'Invalid Email'
                                   : null;
                             },
-                            cursorColor: Colors.white,
+                            cursorColor: Color(0xFF5d74e3),
                             autofocus: true,
-                            style: TextStyle(color: Colors.white),
+                            style: Theme.of(context).textTheme.display4,
                             decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 hintText: "email",
                                 errorStyle:
                                     TextStyle(fontFamily: 'Poppins-Medium'),
-                                hintStyle: TextStyle(
-                                    color: Colors.white30, fontSize: 12.0)),
+                                hintStyle: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle),
                           ),
                           SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(10),
+                            height: ScreenUtil.getInstance().setHeight(15),
                           ),
-                          Text("Password",
-                              style: TextStyle(
-                                  fontFamily: "Poppins-Medium",
-                                  fontSize: ScreenUtil.getInstance().setSp(26),
-                                  color: Colors.white)),
                           TextFormField(
                             controller: _passwordController,
                             obscureText: true,
@@ -224,13 +211,14 @@ class _RegisterFormState extends State<RegisterForm> {
                                   ? 'Invalid Password'
                                   : null;
                             },
-                            style: TextStyle(color: Colors.white),
+                            style: Theme.of(context).textTheme.display4,
                             decoration: InputDecoration(
                                 hintText: "Password",
                                 errorStyle:
                                     TextStyle(fontFamily: 'Poppins-Medium'),
-                                hintStyle: TextStyle(
-                                    color: Colors.white30, fontSize: 12.0)),
+                                hintStyle: Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle),
                           ),
                         ],
                       ),

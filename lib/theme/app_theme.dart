@@ -16,6 +16,7 @@ final appThemeData = {
         backgroundColor: Colors.black.withOpacity(.75)),
     buttonColor: Color(0xFF5d74e3),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFFf3f6fb)),
+    hintColor: Colors.black38,
     inputDecorationTheme: InputDecorationTheme(
         fillColor: Colors.black,
         hintStyle: TextStyle(
@@ -59,6 +60,7 @@ final appThemeData = {
         backgroundColor: Colors.black.withOpacity(.25)),
     buttonColor: Colors.black.withOpacity(.40),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFF2d3447)),
+    hintColor: Colors.white30,
     inputDecorationTheme: InputDecorationTheme(
         fillColor: Colors.white,
         hintStyle: TextStyle(

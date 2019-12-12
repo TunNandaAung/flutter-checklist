@@ -71,8 +71,8 @@ class _LoginFormState extends State<LoginForm> {
       decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [
-            Color(0xFF1b1e44),
-            Color(0xFF2d3447),
+            Theme.of(context).backgroundColor,
+            Theme.of(context).canvasColor,
           ],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
@@ -143,7 +143,7 @@ class _LoginFormState extends State<LoginForm> {
                     children: <Widget>[
                       Container(
                         width: double.infinity,
-                        height: ScreenUtil.getInstance().setHeight(520),
+                        height: null,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(8.0),
@@ -192,6 +192,7 @@ class _LoginFormState extends State<LoginForm> {
                                       }
                                       return null;
                                     },
+                                    cursorColor: Color(0xFF5d74e3),
                                     decoration: InputDecoration(
                                         hintText: "email",
                                         errorStyle: TextStyle(
@@ -220,6 +221,7 @@ class _LoginFormState extends State<LoginForm> {
                                       return null;
                                     },
                                     obscureText: true,
+                                    cursorColor: Color(0xFF5d74e3),
                                     decoration: InputDecoration(
                                         errorStyle: TextStyle(
                                             fontFamily: 'Poppins-Medium'),
@@ -249,6 +251,9 @@ class _LoginFormState extends State<LoginForm> {
                                       )
                                     ],
                                   ),
+                                  SizedBox(
+                                    height: 10.0,
+                                  )
                                 ],
                               ),
                             ),
@@ -276,7 +281,7 @@ class _LoginFormState extends State<LoginForm> {
                             style: TextStyle(
                                 fontSize: 16.0,
                                 fontFamily: 'Poppins-Medium',
-                                color: Colors.white),
+                                color: Theme.of(context).dividerColor),
                           ),
                           horizontalLine(),
                         ],
@@ -324,7 +329,7 @@ class _LoginFormState extends State<LoginForm> {
                             'New User?',
                             style: TextStyle(
                                 fontFamily: 'Poppins-Medium',
-                                color: Colors.white),
+                                color: Theme.of(context).dividerColor),
                           ),
                           SizedBox(
                             width: ScreenUtil.getInstance().setWidth(4.0),
@@ -360,7 +365,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Container(
         width: ScreenUtil.getInstance().setHeight(120),
         height: 1.0,
-        color: Colors.white30.withOpacity(.2),
+        color: Theme.of(context).dividerColor,
       ));
 
   @override
