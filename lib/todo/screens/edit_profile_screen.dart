@@ -27,8 +27,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: [
-            Color(0xFF1b1e44),
-            Color(0xFF2d3447),
+            Theme.of(context).backgroundColor,
+            Theme.of(context).canvasColor,
           ],
               begin: Alignment.bottomCenter,
               end: Alignment.topCenter,
@@ -54,8 +54,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       ],
                       gradient: LinearGradient(
                           colors: [
-                            Color(0xFF1b1e44),
-                            Color(0xFF2d3447),
+                            Theme.of(context).backgroundColor,
+                            Theme.of(context).canvasColor,
                           ],
                           begin: Alignment.bottomCenter,
                           end: Alignment.topCenter,
@@ -68,10 +68,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         children: <Widget>[
                           Container(
                             width: double.infinity,
-                            height: 60,
+                            height: null,
                             margin: EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
-                                color: Color(0xFF2d3447),
+                                color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
@@ -91,21 +91,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         : null;
                                   },
                                   onSaved: (value) => _name = value,
-                                  cursorColor: Colors.white,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins-Medium',
-                                      fontSize: 21.0),
+                                  cursorColor: Color(0xFF5d74e3),
+                                  style: Theme.of(context).textTheme.display4,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     suffixIcon: Icon(Icons.person_outline),
                                     hintText: "Darth Vader",
                                     errorStyle:
                                         TextStyle(fontFamily: 'Poppins-Medium'),
-                                    hintStyle: TextStyle(
-                                        fontFamily: 'Poppins-Medium',
-                                        color: Colors.white30,
-                                        fontSize: 21.0),
+                                    hintStyle: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle,
                                   ),
                                 ),
                               ),
@@ -114,10 +110,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           SizedBox(height: 30.0),
                           Container(
                             width: double.infinity,
-                            height: 60,
+                            height: null,
                             margin: EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
-                                color: Color(0xFF2d3447),
+                                color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
@@ -136,21 +132,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ? 'Please enter your email'
                                         : null;
                                   },
-                                  cursorColor: Colors.white,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins-Medium',
-                                      fontSize: 21.0),
+                                  cursorColor: Color(0xFF5d74e3),
+                                  style: Theme.of(context).textTheme.display4,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     suffixIcon: Icon(Icons.alternate_email),
                                     hintText: "you@example.com",
                                     errorStyle:
                                         TextStyle(fontFamily: 'Poppins-Medium'),
-                                    hintStyle: TextStyle(
-                                        fontFamily: 'Poppins-Medium',
-                                        color: Colors.white30,
-                                        fontSize: 21.0),
+                                    hintStyle: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle,
                                   ),
                                 ),
                               ),
@@ -165,7 +157,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               height: 60,
                               margin: EdgeInsets.symmetric(horizontal: 22),
                               decoration: BoxDecoration(
-                                  color: Color(0xFF2d3447),
+                                  color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(8),
                                   boxShadow: [
                                     BoxShadow(
@@ -183,10 +175,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                       children: <Widget>[
                                         Text(
                                           'Password',
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontFamily: 'Poppins-Medium',
-                                              fontSize: 21.0),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .display4,
                                         ),
                                         Icon(
                                           Icons.arrow_forward_ios,
@@ -215,7 +206,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       Navigator.of(context).pop();
                     }
                   },
-                  color: Colors.black.withOpacity(.40),
+                  color: Theme.of(context)
+                      .floatingActionButtonTheme
+                      .backgroundColor,
                   disabledColor: Colors.grey,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50.0)),
@@ -235,7 +228,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   child: Container(
                     height: 40.0,
                     decoration: BoxDecoration(
-                        color: Colors.black.withOpacity(.40),
+                        color: Theme.of(context)
+                            .floatingActionButtonTheme
+                            .backgroundColor,
                         borderRadius: BorderRadius.circular(20.0),
                         boxShadow: [
                           BoxShadow(

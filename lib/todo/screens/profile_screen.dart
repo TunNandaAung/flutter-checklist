@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile> {
               decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                        color: Colors.black54,
+                        color: Colors.black38,
                         blurRadius: 30.0,
                         offset: Offset(0, -30))
                   ],

@@ -22,8 +22,8 @@ class DetailsScreen extends StatelessWidget {
           decoration: BoxDecoration(
               gradient: LinearGradient(
                   colors: [
-                Color(0xFF1b1e44),
-                Color(0xFF2d3447),
+                Theme.of(context).backgroundColor,
+                Theme.of(context).canvasColor,
               ],
                   begin: Alignment.bottomCenter,
                   end: Alignment.topCenter,
@@ -35,16 +35,20 @@ class DetailsScreen extends StatelessWidget {
               elevation: 0.0,
               title: Text(
                 'Todo Details',
-                style: TextStyle(fontFamily: 'Poppins-Bold'),
+                style: Theme.of(context).textTheme.display1,
               ),
               leading: IconButton(
-                icon: Icon(CustomIcons.back_icon, color: Colors.white),
+                icon: Icon(CustomIcons.back_icon,
+                    color: Theme.of(context).dividerColor),
                 onPressed: () => Navigator.of(context).pop(),
               ),
               actions: [
                 IconButton(
                   tooltip: 'Delete Todo',
-                  icon: Icon(Icons.delete),
+                  icon: Icon(
+                    Icons.delete,
+                    color: Theme.of(context).dividerColor,
+                  ),
                   onPressed: () {
                     BlocProvider.of<TodosBloc>(context).add(DeleteTodo(todo));
                     Navigator.pop(context, todo);
@@ -61,7 +65,7 @@ class DetailsScreen extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                             decoration: BoxDecoration(
-                              color: Color(0xFF2d3447),
+                              color: Theme.of(context).cardColor,
                               //color: Colors.white,
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(50.0),
@@ -121,11 +125,8 @@ class DetailsScreen extends StatelessWidget {
                                         ),
                                         child: Text(
                                           todo.task,
-                                          style: TextStyle(
-                                              fontFamily: 'Poppins-Bold',
-                                              fontSize: 23.0,
-                                              decoration: TextDecoration.none,
-                                              color: Colors.white),
+                                          style:
+                                              Theme.of(context).textTheme.title,
                                         ),
                                       ),
                                     ),
@@ -134,11 +135,8 @@ class DetailsScreen extends StatelessWidget {
                                       tag: '${todo.id}__noteheroTag',
                                       child: Text(
                                         todo.note,
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins-Bold',
-                                            fontSize: 16.0,
-                                            decoration: TextDecoration.none,
-                                            color: Colors.white),
+                                        style:
+                                            Theme.of(context).textTheme.body1,
                                       ),
                                     ),
                                   ],

@@ -28,7 +28,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                 offset: Offset(3.0, 6.0),
                 blurRadius: 10.0)
           ],
-          color: Color(0xFF2d3447),
+          color: Theme.of(context).bottomSheetTheme.backgroundColor,
         ),
         child: SingleChildScrollView(
           child: Padding(
@@ -69,7 +69,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                       Navigator.pop(context);
                                     }
                                   },
-                                  color: Colors.black.withOpacity(.40),
+                                  color: Theme.of(context).buttonColor,
                                   disabledColor: Colors.grey,
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
@@ -77,10 +77,8 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(0.0),
                                     child: Text('Update',
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins-Bold',
-                                            fontSize: 15.0,
-                                            color: Color(0xFF5d74e3))),
+                                        style:
+                                            Theme.of(context).textTheme.button),
                                   ),
                                 ),
                               ),
@@ -89,10 +87,10 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                           SizedBox(height: 16.0),
                           Container(
                             width: double.infinity,
-                            height: 60,
+                            height: null,
                             margin: EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
-                                color: Color(0xFF2d3447),
+                                color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
@@ -113,21 +111,17 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                         : null;
                                   },
                                   //onSaved: (value) => _task = value,
-                                  cursorColor: Colors.white,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins-Medium',
-                                      fontSize: 21.0),
+                                  cursorColor: Color(0xFF5d74e3),
+                                  style: Theme.of(context).textTheme.display4,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     suffixIcon: Icon(MdiIcons.textboxPassword),
                                     hintText: "Current Password",
                                     errorStyle:
                                         TextStyle(fontFamily: 'Poppins-Medium'),
-                                    hintStyle: TextStyle(
-                                        fontFamily: 'Poppins-Medium',
-                                        color: Colors.white30,
-                                        fontSize: 21.0),
+                                    hintStyle: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle,
                                   ),
                                 ),
                               ),
@@ -136,10 +130,10 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                           SizedBox(height: 30.0),
                           Container(
                             width: double.infinity,
-                            height: 60,
+                            height: null,
                             margin: EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
-                                color: Color(0xFF2d3447),
+                                color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
@@ -160,21 +154,17 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                           ? 'Please enter some text'
                                           : null;
                                     },
-                                    cursorColor: Colors.white,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Poppins-Medium',
-                                        fontSize: 21.0),
+                                    cursorColor: Color(0xFF5d74e3),
+                                    style: Theme.of(context).textTheme.display4,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "New Password",
                                       suffixIcon: Icon(MdiIcons.key),
                                       errorStyle: TextStyle(
                                           fontFamily: 'Poppins-Medium'),
-                                      hintStyle: TextStyle(
-                                          fontFamily: 'Poppins-Medium',
-                                          color: Colors.white30,
-                                          fontSize: 21.0),
+                                      hintStyle: Theme.of(context)
+                                          .inputDecorationTheme
+                                          .hintStyle,
                                     ),
                                   ),
                                 ),

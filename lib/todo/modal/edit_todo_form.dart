@@ -32,18 +32,17 @@ class _EditTodoFormState extends State<EditTodoForm> {
         height: 600,
         width: double.infinity,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black12,
-                offset: Offset(3.0, 6.0),
-                blurRadius: 10.0)
-          ],
-          color: Color(0xFF2d3447),
-        ),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+            boxShadow: [
+              BoxShadow(
+                  color: Colors.black12,
+                  offset: Offset(3.0, 6.0),
+                  blurRadius: 10.0)
+            ],
+            color: Theme.of(context).bottomSheetTheme.backgroundColor),
         child: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.only(
@@ -83,7 +82,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                       Navigator.pop(context);
                                     }
                                   },
-                                  color: Colors.black.withOpacity(.40),
+                                  color: Theme.of(context).buttonColor,
                                   disabledColor: Colors.grey,
                                   shape: RoundedRectangleBorder(
                                       borderRadius:
@@ -91,10 +90,9 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                   child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text('Update',
-                                          style: TextStyle(
-                                              fontFamily: 'Poppins-Bold',
-                                              fontSize: 15.0,
-                                              color: Color(0xFF5d74e3)))),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .button)),
                                 ),
                               ),
                             ],
@@ -129,10 +127,10 @@ class _EditTodoFormState extends State<EditTodoForm> {
                           // ),
                           Container(
                             width: double.infinity,
-                            height: 60,
+                            height: null,
                             margin: EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
-                                color: Color(0xFF2d3447),
+                                color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
@@ -153,21 +151,18 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                         : null;
                                   },
                                   onSaved: (value) => _task = value,
-                                  cursorColor: Colors.white,
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontFamily: 'Poppins-Medium',
-                                      fontSize: 21.0),
+                                  cursorColor: Color(0xFF5d74e3),
+                                  style: Theme.of(context).textTheme.display4,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     suffixIcon: Icon(Icons.title),
                                     hintText: "What needs to be done?",
-                                    errorStyle:
-                                        TextStyle(fontFamily: 'Poppins-Medium'),
-                                    hintStyle: TextStyle(
-                                        fontFamily: 'Poppins-Medium',
-                                        color: Colors.white30,
-                                        fontSize: 21.0),
+                                    errorStyle: TextStyle(
+                                      fontFamily: 'Poppins-Medium',
+                                    ),
+                                    hintStyle: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle,
                                   ),
                                 ),
                               ),
@@ -182,7 +177,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
                             ),
                             margin: EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
-                                color: Color(0xFF2d3447),
+                                color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
@@ -205,21 +200,17 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                           ? 'Please enter some text'
                                           : null;
                                     },
-                                    cursorColor: Colors.white,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Poppins-Medium',
-                                        fontSize: 21.0),
+                                    cursorColor: Color(0xFF5d74e3),
+                                    style: Theme.of(context).textTheme.display4,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "What needs to be done?",
                                       suffixIcon: Icon(Icons.description),
                                       errorStyle: TextStyle(
                                           fontFamily: 'Poppins-Medium'),
-                                      hintStyle: TextStyle(
-                                          fontFamily: 'Poppins-Medium',
-                                          color: Colors.white30,
-                                          fontSize: 21.0),
+                                      hintStyle: Theme.of(context)
+                                          .inputDecorationTheme
+                                          .hintStyle,
                                     ),
                                   ),
                                 ),

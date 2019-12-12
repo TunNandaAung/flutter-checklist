@@ -38,7 +38,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
           BoxShadow(
               color: Colors.black12, offset: Offset(3.0, 6.0), blurRadius: 10.0)
         ],
-        color: Color(0xFF2d3447),
+        color: Theme.of(context).canvasColor,
       ),
       child: SingleChildScrollView(
         child: Padding(
@@ -78,15 +78,12 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                   Navigator.pop(context);
                                 }
                               },
-                              color: Colors.black.withOpacity(.40),
+                              color: Theme.of(context).buttonColor,
                               disabledColor: Colors.grey,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50.0)),
                               child: Text('Update',
-                                  style: TextStyle(
-                                      fontFamily: 'Poppins-Bold',
-                                      fontSize: 15.0,
-                                      color: Color(0xFF5d74e3))),
+                                  style: Theme.of(context).textTheme.button),
                             )
                           ],
                         ),
@@ -100,20 +97,18 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                 : null;
                           },
                           onSaved: (value) => _task = value,
-                          cursorColor: Colors.white,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: 'Poppins-Medium',
-                              fontSize: 21.0),
+                          cursorColor: Color(0xFF5d74e3),
+                          style: Theme.of(context).textTheme.display4,
                           decoration: InputDecoration(
-                              fillColor: Colors.white,
+                              fillColor: Theme.of(context)
+                                  .inputDecorationTheme
+                                  .fillColor,
                               hintText: "What needs to be done?",
                               errorStyle:
                                   TextStyle(fontFamily: 'Poppins-Medium'),
-                              hintStyle: TextStyle(
-                                  fontFamily: 'Poppins-Medium',
-                                  color: Colors.white30,
-                                  fontSize: 21.0)),
+                              hintStyle: Theme.of(context)
+                                  .inputDecorationTheme
+                                  .hintStyle),
                         ),
                         SizedBox(
                           height: 30,
@@ -128,18 +123,17 @@ class _AddTodoFormState extends State<AddTodoForm> {
                               initialValue: isEditing ? widget.todo.note : '',
                               maxLines: null,
                               onSaved: (value) => _note = value,
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Poppins-Medium',
-                                  fontSize: 21.0),
+                              style: Theme.of(context).textTheme.display4,
                               decoration: InputDecoration(
+                                  fillColor: Theme.of(context)
+                                      .inputDecorationTheme
+                                      .fillColor,
                                   hintText: "Say something about task ...",
                                   errorStyle:
                                       TextStyle(fontFamily: 'Poppins-Medium'),
-                                  hintStyle: TextStyle(
-                                      fontFamily: 'Poppins-Medium',
-                                      color: Colors.white30,
-                                      fontSize: 21.0)),
+                                  hintStyle: Theme.of(context)
+                                      .inputDecorationTheme
+                                      .hintStyle),
                             ),
                           ),
                         ),
