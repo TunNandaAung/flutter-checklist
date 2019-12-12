@@ -193,7 +193,8 @@ class _ProfileState extends State<Profile> {
               height: 100.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
-                color: Colors.black.withOpacity(.40),
+                color:
+                    Theme.of(context).floatingActionButtonTheme.backgroundColor,
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

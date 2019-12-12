@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class SplashScreen extends StatelessWidget {
   @override
@@ -26,13 +27,10 @@ class SplashScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Container(
-                  child: Image(
-                    image: AssetImage(
-                      'assets/app_icon/app-icon-tick-box-128.png',
-                    ),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+                    child: SpinKitFadingFour(
+                  color: Theme.of(context).primaryColor,
+                  size: 63.0,
+                )),
               ]),
         ),
       ),
