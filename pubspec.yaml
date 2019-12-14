@@ -31,6 +31,7 @@ dependencies:
   circular_check_box: ^1.0.1
   shared_preferences: ^0.5.4+3
   flutter_spinkit: ^4.1.0
+  flutter_svg: ^0.15.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -64,6 +65,7 @@ flutter:
    - assets/Darth-Vader-Avatar.png
    - assets/app_icon/app-icon-tick-box-128.png
    - assets/app_icon/app-icon-tick-box-64.png
+   - assets/app_icon/app-icon-tick-box.svg
    - assets/task-complete.png
    - assets/btn_icon/btn-moon-96.png
    - assets/btn_icon/btn-sun-128.png
