@@ -66,4 +66,18 @@ class UserRepository {
 
     return this.getUser();
   }
+
+  Future changePassword(
+      {FirebaseUser user, String currentPassword, String newPassword}) async {
+    final credential = EmailAuthProvider.getCredential(
+        email: user.email, password: currentPassword);
+    print(credential);
+    await user.reauthenticateWithCredential(credential).then((_) {
+      user.updatePassword(newPassword).then((_) {
+        print("Succesfully changed password");
+      }).catchError((error) {
+        print("Password can't be changed" + error.toString());
+      });
+    });
+  }
 }

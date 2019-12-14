@@ -19,7 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^0.14.0+5
+  firebase_auth: ^0.15.2
   cloud_firestore: ^0.12.10
   flutter_bloc: ^2.0.0
   equatable: ^0.5.1

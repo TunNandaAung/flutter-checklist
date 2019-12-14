@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+typedef OnSaveCallback = Function(String currentPassword, String newPassword);
+
 class EditPasswordForm extends StatefulWidget {
-  EditPasswordForm({Key key}) : super(key: key);
+  final OnSaveCallback onSave;
+  EditPasswordForm({Key key, @required this.onSave}) : super(key: key);
 
   @override
   _EditPasswordFormState createState() => _EditPasswordFormState();
 }
 
 class _EditPasswordFormState extends State<EditPasswordForm> {
+  String _currentPassword;
+  String _newPassword;
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -65,8 +71,12 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                   onPressed: () {
                                     if (_formKey.currentState.validate()) {
                                       _formKey.currentState.save();
-                                      // widget.onSave(_task, _note);
-                                      Navigator.pop(context);
+
+                                      widget.onSave(
+                                          _currentPassword, _newPassword);
+                                      int count = 0;
+                                      Navigator.of(context)
+                                          .popUntil((_) => count++ >= 2);
                                     }
                                   },
                                   color: Theme.of(context).buttonColor,
@@ -107,10 +117,10 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                   obscureText: true,
                                   validator: (val) {
                                     return val.trim().isEmpty
-                                        ? 'Please enter some text'
+                                        ? 'Please enter your password'
                                         : null;
                                   },
-                                  //onSaved: (value) => _task = value,
+                                  onSaved: (value) => _currentPassword = value,
                                   cursorColor: Color(0xFF5d74e3),
                                   style: Theme.of(context).textTheme.display4,
                                   decoration: InputDecoration(
@@ -147,11 +157,11 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                 child: SingleChildScrollView(
                                   child: TextFormField(
                                     obscureText: true,
-                                    //onSaved: (value) => _note = value,
+                                    onSaved: (value) => _newPassword = value,
                                     autofocus: false,
                                     validator: (val) {
                                       return val.trim().isEmpty
-                                          ? 'Please enter some text'
+                                          ? 'Please enter new password'
                                           : null;
                                     },
                                     cursorColor: Color(0xFF5d74e3),

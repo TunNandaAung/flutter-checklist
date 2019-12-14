@@ -3,12 +3,19 @@ import 'package:firebase_integrations/todo/modal/edit_password_modal.dart';
 import 'package:flutter/material.dart';
 
 typedef OnSaveCallback = Function(FirebaseUser user, String name, String email);
+typedef OnPasswordChangedCallBack = Function(
+    String currentPassword, String newPassword);
 
 class EditProfileScreen extends StatefulWidget {
   final FirebaseUser user;
   final OnSaveCallback onSave;
+  final OnPasswordChangedCallBack onPasswordChanged;
 
-  EditProfileScreen({Key key, @required this.user, @required this.onSave})
+  EditProfileScreen(
+      {Key key,
+      @required this.user,
+      @required this.onSave,
+      @required this.onPasswordChanged})
       : super(key: key);
 
   @override
@@ -150,8 +157,17 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           ),
                           SizedBox(height: 30.0),
                           InkWell(
-                            onTap: () =>
-                                EditPasswordModal().mainBottomSheet(context),
+                            onTap: () {
+                              EditPasswordModal().mainBottomSheet(
+                                  context: context,
+                                  // onSave: (currentPassword, newPassword) {
+                                  //   BlocProvider.of<ProfileBloc>(context).add(
+                                  //     ChangePassword(widget.user,
+                                  //         currentPassword, newPassword),
+                                  //   );
+                                  // }
+                                  onSave: widget.onPasswordChanged);
+                            },
                             child: Container(
                               width: double.infinity,
                               height: 60,
@@ -174,7 +190,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           MainAxisAlignment.spaceBetween,
                                       children: <Widget>[
                                         Text(
-                                          'Password',
+                                          'Change Password',
                                           style: Theme.of(context)
                                               .textTheme
                                               .display4,

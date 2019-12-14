@@ -12,8 +12,9 @@ class ProfileLoading extends ProfileState {}
 
 class ProfileLoaded extends ProfileState {
   final FirebaseUser user;
+  final String message;
 
-  const ProfileLoaded({this.user});
+  const ProfileLoaded({this.user, this.message = ''});
 
   @override
   List<Object> get props => [user];
@@ -31,7 +32,16 @@ class ProfileUpdated extends ProfileState {
   List<Object> get props => [user];
 
   @override
-  String toString() => 'Authenticated { User: $user }';
+  String toString() => 'ProfileUpdated { User: $user }';
 }
 
-class ProfileNotUpdated extends ProfileState {}
+class PasswordChanged extends ProfileState {}
+
+class ProfileNotUpdated extends ProfileState {
+  final String error;
+
+  ProfileNotUpdated(this.error);
+
+  @override
+  List<Object> get props => [error];
+}

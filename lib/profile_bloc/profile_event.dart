@@ -20,5 +20,19 @@ class UpdateProfile extends ProfileEvent {
   List<Object> get props => [user];
 
   @override
-  String toString() => 'UpdateTodo { user: $user }';
+  String toString() => 'UpdateProfile { user: $user }';
+}
+
+class ChangePassword extends ProfileEvent {
+  final FirebaseUser user;
+  final String currentPassword;
+  final String newPassword;
+
+  const ChangePassword(this.user, this.currentPassword, this.newPassword);
+
+  @override
+  List<Object> get props => [user];
+
+  @override
+  String toString() => 'UpdateProfile { user: $user }';
 }
