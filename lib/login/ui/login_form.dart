@@ -38,15 +38,6 @@ class _LoginFormState extends State<LoginForm> {
     return state.isFormValid && isPopulated && !state.isSubmitting;
   }
 
-  int _cardHeight = 500;
-  bool _hasError = false;
-
-  void changeCardHeight(int height) {
-    setState(() {
-      _cardHeight = height;
-    });
-  }
-
   @override
   void initState() {
     super.initState();
@@ -55,9 +46,7 @@ class _LoginFormState extends State<LoginForm> {
     _passwordController.addListener(_onPasswordChanged);
 
     _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        _hasError = false;
-      }
+      if (_focusNode.hasFocus) {}
     });
   }
 
