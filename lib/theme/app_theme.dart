@@ -11,7 +11,7 @@ final appThemeData = {
     popupMenuTheme: PopupMenuThemeData(color: Color(0xFFEDF0F6)),
     cardColor: Colors.white,
     dividerColor: Colors.black,
-    bottomAppBarTheme: BottomAppBarTheme(color: Color(0xFFa8ccf0)),
+    bottomAppBarTheme: BottomAppBarTheme(color: Color(0xFF98c6f5)),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: Colors.black.withOpacity(.75)),
     buttonColor: Color(0xFF5d74e3),

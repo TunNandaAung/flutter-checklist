@@ -18,8 +18,10 @@ class TabSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BubbleBottomBar(
-      backgroundColor: Colors.transparent,
-      opacity: 1,
+      backgroundColor: Theme.of(context).cardColor,
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
+      opacity: .3,
       iconSize: 27.0,
       elevation: 0.0,
       currentIndex: AppTab.values.indexOf(activeTab),
