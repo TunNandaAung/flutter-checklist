@@ -67,6 +67,7 @@ flutter:
    - assets/app_icon/app-icon-tick-box-64.png
    - assets/app_icon/app-icon-tick-box.svg
    - assets/task-complete.png
+   - assets/task-complete.svg
    - assets/btn_icon/btn-moon-96.png
    - assets/btn_icon/btn-sun-128.png
    

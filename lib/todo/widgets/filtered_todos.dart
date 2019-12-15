@@ -25,15 +25,12 @@ class FilteredTodos extends StatelessWidget {
                 child: Container(
                   child: Column(
                     children: <Widget>[
-                      Image.asset('assets/task-complete.png'),
+                      Image.asset('assets/task-complete.svg'),
                       SizedBox(
                         height: 10.0,
                       ),
                       Text('You have no task! Enjoy your day',
-                          style: TextStyle(
-                              fontFamily: 'Poppins-Bold',
-                              color: Colors.white,
-                              fontSize: 18.0))
+                          style: Theme.of(context).textTheme.body1)
                     ],
                   ),
                 ),
