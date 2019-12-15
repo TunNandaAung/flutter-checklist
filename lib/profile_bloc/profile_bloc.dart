@@ -44,6 +44,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
       FirebaseUser user = await _userRepository.updateProfile(
           user: event.user, name: event.name, email: event.email);
       print('User : $user');
+
       yield ProfileLoaded(user: user);
     } catch (e) {
       print(e);
@@ -59,11 +60,15 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           currentPassword: event.currentPassword,
           newPassword: event.newPassword);
       yield PasswordChanged();
+
+      await Future.delayed(Duration(milliseconds: 300));
+
       yield ProfileLoaded(user: event.user);
     } on PlatformException catch (e) {
       yield ProfileNotUpdated(e.message);
 
       await Future.delayed(Duration(milliseconds: 300));
+
       yield ProfileLoaded(user: event.user);
     }
   }

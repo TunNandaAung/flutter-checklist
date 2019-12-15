@@ -82,7 +82,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                               disabledColor: Colors.grey,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(50.0)),
-                              child: Text('Update',
+                              child: Text('Add',
                                   style: Theme.of(context).textTheme.button),
                             )
                           ],

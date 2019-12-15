@@ -60,7 +60,7 @@ class _ProfileState extends State<Profile> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
                 //backgroundColor: Color(0xFF2d3447),
-                backgroundColor: Color(0xFF5d74e3),
+                backgroundColor: Colors.red,
                 duration: Duration(seconds: 2),
                 content: Container(
                   height: null,
