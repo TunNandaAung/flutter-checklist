@@ -170,6 +170,8 @@ class _LoginFormState extends State<LoginForm> {
                                         style: TextStyle(
                                             fontSize: ScreenUtil.getInstance()
                                                 .setSp(45),
+                                            color:
+                                                Colors.black.withOpacity(.80),
                                             fontFamily: "Poppins-Bold",
                                             letterSpacing: .6)),
                                     SizedBox(
@@ -179,6 +181,8 @@ class _LoginFormState extends State<LoginForm> {
                                     Text("Email",
                                         style: TextStyle(
                                             fontFamily: "Poppins-Medium",
+                                            color:
+                                                Colors.black.withOpacity(.80),
                                             fontSize: ScreenUtil.getInstance()
                                                 .setSp(26))),
                                     TextFormField(
@@ -207,6 +211,8 @@ class _LoginFormState extends State<LoginForm> {
                                     ),
                                     Text("Password",
                                         style: TextStyle(
+                                            color:
+                                                Colors.black.withOpacity(.80),
                                             fontFamily: "Poppins-Medium",
                                             fontSize: ScreenUtil.getInstance()
                                                 .setSp(26))),

@@ -5,6 +5,7 @@ import 'package:firebase_integrations/profile_bloc/profile_barrel.dart';
 import 'package:firebase_integrations/theme/app_theme.dart';
 import 'package:firebase_integrations/theme/bloc/theme_barrel.dart';
 import 'package:firebase_integrations/todo/widgets/loading_indicator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -182,7 +183,7 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
+                        Navigator.of(context).push(CupertinoPageRoute(
                             builder: (_) => EditProfileScreen(
                                   user: state.user,
                                   onSave: (user, name, email) {

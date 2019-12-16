@@ -20,18 +20,22 @@ class FilteredTodos extends StatelessWidget {
           final todos = state.filteredTodos;
           if (todos.length <= 0) {
             return SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 60.0),
+              child: Center(
                 child: Container(
-                  child: Column(
-                    children: <Widget>[
-                      Image.asset('assets/task-complete.svg'),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Text('You have no task! Enjoy your day',
-                          style: Theme.of(context).textTheme.body1)
-                    ],
+                  child: Padding(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 60.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.asset('assets/task-complete.png'),
+                        SizedBox(
+                          height: 10.0,
+                        ),
+                        Text('You have no task! Enjoy your day',
+                            style: Theme.of(context).textTheme.body1)
+                      ],
+                    ),
                   ),
                 ),
               ),

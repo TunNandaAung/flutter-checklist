@@ -2,6 +2,7 @@ import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dar
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_check_box/circular_check_box.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class TodoItem extends StatelessWidget {
   final DismissDirectionCallback onDismissed;
@@ -20,10 +21,34 @@ class TodoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Dismissible(
+      background: Container(
+        alignment: AlignmentDirectional.centerStart,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20.0),
+            color: Colors.transparent),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 36.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Icon(
+                MdiIcons.deleteOutline,
+                color: Colors.red,
+                size: 30.0,
+              ),
+              Icon(
+                MdiIcons.deleteOutline,
+                color: Colors.red,
+                size: 30.0,
+              )
+            ],
+          ),
+        ),
+      ),
       key: Key('__todo_item_${todo.id}'),
       onDismissed: onDismissed,
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: EdgeInsets.all(8.0),
         child: Stack(
           children: <Widget>[
             Hero(
