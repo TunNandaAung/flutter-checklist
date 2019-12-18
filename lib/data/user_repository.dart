@@ -67,6 +67,10 @@ class UserRepository {
     return this.getUser();
   }
 
+  Future<void> resetPassword(String email) async {
+    await _firebaseAuth.sendPasswordResetEmail(email: email);
+  }
+
   Future changePassword(
       {FirebaseUser user, String currentPassword, String newPassword}) async {
     final credential = EmailAuthProvider.getCredential(

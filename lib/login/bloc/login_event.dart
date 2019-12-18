@@ -52,6 +52,18 @@ class Submitted extends LoginEvent {
 
 class LoginWithGooglePressed extends LoginEvent {}
 
+class ForgotPasswordPressed extends LoginEvent {
+  final String email;
+
+  const ForgotPasswordPressed({@required this.email});
+
+  @override
+  List<Object> get props => [email];
+
+  @override
+  String toString() => 'EmailChanged { email :$email }';
+}
+
 class LoginWithCredentialsPressed extends LoginEvent {
   final String email;
   final String password;

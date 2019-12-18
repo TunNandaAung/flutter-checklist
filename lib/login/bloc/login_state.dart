@@ -7,16 +7,19 @@ class LoginState {
   final bool isSubmitting;
   final bool isSuccess;
   final bool isFailure;
+  final bool isPasswordResetMailSent;
+  final bool isPasswordResetFailure;
 
   bool get isFormValid => isEmailValid && isPasswordValid;
 
-  LoginState({
-    @required this.isEmailValid,
-    @required this.isPasswordValid,
-    @required this.isSubmitting,
-    @required this.isSuccess,
-    @required this.isFailure,
-  });
+  LoginState(
+      {@required this.isEmailValid,
+      @required this.isPasswordValid,
+      @required this.isSubmitting,
+      @required this.isSuccess,
+      @required this.isFailure,
+      @required this.isPasswordResetMailSent,
+      @required this.isPasswordResetFailure});
 
   factory LoginState.empty() {
     return LoginState(
@@ -25,6 +28,8 @@ class LoginState {
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
+      isPasswordResetMailSent: false,
+      isPasswordResetFailure: false,
     );
   }
 
@@ -35,6 +40,8 @@ class LoginState {
       isSubmitting: true,
       isSuccess: false,
       isFailure: false,
+      isPasswordResetMailSent: false,
+      isPasswordResetFailure: false,
     );
   }
 
@@ -45,6 +52,8 @@ class LoginState {
       isSubmitting: false,
       isSuccess: false,
       isFailure: true,
+      isPasswordResetMailSent: false,
+      isPasswordResetFailure: false,
     );
   }
 
@@ -55,7 +64,32 @@ class LoginState {
       isSubmitting: false,
       isSuccess: true,
       isFailure: false,
+      isPasswordResetMailSent: false,
+      isPasswordResetFailure: false,
     );
+  }
+
+  factory LoginState.passwordResetMailSent() {
+    return LoginState(
+      isEmailValid: true,
+      isPasswordValid: true,
+      isSubmitting: false,
+      isSuccess: false,
+      isFailure: false,
+      isPasswordResetMailSent: true,
+      isPasswordResetFailure: false,
+    );
+  }
+
+  factory LoginState.passwordResetFailure() {
+    return LoginState(
+        isEmailValid: true,
+        isPasswordValid: true,
+        isSubmitting: false,
+        isSuccess: false,
+        isFailure: false,
+        isPasswordResetMailSent: false,
+        isPasswordResetFailure: true);
   }
 
   LoginState update({
@@ -68,23 +102,30 @@ class LoginState {
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
+      isPasswordResetMailSent: false,
+      isPasswordResetFailure: false,
     );
   }
 
-  LoginState copyWith({
-    bool isEmailValid,
-    bool isPasswordValid,
-    bool isSubmitEnabled,
-    bool isSubmitting,
-    bool isSuccess,
-    bool isFailure,
-  }) {
+  LoginState copyWith(
+      {bool isEmailValid,
+      bool isPasswordValid,
+      bool isSubmitEnabled,
+      bool isSubmitting,
+      bool isSuccess,
+      bool isFailure,
+      bool isPasswordResetFailure,
+      bool isPasswordResetMailSent}) {
     return LoginState(
       isEmailValid: isEmailValid ?? this.isEmailValid,
       isPasswordValid: isPasswordValid ?? this.isPasswordValid,
       isSubmitting: isSubmitting ?? this.isSubmitting,
       isSuccess: isSuccess ?? this.isSuccess,
       isFailure: isFailure ?? this.isFailure,
+      isPasswordResetMailSent:
+          isPasswordResetMailSent ?? this.isPasswordResetMailSent,
+      isPasswordResetFailure:
+          isPasswordResetFailure ?? this.isPasswordResetFailure,
     );
   }
 
@@ -96,6 +137,9 @@ class LoginState {
       isSubmitting: $isSubmitting,
       isSuccess: $isSuccess,
       isFailure: $isFailure,
+      
+      isPasswordResetMailSent: $isPasswordResetMailSent
+      isPasswordResetFailure: $isPasswordResetFailure
     }''';
   }
 }

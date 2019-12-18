@@ -115,11 +115,11 @@ class _ProfileState extends State<Profile> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                            state.user.displayName == null
+                            state.user == null
                                 ? 'No Name'
                                 : state.user.displayName,
                             style: Theme.of(context).textTheme.headline),
-                        Text(state.user.email,
+                        Text(state.user == null ? 'No Email' : state.user.email,
                             style: Theme.of(context).textTheme.display3),
                         Transform.translate(
                           offset: Offset(0.0,

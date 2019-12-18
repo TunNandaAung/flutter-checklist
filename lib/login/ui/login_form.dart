@@ -2,6 +2,7 @@ import 'package:firebase_integrations/authentication_bloc/bloc.dart';
 import 'package:firebase_integrations/data/user_repository.dart';
 import 'package:firebase_integrations/login/bloc/login_barrel.dart';
 import 'package:firebase_integrations/register/ui/register_screen.dart';
+import 'package:firebase_integrations/todo/widgets/dialogs.dart';
 import 'package:firebase_integrations/utils/custom_icons.dart';
 import 'package:firebase_integrations/utils/social_icons.dart';
 import 'package:flutter/material.dart';
@@ -36,6 +37,10 @@ class _LoginFormState extends State<LoginForm> {
 
   bool isLoginButtonEnabled(LoginState state) {
     return state.isFormValid && isPopulated && !state.isSubmitting;
+  }
+
+  bool isForgotPasswordEnabled(LoginState state) {
+    return state.isEmailValid && _emailController.text.isNotEmpty;
   }
 
   @override
@@ -95,6 +100,52 @@ class _LoginFormState extends State<LoginForm> {
                       ),
                     );
                 }
+                if (state.isPasswordResetFailure) {
+                  Scaffold.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        elevation: 6.0,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Failed to send password reset email',
+                              style: TextStyle(fontFamily: 'Poppins-Bold'),
+                            ),
+                            Icon(Icons.error)
+                          ],
+                        ),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                }
+                if (state.isPasswordResetMailSent) {
+                  Scaffold.of(context)
+                    ..hideCurrentSnackBar()
+                    ..showSnackBar(
+                      SnackBar(
+                        elevation: 6.0,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0)),
+                        content: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Password reset mail has been sent to your email address',
+                              style: TextStyle(fontFamily: 'Poppins-Bold'),
+                            ),
+                            Icon(Icons.check)
+                          ],
+                        ),
+                        backgroundColor: Colors.red,
+                      ),
+                    );
+                }
                 if (state.isSubmitting) {
                   Scaffold.of(context)
                     ..hideCurrentSnackBar()
@@ -137,7 +188,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        left: 28.0, right: 28.0, top: 40.0),
+                        left: 28.0, right: 28.0, top: 25.0),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -247,13 +298,29 @@ class _LoginFormState extends State<LoginForm> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: <Widget>[
-                                        Text(
-                                          "Forgot Password?",
-                                          style: TextStyle(
-                                              color: Color(0xFF5d74e3),
-                                              fontFamily: "Poppins-Medium",
-                                              fontSize: ScreenUtil.getInstance()
-                                                  .setSp(28)),
+                                        FlatButton(
+                                          onPressed: () async {
+                                            if (isForgotPasswordEnabled(
+                                                state)) {
+                                              _onForgotPasswordPressed();
+                                              final action = await Dialogs
+                                                  .passwordResetDialog(
+                                                      context,
+                                                      'Don\'t Worry :)',
+                                                      'A password reset link will be sent to your email. Make sure to check spam folders if you don\'t see one');
+                                              if (action ==
+                                                  DialogAction.close) {}
+                                            }
+                                          },
+                                          child: Text(
+                                            "Forgot Password?",
+                                            style: TextStyle(
+                                                color: Color(0xFF5d74e3),
+                                                fontFamily: "Poppins-Medium",
+                                                fontSize:
+                                                    ScreenUtil.getInstance()
+                                                        .setSp(28)),
+                                          ),
                                         )
                                       ],
                                     ),
@@ -391,6 +458,14 @@ class _LoginFormState extends State<LoginForm> {
   void _onPasswordChanged() {
     _loginBloc.add(
       PasswordChanged(password: _passwordController.text),
+    );
+  }
+
+  void _onForgotPasswordPressed() {
+    _loginBloc.add(
+      ForgotPasswordPressed(
+        email: _emailController.text,
+      ),
     );
   }
 
