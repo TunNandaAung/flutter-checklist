@@ -4,7 +4,14 @@
 
 A simple todo list app created with Flutter and Firestore.
 
-## Demo
+## Screenshots
+
+![Todo Light Screen](https://github.com/TunNandaAung/flutter-firebase/blob/master/screenshots/todo-light.png)
+![Stats Light Screen](https://github.com/TunNandaAung/flutter-firebase/blob/master/screenshots/stats-light.png)
+![Profile Light Screen](https://github.com/TunNandaAung/flutter-firebase/blob/master/screenshots/profile-light.png)
+![Todo Dark Screen](https://github.com/TunNandaAung/flutter-firebase/blob/master/screenshots/todo-dark.png)
+![Stats Dark Screen](https://github.com/TunNandaAung/flutter-firebase/blob/master/screenshots/stats-dark.png)
+![Profile Dark Screen](https://github.com/TunNandaAung/flutter-firebase/blob/master/screenshots/profile-dark.png)
 
 ## Features
 
