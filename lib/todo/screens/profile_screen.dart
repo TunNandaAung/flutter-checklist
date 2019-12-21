@@ -20,13 +20,76 @@ class Profile extends StatefulWidget {
   _ProfileState createState() => _ProfileState();
 }
 
-class _ProfileState extends State<Profile> {
+class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
+  AnimationController animController;
+  Animation<Offset> animation;
   int themeIndex = 1;
+  double _scale;
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
+  void initState() {
+    animController = AnimationController(
+        vsync: this,
+        duration: Duration(
+          milliseconds: 200,
+        ),
+        lowerBound: 0.0,
+        upperBound: 0.1)
+      ..addListener(() {
+        setState(() {});
+      });
+
+    // final curvedAnimation = CurvedAnimation(
+    //   parent: animController,
+    //   curve: Curves.decelerate,
+    // );
+
+    // animation = Tween<Offset>(begin: Offset.zero, end: Offset(0.0, -1.0))
+    //     .animate(curvedAnimation)
+    //       ..addListener(() {
+    //         setState(() {});
+    //       });
+    //       ..addStatusListener((status) {
+    //         if (status == AnimationStatus.completed) {
+    //           animController.reverse();
+    //         } else if (status == AnimationStatus.dismissed) {
+    //           animController.forward();
+    //         }
+    //       });
+
+    // animController.forward();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    animController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    void _onThemeDarkTapUp(TapUpDetails details) {
+      animController.forward();
+      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(AppTheme.Dark));
+    }
+
+    void _onThemeDarkTapDown(TapDownDetails details) {
+      animController.reverse();
+    }
+
+    void _onThemeLightTapUp(TapUpDetails details) {
+      animController.forward();
+      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(AppTheme.Light));
+    }
+
+    void _onThemeLightTapDown(TapDownDetails details) {
+      animController.reverse();
+    }
+
+    _scale = 1 - animController.value;
     return BlocListener<ProfileBloc, ProfileState>(
       listener: (context, state) {
         if (state is PasswordChanged) {
@@ -126,31 +189,48 @@ class _ProfileState extends State<Profile> {
                               -1 * MediaQuery.of(context).viewInsets.bottom),
                           child: Padding(
                             padding: EdgeInsets.only(top: 50.0),
-                            child: Prefer.prefs.getInt('theme') == 0
-                                ? InkWell(
-                                    onTap: () {
-                                      BlocProvider.of<ThemeBloc>(context)
-                                          .add(ThemeChanged(AppTheme.Dark));
-                                    },
-                                    child: Image(
-                                      image: AssetImage(
-                                          'assets/btn_icon/btn-moon-96.png'),
-                                      height: 50,
-                                      width: 50,
+                            child: Container(
+                              width: 50.0,
+                              height: 50.0,
+                              child: Prefer.prefs.getInt('theme') == 0
+                                  ? GestureDetector(
+                                      onTapUp: _onThemeDarkTapUp,
+                                      onTapDown: _onThemeDarkTapDown,
+                                      // onTap: () {
+                                      //   animController.forward();
+                                      //   BlocProvider.of<ThemeBloc>(context)
+                                      //       .add(ThemeChanged(
+                                      //           AppTheme.Dark));
+                                      // },
+                                      child: Transform.scale(
+                                        scale: _scale,
+                                        child: Image(
+                                          image: AssetImage(
+                                              'assets/btn_icon/btn-moon-96.png'),
+                                          height: 50,
+                                          width: 50,
+                                        ),
+                                      ),
+                                    )
+                                  : GestureDetector(
+                                      onTapUp: _onThemeLightTapUp,
+                                      onTapDown: _onThemeLightTapDown,
+                                      // onTap: () {
+                                      //   animController.reverse();
+                                      //   BlocProvider.of<ThemeBloc>(context)
+                                      //       .add(ThemeChanged(AppTheme.Light));
+                                      // },
+                                      child: Transform.scale(
+                                        scale: _scale,
+                                        child: Image(
+                                          image: AssetImage(
+                                              'assets/btn_icon/btn-sun-128.png'),
+                                          height: 50,
+                                          width: 50,
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                : InkWell(
-                                    onTap: () {
-                                      BlocProvider.of<ThemeBloc>(context)
-                                          .add(ThemeChanged(AppTheme.Light));
-                                    },
-                                    child: Image(
-                                      image: AssetImage(
-                                          'assets/btn_icon/btn-sun-128.png'),
-                                      height: 50,
-                                      width: 50,
-                                    ),
-                                  ),
+                            ),
                           ),
                         )
                       ],

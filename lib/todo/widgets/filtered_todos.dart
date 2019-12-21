@@ -18,7 +18,7 @@ class FilteredTodos extends StatelessWidget {
           return LoadingIndicator();
         } else if (state is FilteredTodosLoaded) {
           final todos = state.filteredTodos;
-          if (todos.length <= 0) {
+          if (todos.isEmpty) {
             return SingleChildScrollView(
               child: Center(
                 child: Container(
