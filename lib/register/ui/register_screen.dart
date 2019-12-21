@@ -33,7 +33,7 @@ class RegisterScreen extends StatelessWidget {
             resizeToAvoidBottomPadding: true,
             backgroundColor: Colors.transparent,
             body: BlocProvider<RegisterBloc>(
-                builder: (context) =>
+                create: (context) =>
                     RegisterBloc(userRepository: _userRepository),
                 child: RegisterForm())));
   }

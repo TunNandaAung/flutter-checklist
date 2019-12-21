@@ -27,7 +27,7 @@ Future<void> main() async {
 
   runApp(
     BlocProvider(
-      builder: (context) =>
+      create: (context) =>
           AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
       child: MyApp(userRepository: userRepository),
     ),
@@ -61,9 +61,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ThemeBloc>(builder: (context) => ThemeBloc()),
+        BlocProvider<ThemeBloc>(create: (context) => ThemeBloc()),
         BlocProvider<TodosBloc>(
-          builder: (context) {
+          create: (context) {
             return TodosBloc(
               _userRepository,
               todosRepository: FirebaseTodosRepository(),
@@ -84,20 +84,20 @@ class _MyAppState extends State<MyApp> {
                     return MultiBlocProvider(
                       providers: [
                         BlocProvider<TabBloc>(
-                          builder: (context) => TabBloc(),
+                          create: (context) => TabBloc(),
                         ),
                         BlocProvider<FilteredTodosBloc>(
-                          builder: (context) => FilteredTodosBloc(
+                          create: (context) => FilteredTodosBloc(
                             todosBloc: BlocProvider.of<TodosBloc>(context),
                           ),
                         ),
                         BlocProvider<StatsBloc>(
-                          builder: (context) => StatsBloc(
+                          create: (context) => StatsBloc(
                             todosBloc: BlocProvider.of<TodosBloc>(context),
                           ),
                         ),
                         BlocProvider<ProfileBloc>(
-                          builder: (context) => ProfileBloc(
+                          create: (context) => ProfileBloc(
                             userRepository: _userRepository,
                           )..add(LoadProfile()),
                         ),
