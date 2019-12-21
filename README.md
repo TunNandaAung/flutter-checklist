@@ -1,4 +1,4 @@
-<p align="center"><img width="128" src="https://github.com/tunnandaaung/logo.png" alt="Checklist Logo"></p>
+<p align="center"><img width="128" src="https://github.com/TunNandaAung/flutter-firebase/blob/master/assets/app_icon/app-icon-tick-box-128.png" alt="Checklist Logo"></p>
 
 # Checklist
 
