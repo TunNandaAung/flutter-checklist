@@ -178,11 +178,14 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     child: Column(
                       children: <Widget>[
                         Text(
-                            state.user == null
+                            state.user == null || state.user.displayName == null
                                 ? 'No Name'
                                 : state.user.displayName,
                             style: Theme.of(context).textTheme.headline),
-                        Text(state.user == null ? 'No Email' : state.user.email,
+                        Text(
+                            state.user == null || state.user.email == null
+                                ? 'No Email'
+                                : state.user.email,
                             style: Theme.of(context).textTheme.display3),
                         Transform.translate(
                           offset: Offset(0.0,

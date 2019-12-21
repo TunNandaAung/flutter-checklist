@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
             body: activeTab == AppTab.todos
-                ? FilteredTodos()
+                ? FilteredTodos(userId: user.uid)
                 : activeTab == AppTab.stats
                     ? Stats()
                     : Profile(

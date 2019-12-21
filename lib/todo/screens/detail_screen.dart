@@ -97,7 +97,8 @@ class DetailsScreen extends StatelessWidget {
                                               .add(
                                             UpdateTodo(
                                               todo.copyWith(
-                                                  complete: !todo.complete),
+                                                  complete: !todo.complete,
+                                                  userId: todo.userId),
                                             ),
                                           );
                                         },

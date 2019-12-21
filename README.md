@@ -8,7 +8,7 @@ A simple todo list app created with Flutter and Firestore.
 
 ## Features
 
-- Create Account
+- Create Account / Signin with google account
 - Update Profile Information
 - Add / Edit / Delete todos
 - Dark & Light Theme

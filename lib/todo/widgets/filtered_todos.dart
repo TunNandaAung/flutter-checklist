@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
 import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
 import 'package:firebase_integrations/todo/screens/screen.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FilteredTodos extends StatelessWidget {
-  FilteredTodos({Key key}) : super(key: key);
+  final String userId;
+  FilteredTodos({Key key, this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +75,8 @@ class FilteredTodos extends StatelessWidget {
                 },
                 onCheckboxChanged: (_) {
                   BlocProvider.of<TodosBloc>(context).add(
-                    UpdateTodo(todo.copyWith(complete: !todo.complete)),
+                    UpdateTodo(todo.copyWith(
+                        complete: !todo.complete, userId: userId)),
                   );
                 },
               );

@@ -29,18 +29,13 @@ class TodoItem extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 36.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Icon(
                 MdiIcons.deleteOutline,
                 color: Colors.red,
                 size: 30.0,
               ),
-              Icon(
-                MdiIcons.deleteOutline,
-                color: Colors.red,
-                size: 30.0,
-              )
             ],
           ),
         ),
