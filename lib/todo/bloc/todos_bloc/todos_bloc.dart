@@ -40,10 +40,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   Stream<TodosState> _mapLoadTodosToState() async* {
     _todosSubscription?.cancel();
     final user = await _userRepository.getUser();
-    _todosSubscription =
-        _todosRepository.todos(user == null ? '' : user.uid).listen(
-              (todos) => add(TodosUpdated(todos)),
-            );
+    _todosSubscription = _todosRepository.todos(user.uid).listen(
+          (todos) => add(TodosUpdated(todos)),
+        );
   }
 
   Stream<TodosState> _mapAddTodoToState(AddTodo event) async* {

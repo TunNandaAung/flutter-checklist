@@ -34,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     elevation: 0.0,
                     title: Text(
-                      'Firestore Todos',
+                      'Checklist',
                       style: Theme.of(context).textTheme.display1,
                     ),
                     actions: [

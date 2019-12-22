@@ -67,7 +67,7 @@ class _MyAppState extends State<MyApp> {
             return TodosBloc(
               _userRepository,
               todosRepository: FirebaseTodosRepository(),
-            )..add(LoadTodos());
+            );
           },
         ),
       ],
@@ -81,6 +81,7 @@ class _MyAppState extends State<MyApp> {
               return BlocBuilder<AuthenticationBloc, AuthenticationState>(
                 builder: (context, state) {
                   if (state is Authenticated) {
+                    BlocProvider.of<TodosBloc>(context).add(LoadTodos());
                     return MultiBlocProvider(
                       providers: [
                         BlocProvider<TabBloc>(
