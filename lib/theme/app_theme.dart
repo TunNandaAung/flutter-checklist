@@ -35,7 +35,7 @@ final appThemeData = {
             decoration: TextDecoration.none,
             color: Colors.black),
         display1: TextStyle(
-            fontFamily: 'Poppins-Bold', color: Colors.black, fontSize: 21.0),
+            fontFamily: 'Poppins-Bold', color: Colors.black, fontSize: 30.0),
         display2: TextStyle(
             fontFamily: 'Poppins-Medium,', color: Colors.black, fontSize: 18.0),
         display3: TextStyle(
@@ -79,7 +79,7 @@ final appThemeData = {
           decoration: TextDecoration.none,
           color: Colors.white),
       display1: TextStyle(
-          fontFamily: 'Poppins-Bold', color: Colors.white, fontSize: 21.0),
+          fontFamily: 'Poppins-Bold', color: Colors.white, fontSize: 30.0),
       display2: TextStyle(
           fontFamily: 'Poppins-Medium,', color: Colors.white, fontSize: 18.0),
       display3: TextStyle(

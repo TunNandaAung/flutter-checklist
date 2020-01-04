@@ -37,16 +37,20 @@ class DetailsScreen extends StatelessWidget {
                 'Todo Details',
                 style: Theme.of(context).textTheme.display1,
               ),
-              leading: IconButton(
-                icon: Icon(CustomIcons.back_icon,
-                    color: Theme.of(context).dividerColor),
-                onPressed: () => Navigator.of(context).pop(),
+              leading: Container(
+                decoration: BoxDecoration(shape: BoxShape.circle),
+                child: IconButton(
+                  icon: Icon(Icons.arrow_back_ios,
+                      size: 28.0, color: Theme.of(context).dividerColor),
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
               ),
               actions: [
                 IconButton(
                   tooltip: 'Delete Todo',
                   icon: Icon(
                     Icons.delete,
+                    size: 30.0,
                     color: Theme.of(context).dividerColor,
                   ),
                   onPressed: () {

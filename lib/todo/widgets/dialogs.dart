@@ -14,7 +14,7 @@ class Dialogs {
               borderRadius: BorderRadius.circular(10),
             ),
             backgroundColor: Theme.of(context).cardColor,
-            title: Text(title, style: Theme.of(context).textTheme.display1),
+            title: Text(title, style: Theme.of(context).textTheme.display4),
             content: Text(
               body,
               style: Theme.of(context).textTheme.display3,
