@@ -19,11 +19,16 @@ class Stats extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Container(
-                      height: 108,
+                      height: 115,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.0),
-                        color: Color(0xFF4293f5),
+                        //color: Color(0xFF4293f5),
+                        gradient: LinearGradient(
+                            colors: [Color(0xff00C9FF), Color(0xff78fa85)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            tileMode: TileMode.clamp),
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black54,
@@ -51,7 +56,7 @@ class Stats extends StatelessWidget {
                                   'Completed Todos',
                                   style: TextStyle(
                                       fontFamily: 'Poppins-Medium',
-                                      color: Colors.grey[200],
+                                      color: Colors.white,
                                       fontSize: 18.0),
                                 ),
                               ],
@@ -68,7 +73,7 @@ class Stats extends StatelessWidget {
                                   style: TextStyle(
                                       fontFamily: 'Poppins-Bold',
                                       color: Colors.white,
-                                      fontSize: 36.0),
+                                      fontSize: 39.0),
                                 ),
                                 SizedBox(width: 8.0),
                                 Text(
@@ -86,11 +91,16 @@ class Stats extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Container(
-                        height: 108,
+                        height: 115,
                         width: double.infinity,
                         decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                                colors: [Color(0xffE55D87), Color(0xff5FC3E4)],
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                tileMode: TileMode.clamp),
                             borderRadius: BorderRadius.circular(20.0),
-                            color: Color(0xFFd43759),
+                            //    color: Color(0xFFd43759),
                             boxShadow: [
                               BoxShadow(
                                 color: Colors.black54,
@@ -117,7 +127,7 @@ class Stats extends StatelessWidget {
                                     'Active Todos',
                                     style: TextStyle(
                                         fontFamily: 'Poppins-Medium',
-                                        color: Colors.grey[200],
+                                        color: Colors.white,
                                         fontSize: 18.0),
                                   ),
                                 ],
@@ -134,7 +144,7 @@ class Stats extends StatelessWidget {
                                     style: TextStyle(
                                         fontFamily: 'Poppins-Bold',
                                         color: Colors.white,
-                                        fontSize: 36.0),
+                                        fontSize: 39.0),
                                   ),
                                   SizedBox(width: 8.0),
                                   Text(
