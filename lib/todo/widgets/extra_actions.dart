@@ -18,7 +18,7 @@ class ExtraActions extends StatelessWidget {
               icon: Icon(
                 CustomIcons.option,
                 color: Theme.of(context).dividerColor,
-                size: 12,
+                size: 11,
               ),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),

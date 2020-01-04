@@ -130,8 +130,16 @@ class DetailsScreen extends StatelessWidget {
                                         ),
                                         child: Text(
                                           todo.task,
-                                          style:
-                                              Theme.of(context).textTheme.title,
+                                          style: todo.complete
+                                              ? TextStyle(
+                                                  fontFamily: 'Poppins-Bold',
+                                                  color: Colors.grey,
+                                                  fontSize: 23.0,
+                                                  decoration: TextDecoration
+                                                      .lineThrough)
+                                              : Theme.of(context)
+                                                  .textTheme
+                                                  .title,
                                         ),
                                       ),
                                     ),
@@ -140,8 +148,9 @@ class DetailsScreen extends StatelessWidget {
                                       tag: '${todo.id}__noteheroTag',
                                       child: Text(
                                         todo.note,
-                                        style:
-                                            Theme.of(context).textTheme.body1,
+                                        style: todo.complete
+                                            ? Theme.of(context).textTheme.body2
+                                            : Theme.of(context).textTheme.body1,
                                       ),
                                     ),
                                   ],

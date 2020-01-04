@@ -92,7 +92,13 @@ class TodoItem extends StatelessWidget {
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: Text(todo.task,
-                            style: Theme.of(context).textTheme.title),
+                            style: todo.complete
+                                ? TextStyle(
+                                    fontFamily: 'Poppins-Bold',
+                                    color: Colors.grey,
+                                    fontSize: 23.0,
+                                    decoration: TextDecoration.lineThrough)
+                                : Theme.of(context).textTheme.title),
                       ),
                     ),
                     subtitle: todo.note.isNotEmpty
@@ -102,7 +108,9 @@ class TodoItem extends StatelessWidget {
                               todo.note,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: Theme.of(context).textTheme.body1,
+                              style: todo.complete
+                                  ? Theme.of(context).textTheme.body2
+                                  : Theme.of(context).textTheme.body1,
                             ))
                         : null,
                   ),

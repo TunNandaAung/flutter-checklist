@@ -34,6 +34,11 @@ final appThemeData = {
             fontSize: 16.0,
             decoration: TextDecoration.none,
             color: Colors.black),
+        body2: TextStyle(
+            fontFamily: 'Poppins-Medium',
+            fontSize: 16.0,
+            decoration: TextDecoration.lineThrough,
+            color: Colors.grey),
         display1: TextStyle(
             fontFamily: 'Poppins-Bold', color: Colors.black, fontSize: 30.0),
         display2: TextStyle(
@@ -50,14 +55,16 @@ final appThemeData = {
   AppTheme.Dark: ThemeData(
     brightness: Brightness.light,
     primaryColor: Color(0xFF5d74e3),
-    backgroundColor: Color(0xFF1b1e44),
-    canvasColor: Color(0xFF1b1e44),
+    // backgroundColor: Color(0xFF1b1e44),
+    // canvasColor: Color(0xFF1b1e44),
+    backgroundColor: Color(0xFF1A202C),
+    canvasColor: Color(0xFF1A202C),
     popupMenuTheme: PopupMenuThemeData(color: Color(0xFF2d3447)),
     cardColor: Color(0xFF2d3447),
     dividerColor: Colors.white,
     bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: Colors.black.withOpacity(.25)),
+    floatingActionButtonTheme:
+        FloatingActionButtonThemeData(backgroundColor: Colors.black),
     buttonColor: Colors.black.withOpacity(.40),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFF2d3447)),
     hintColor: Colors.white30,
@@ -78,6 +85,11 @@ final appThemeData = {
           fontSize: 16.0,
           decoration: TextDecoration.none,
           color: Colors.white),
+      body2: TextStyle(
+          fontFamily: 'Poppins-Medium',
+          fontSize: 16.0,
+          decoration: TextDecoration.lineThrough,
+          color: Colors.grey),
       display1: TextStyle(
           fontFamily: 'Poppins-Bold', color: Colors.white, fontSize: 30.0),
       display2: TextStyle(

@@ -92,7 +92,7 @@ class _Button extends StatelessWidget {
       ],
       icon: Icon(
         Icons.filter_list,
-        size: 36.0,
+        size: 30.0,
         color: Theme.of(context).dividerColor,
       ),
     );
