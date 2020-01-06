@@ -29,7 +29,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     } else if (event is DeleteTodo) {
       yield* _mapDeleteTodoToState(event);
     } else if (event is ToggleAll) {
-      yield* _mapToggleAllToState();
+      yield* _mapToggleAllToState(event);
     } else if (event is ClearCompleted) {
       yield* _mapClearCompletedToState();
     } else if (event is TodosUpdated) {
@@ -57,12 +57,13 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     _todosRepository.deleteTodo(event.todo);
   }
 
-  Stream<TodosState> _mapToggleAllToState() async* {
+  Stream<TodosState> _mapToggleAllToState(ToggleAll event) async* {
     final currentState = state;
     if (currentState is TodosLoaded) {
       final allComplete = currentState.todos.every((todo) => todo.complete);
       final List<Todo> updatedTodos = currentState.todos
-          .map((todo) => todo.copyWith(complete: !allComplete))
+          .map((todo) =>
+              todo.copyWith(complete: !allComplete, userId: event.userId))
           .toList();
       updatedTodos.forEach((updatedTodo) {
         _todosRepository.updateTodo(updatedTodo);

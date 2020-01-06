@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_integrations/todo/bloc/blocs.dart';
 import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
 
 abstract class TodosEvent extends Equatable {
@@ -48,7 +49,17 @@ class DeleteTodo extends TodosEvent {
 
 class ClearCompleted extends TodosEvent {}
 
-class ToggleAll extends TodosEvent {}
+class ToggleAll extends TodosEvent {
+  final String userId;
+
+  const ToggleAll(this.userId);
+
+  @override
+  List<Object> get props => [userId];
+
+  @override
+  String toString() => 'ToggleAll { userId: $userId }';
+}
 
 class TodosUpdated extends TodosEvent {
   final List<Todo> todos;

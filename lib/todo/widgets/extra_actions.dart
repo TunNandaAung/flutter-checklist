@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
 import 'package:firebase_integrations/todo/model/extra_action.dart';
 import 'package:firebase_integrations/utils/custom_icons.dart';
@@ -6,6 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExtraActions extends StatelessWidget {
+  final FirebaseUser user;
+
+  const ExtraActions({Key key, this.user}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TodosBloc, TodosState>(
@@ -16,9 +21,9 @@ class ExtraActions extends StatelessWidget {
             padding: EdgeInsets.only(right: 10.0),
             child: PopupMenuButton<ExtraAction>(
               icon: Icon(
-                CustomIcons.option,
+                Icons.more_horiz,
                 color: Theme.of(context).dividerColor,
-                size: 11,
+                size: 36.0,
               ),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20.0)),
@@ -29,7 +34,8 @@ class ExtraActions extends StatelessWidget {
                     BlocProvider.of<TodosBloc>(context).add(ClearCompleted());
                     break;
                   case ExtraAction.toggleAllComplete:
-                    BlocProvider.of<TodosBloc>(context).add(ToggleAll());
+                    BlocProvider.of<TodosBloc>(context)
+                        .add(ToggleAll(user.uid));
                     break;
                 }
               },

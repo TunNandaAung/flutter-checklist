@@ -30,17 +30,50 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: Colors.transparent,
             appBar: activeTab == AppTab.profile
                 ? null
-                : AppBar(
-                    backgroundColor: Colors.transparent,
-                    elevation: 0.0,
-                    title: Text(
-                      'Checklist',
-                      style: Theme.of(context).textTheme.display1,
+                : PreferredSize(
+                    preferredSize: Size.fromHeight(150.0),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Container(
+                        height: null,
+                        decoration: BoxDecoration(
+                            color: Color(0xfff7faff),
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(30.0),
+                                bottomLeft: Radius.circular(30.0))),
+                        child: AppBar(
+                          backgroundColor: Colors.transparent,
+                          elevation: 0.0,
+                          // title: Text(
+                          //   'Hello \n${user.displayName}',
+                          //   style: Theme.of(context).textTheme.display1,
+                          // ),
+                          actions: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                FilterButton(
+                                    visible: activeTab == AppTab.todos),
+                                ExtraActions(
+                                  user: user,
+                                )
+                              ],
+                            )
+                          ],
+                          bottom: PreferredSize(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  0, 12.0, 150.0, 0.0),
+                              child: Text(
+                                'Hello, \n${user.displayName}',
+                                style: Theme.of(context).textTheme.display1,
+                              ),
+                            ),
+                            preferredSize: Size(0.0, 0.0),
+                          ),
+                        ),
+                      ),
                     ),
-                    actions: [
-                      FilterButton(visible: activeTab == AppTab.todos),
-                      ExtraActions(),
-                    ],
                   ),
             body: activeTab == AppTab.todos
                 ? FilteredTodos(userId: user.uid)
