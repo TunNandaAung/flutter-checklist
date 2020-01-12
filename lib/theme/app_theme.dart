@@ -6,6 +6,7 @@ final appThemeData = {
   AppTheme.Light: ThemeData(
     brightness: Brightness.light,
     primaryColor: Color(0xFF5d74e3),
+    appBarTheme: AppBarTheme(color: Color(0xfff5f9ff)),
     backgroundColor: Color(0xFFf3f6fb),
     canvasColor: Color(0xFFf3f6fb),
     popupMenuTheme: PopupMenuThemeData(color: Color(0xFFEDF0F6)),
@@ -57,6 +58,7 @@ final appThemeData = {
     primaryColor: Color(0xFF5d74e3),
     // backgroundColor: Color(0xFF1b1e44),
     // canvasColor: Color(0xFF1b1e44),
+    appBarTheme: AppBarTheme(color: Colors.transparent),
     backgroundColor: Color(0xFF1A202C),
     canvasColor: Color(0xFF1A202C),
     popupMenuTheme: PopupMenuThemeData(color: Color(0xFF2d3447)),

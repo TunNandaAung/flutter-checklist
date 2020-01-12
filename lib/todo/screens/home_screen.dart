@@ -30,51 +30,100 @@ class HomeScreen extends StatelessWidget {
             backgroundColor: Colors.transparent,
             appBar: activeTab == AppTab.profile
                 ? null
-                : PreferredSize(
-                    preferredSize: Size.fromHeight(150.0),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 8.0),
-                      child: Container(
-                        height: null,
-                        decoration: BoxDecoration(
-                            color: Color(0xfff7faff),
-                            borderRadius: BorderRadius.only(
-                                bottomRight: Radius.circular(30.0),
-                                bottomLeft: Radius.circular(30.0))),
-                        child: AppBar(
-                          backgroundColor: Colors.transparent,
-                          elevation: 0.0,
-                          // title: Text(
-                          //   'Hello \n${user.displayName}',
-                          //   style: Theme.of(context).textTheme.display1,
-                          // ),
-                          actions: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                FilterButton(
-                                    visible: activeTab == AppTab.todos),
-                                ExtraActions(
-                                  user: user,
+                : activeTab == AppTab.stats
+                    ? PreferredSize(
+                        preferredSize: Size.fromHeight(150.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Container(
+                            height: null,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).appBarTheme.color,
+                                borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(30.0),
+                                    bottomLeft: Radius.circular(30.0))),
+                            child: AppBar(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0.0,
+                              // title: Text(
+                              //   'Hello \n${user.displayName}',
+                              //   style: Theme.of(context).textTheme.display1,
+                              // ),
+                              actions: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    FilterButton(
+                                        visible: activeTab == AppTab.todos),
+                                    ExtraActions(
+                                      user: user,
+                                    )
+                                  ],
                                 )
                               ],
-                            )
-                          ],
-                          bottom: PreferredSize(
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  0, 12.0, 150.0, 0.0),
-                              child: Text(
-                                'Hello, \n${user.displayName}',
-                                style: Theme.of(context).textTheme.display1,
+                              bottom: PreferredSize(
+                                child: Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      0, 0.0, 150.0, 0.0),
+                                  child: Text(
+                                    '\nCurrent Status',
+                                    style: Theme.of(context).textTheme.display1,
+                                  ),
+                                ),
+                                preferredSize: Size(0.0, 0.0),
                               ),
                             ),
-                            preferredSize: Size(0.0, 0.0),
+                          ),
+                        ),
+                      )
+                    : PreferredSize(
+                        preferredSize: Size.fromHeight(90.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: Container(
+                            height: null,
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).appBarTheme.color,
+                                borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(20.0),
+                                    bottomLeft: Radius.circular(20.0))),
+                            child: AppBar(
+                              backgroundColor: Colors.transparent,
+                              elevation: 0.0,
+                              // title: Text(
+                              //   'Hello \n${user.displayName}',
+                              //   style: Theme.of(context).textTheme.display1,
+                              // ),
+                              actions: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    FilterButton(
+                                        visible: activeTab == AppTab.todos),
+                                    ExtraActions(
+                                      user: user,
+                                    )
+                                  ],
+                                )
+                              ],
+                              bottom: PreferredSize(
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 18.0),
+                                    child: Text(
+                                      'Checklist',
+                                      style:
+                                          Theme.of(context).textTheme.display1,
+                                    ),
+                                  ),
+                                ),
+                                preferredSize: Size(0.0, 0.0),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
             body: activeTab == AppTab.todos
                 ? FilteredTodos(userId: user.uid)
                 : activeTab == AppTab.stats
