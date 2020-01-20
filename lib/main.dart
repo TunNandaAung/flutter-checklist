@@ -1,3 +1,4 @@
+import 'package:connectivity/connectivity.dart';
 import 'package:firebase_integrations/data/user_repository.dart';
 import 'package:firebase_integrations/login/ui/login_page.dart';
 import 'package:firebase_integrations/preferences/preferences.dart';
@@ -12,6 +13,7 @@ import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dar
 import 'package:firebase_integrations/todo/screens/screen.dart';
 import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:firebase_integrations/utils/bloc_delegate.dart';
+import 'package:firebase_integrations/utils/connectivity/bloc/connectivity_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
@@ -62,6 +64,10 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<ThemeBloc>(create: (context) => ThemeBloc()),
+        BlocProvider<ConnectivityBloc>(
+          create: (context) => ConnectivityBloc(result: ConnectivityResult.none)
+            ..add(CheckConnectivity()),
+        ),
         BlocProvider<TodosBloc>(
           create: (context) {
             return TodosBloc(
