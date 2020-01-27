@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:firebase_integrations/data/user_repository.dart';
-import 'package:firebase_integrations/register/bloc/register_barrel.dart';
-import 'package:firebase_integrations/utils/validators.dart';
+import 'package:checklist/data/user_repository.dart';
+import 'package:checklist/register/bloc/register_barrel.dart';
+import 'package:checklist/utils/validators.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 

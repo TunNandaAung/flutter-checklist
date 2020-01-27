@@ -1,4 +1,4 @@
-import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
+import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:flutter/material.dart';
 
 class DeleteTodoSnackBar extends SnackBar {

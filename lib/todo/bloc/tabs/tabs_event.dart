@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:firebase_integrations/todo/model/models.dart';
+import 'package:checklist/todo/model/models.dart';
 
 abstract class TabEvent extends Equatable {
   const TabEvent();

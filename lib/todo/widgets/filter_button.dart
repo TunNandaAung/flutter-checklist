@@ -1,5 +1,5 @@
-import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
-import 'package:firebase_integrations/todo/model/models.dart';
+import 'package:checklist/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
+import 'package:checklist/todo/model/models.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

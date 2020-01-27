@@ -1,4 +1,4 @@
-import 'package:firebase_integrations/todo/modal/edit_password_form.dart';
+import 'package:checklist/todo/modal/edit_password_form.dart';
 import 'package:flutter/material.dart';
 
 typedef OnSaveCallback = Function(String currentPassword, String newPassword);

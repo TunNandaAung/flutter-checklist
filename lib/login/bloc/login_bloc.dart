@@ -1,7 +1,7 @@
-import 'package:firebase_integrations/data/user_repository.dart';
+import 'package:checklist/data/user_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:firebase_integrations/login/bloc/login_barrel.dart';
-import 'package:firebase_integrations/utils/validators.dart';
+import 'package:checklist/login/bloc/login_barrel.dart';
+import 'package:checklist/utils/validators.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 

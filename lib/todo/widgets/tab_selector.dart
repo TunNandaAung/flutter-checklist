@@ -1,5 +1,5 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
-import 'package:firebase_integrations/todo/model/models.dart';
+import 'package:checklist/todo/model/models.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

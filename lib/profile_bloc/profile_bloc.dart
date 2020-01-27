@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_integrations/data/user_repository.dart';
-import 'package:firebase_integrations/profile_bloc/profile_barrel.dart';
+import 'package:checklist/data/user_repository.dart';
+import 'package:checklist/profile_bloc/profile_barrel.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 

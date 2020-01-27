@@ -1,4 +1,4 @@
-import 'package:firebase_integrations/data/user_repository.dart';
+import 'package:checklist/data/user_repository.dart';
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'bloc.dart';

@@ -1,19 +1,19 @@
 import 'package:connectivity/connectivity.dart';
-import 'package:firebase_integrations/data/user_repository.dart';
-import 'package:firebase_integrations/login/ui/login_page.dart';
-import 'package:firebase_integrations/preferences/preferences.dart';
-import 'package:firebase_integrations/profile_bloc/profile_barrel.dart';
-import 'package:firebase_integrations/splash_screen.dart';
-import 'package:firebase_integrations/theme/app_theme.dart';
-import 'package:firebase_integrations/theme/bloc/theme_barrel.dart';
-import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
-import 'package:firebase_integrations/todo/bloc/stats/stats_barrel.dart';
-import 'package:firebase_integrations/todo/bloc/tabs/tabs_barrel.dart';
-import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
-import 'package:firebase_integrations/todo/screens/screen.dart';
-import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
-import 'package:firebase_integrations/utils/bloc_delegate.dart';
-import 'package:firebase_integrations/utils/connectivity/bloc/connectivity_barrel.dart';
+import 'package:checklist/data/user_repository.dart';
+import 'package:checklist/login/ui/login_page.dart';
+import 'package:checklist/preferences/preferences.dart';
+import 'package:checklist/profile_bloc/profile_barrel.dart';
+import 'package:checklist/splash_screen.dart';
+import 'package:checklist/theme/app_theme.dart';
+import 'package:checklist/theme/bloc/theme_barrel.dart';
+import 'package:checklist/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
+import 'package:checklist/todo/bloc/stats/stats_barrel.dart';
+import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/screens/screen.dart';
+import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
+import 'package:checklist/utils/bloc_delegate.dart';
+import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
@@ -31,24 +31,24 @@ Future<void> main() async {
     BlocProvider(
       create: (context) =>
           AuthenticationBloc(userRepository: userRepository)..add(AppStarted()),
-      child: MyApp(userRepository: userRepository),
+      child: Checklist(userRepository: userRepository),
     ),
   );
 }
 
-class MyApp extends StatefulWidget {
+class Checklist extends StatefulWidget {
   final UserRepository _userRepository;
 
-  MyApp({Key key, @required UserRepository userRepository})
+  Checklist({Key key, @required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
         super(key: key);
 
   @override
-  _MyAppState createState() => _MyAppState();
+  _ChecklistState createState() => _ChecklistState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _ChecklistState extends State<Checklist> {
   final UserRepository _userRepository = UserRepository();
   AuthenticationBloc _authenticationBloc;
 

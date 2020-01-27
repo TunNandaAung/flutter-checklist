@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:firebase_integrations/todo/bloc/stats/stats_barrel.dart';
-import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/bloc/stats/stats_barrel.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
   StreamSubscription _todosSubscription;

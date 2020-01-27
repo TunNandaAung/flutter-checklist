@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_integrations/todo/bloc/tabs/tabs_barrel.dart';
-import 'package:firebase_integrations/todo/modal/add_modal.dart';
-import 'package:firebase_integrations/todo/model/models.dart';
-import 'package:firebase_integrations/todo/screens/profile_screen.dart';
-import 'package:firebase_integrations/todo/widgets/widgets.dart';
-import 'package:firebase_integrations/utils/connectivity/bloc/connectivity_barrel.dart';
+import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
+import 'package:checklist/todo/modal/add_modal.dart';
+import 'package:checklist/todo/model/models.dart';
+import 'package:checklist/todo/screens/profile_screen.dart';
+import 'package:checklist/todo/widgets/widgets.dart';
+import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

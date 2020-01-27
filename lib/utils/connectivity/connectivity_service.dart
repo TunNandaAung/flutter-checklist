@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity/connectivity.dart';
-import 'package:firebase_integrations/utils/connectivity/connectivity_status.dart';
+import 'package:checklist/utils/connectivity/connectivity_status.dart';
 
 class ConnectivityService {
   StreamController<ConnectivityStatus> connectionStatusController =

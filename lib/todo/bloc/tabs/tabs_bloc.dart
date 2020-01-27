@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:firebase_integrations/todo/bloc/tabs/tabs_barrel.dart';
-import 'package:firebase_integrations/todo/model/models.dart';
+import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
+import 'package:checklist/todo/model/models.dart';
 
 class TabBloc extends Bloc<TabEvent, AppTab> {
   @override

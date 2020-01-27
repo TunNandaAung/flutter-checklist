@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:firebase_integrations/utils/connectivity/bloc/connectivity_barrel.dart';
+import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
 import 'package:meta/meta.dart';
 
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {

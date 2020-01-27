@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_integrations/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
-import 'package:firebase_integrations/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
-import 'package:firebase_integrations/todo/screens/screen.dart';
-import 'package:firebase_integrations/todo/widgets/widgets.dart';
+import 'package:checklist/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/screens/screen.dart';
+import 'package:checklist/todo/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';

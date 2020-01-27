@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:firebase_integrations/todo/model/models.dart';
-import 'package:firebase_integrations/todo/todos_repository/lib/todos_barrel.dart';
+import 'package:checklist/todo/model/models.dart';
+import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 
 abstract class FilteredTodosState extends Equatable {
   const FilteredTodosState();

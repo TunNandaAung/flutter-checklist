@@ -1,5 +1,5 @@
-import 'package:firebase_integrations/todo/bloc/stats/stats_barrel.dart';
-import 'package:firebase_integrations/todo/widgets/loading_indicator.dart';
+import 'package:checklist/todo/bloc/stats/stats_barrel.dart';
+import 'package:checklist/todo/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

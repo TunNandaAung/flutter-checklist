@@ -1,10 +1,10 @@
-import 'package:firebase_integrations/authentication_bloc/bloc.dart';
-import 'package:firebase_integrations/data/user_repository.dart';
-import 'package:firebase_integrations/login/bloc/login_barrel.dart';
-import 'package:firebase_integrations/register/ui/register_screen.dart';
-import 'package:firebase_integrations/todo/widgets/dialogs.dart';
-import 'package:firebase_integrations/utils/custom_icons.dart';
-import 'package:firebase_integrations/utils/social_icons.dart';
+import 'package:checklist/authentication_bloc/bloc.dart';
+import 'package:checklist/data/user_repository.dart';
+import 'package:checklist/login/bloc/login_barrel.dart';
+import 'package:checklist/register/ui/register_screen.dart';
+import 'package:checklist/todo/widgets/dialogs.dart';
+import 'package:checklist/utils/custom_icons.dart';
+import 'package:checklist/utils/social_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

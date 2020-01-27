@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_integrations/authentication_bloc/bloc.dart';
-import 'package:firebase_integrations/preferences/preferences.dart';
-import 'package:firebase_integrations/profile_bloc/profile_barrel.dart';
-import 'package:firebase_integrations/theme/app_theme.dart';
-import 'package:firebase_integrations/theme/bloc/theme_barrel.dart';
-import 'package:firebase_integrations/todo/widgets/loading_indicator.dart';
+import 'package:checklist/authentication_bloc/bloc.dart';
+import 'package:checklist/preferences/preferences.dart';
+import 'package:checklist/profile_bloc/profile_barrel.dart';
+import 'package:checklist/theme/app_theme.dart';
+import 'package:checklist/theme/bloc/theme_barrel.dart';
+import 'package:checklist/todo/widgets/loading_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
