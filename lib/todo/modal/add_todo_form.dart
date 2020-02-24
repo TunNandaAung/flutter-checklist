@@ -1,5 +1,7 @@
+import 'package:checklist/todo/modal/calendar_modal.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 typedef OnSaveCallback = Function(String task, String note);
 
@@ -19,6 +21,7 @@ class AddTodoForm extends StatefulWidget {
 class _AddTodoFormState extends State<AddTodoForm> {
   String _task;
   String _note;
+  DateTime _dateTime;
 
   bool get isEditing => widget.isEditing;
 
@@ -134,6 +137,89 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                   hintStyle: Theme.of(context)
                                       .inputDecorationTheme
                                       .hintStyle),
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 30.0),
+                        Container(
+                          width: double.infinity,
+                          height: null,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0, 10),
+                                blurRadius: 30,
+                              ),
+                            ],
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              CalendarModal(onDateSelected: (dateTime) {
+                                setState(() {
+                                  _dateTime = dateTime;
+                                });
+                              }).mainBottomSheet(context, '1');
+                            },
+                            child: Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 15.0, horizontal: 3.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.calendar_today,
+                                      color: _dateTime == null
+                                          ? Theme.of(context).hintColor
+                                          : Theme.of(context).dividerColor,
+                                    ),
+                                    SizedBox(width: 15.0),
+                                    _dateTime == null
+                                        ? Text(
+                                            'Add date and time',
+                                            style: Theme.of(context)
+                                                .inputDecorationTheme
+                                                .hintStyle,
+                                          )
+                                        : Text(
+                                            DateFormat('EEE d MMM hh:mm:ss a')
+                                                .format(_dateTime.toLocal()),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .display4,
+                                          ),
+                                    SizedBox(width: 30.0),
+                                    _dateTime != null
+                                        ? Container(
+                                            width: 23.0,
+                                            height: 23.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  Theme.of(context).hintColor,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: RawMaterialButton(
+                                              shape: CircleBorder(),
+                                              child: Icon(
+                                                Icons.close,
+                                                size: 20.0,
+                                                color: Colors.white,
+                                              ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  _dateTime = null;
+                                                });
+                                              },
+                                            ),
+                                          )
+                                        : Container()
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
