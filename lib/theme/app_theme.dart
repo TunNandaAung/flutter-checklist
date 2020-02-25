@@ -11,6 +11,10 @@ final appThemeData = {
     canvasColor: Color(0xFFf3f6fb),
     popupMenuTheme: PopupMenuThemeData(color: Color(0xFFEDF0F6)),
     cardColor: Colors.white,
+    dialogTheme: DialogTheme(
+      backgroundColor: Colors.white,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+    ),
     dividerColor: Colors.black,
     bottomAppBarTheme: BottomAppBarTheme(color: Color(0xFF98c6f5)),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
@@ -63,6 +67,11 @@ final appThemeData = {
     canvasColor: Color(0xFF1A202C),
     popupMenuTheme: PopupMenuThemeData(color: Color(0xFF2d3447)),
     cardColor: Color(0xFF2d3447),
+    accentColor: Colors.red,
+    dialogTheme: DialogTheme(
+      backgroundColor: Color(0xFF2d3447),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+    ),
     dividerColor: Colors.white,
     bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
     floatingActionButtonTheme:

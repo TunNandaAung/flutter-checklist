@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rounded_date_picker/rounded_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 typedef OnSaveCallback = Function(String task, String note);
@@ -18,6 +21,10 @@ class _CalendarFormState extends State<CalendarForm> {
     _calendarController = CalendarController();
     super.initState();
   }
+
+  DateTime dateTime;
+
+  DateTime _selectedTime;
 
   @override
   void dispose() {
@@ -72,7 +79,9 @@ class _CalendarFormState extends State<CalendarForm> {
                               ),
                             ),
                             FlatButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.pop(context, dateTime);
+                              },
                               color: Theme.of(context).buttonColor,
                               disabledColor: Colors.grey,
                               shape: RoundedRectangleBorder(
@@ -101,9 +110,116 @@ class _CalendarFormState extends State<CalendarForm> {
                           onDaySelected: (day, event) {
                             // print(DateFormat('EEE d MMM hh:mm:ss a')
                             //     .format(day.toLocal()));
-                            Navigator.pop(context, day);
+                            // Navigator.pop(context, day);
+                            dateTime =
+                                new DateTime(day.year, day.month, day.day);
+                            print(dateTime);
                           },
-                        )
+                        ),
+                        SizedBox(height: 30.0),
+                        Container(
+                          width: double.infinity,
+                          height: null,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).cardColor,
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black26,
+                                offset: Offset(0, 10),
+                                blurRadius: 30,
+                              ),
+                            ],
+                          ),
+                          child: GestureDetector(
+                            onTap: () {
+                              CupertinoRoundedDatePicker.show(context,
+                                  fontFamily: 'Poppins-Medium',
+                                  borderRadius: 8.0,
+                                  textColor: Theme.of(context).dividerColor,
+                                  initialDatePickerMode:
+                                      CupertinoDatePickerMode.time,
+                                  background: Theme.of(context).canvasColor,
+                                  onDateTimeChanged: (newTime) {
+                                dateTime = new DateTime(
+                                    dateTime == null
+                                        ? DateTime.now().year
+                                        : dateTime.year,
+                                    dateTime == null
+                                        ? DateTime.now().month
+                                        : dateTime.month,
+                                    dateTime == null
+                                        ? DateTime.now().day
+                                        : dateTime.day,
+                                    newTime.hour,
+                                    newTime.minute,
+                                    newTime.second,
+                                    newTime.millisecond,
+                                    newTime.microsecond);
+
+                                print(dateTime);
+
+                                setState(() {
+                                  _selectedTime = dateTime;
+                                });
+                                print("SS" + _selectedTime.toString());
+                              });
+                            },
+                            child: Center(
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 15.0, horizontal: 15.0),
+                                child: Row(
+                                  children: <Widget>[
+                                    Icon(Icons.access_time,
+                                        color: Theme.of(context).hintColor),
+                                    SizedBox(width: 15.0),
+                                    _selectedTime == null
+                                        ? Text(
+                                            'Set time',
+                                            style: Theme.of(context)
+                                                .inputDecorationTheme
+                                                .hintStyle,
+                                          )
+                                        : Text(
+                                            DateFormat('hh:mm:ss a').format(
+                                                _selectedTime.toLocal()),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .display4,
+                                          ),
+                                    SizedBox(width: 30.0),
+                                    Spacer(),
+                                    _selectedTime != null
+                                        ? Container(
+                                            width: 23.0,
+                                            height: 23.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  Theme.of(context).hintColor,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: RawMaterialButton(
+                                              shape: CircleBorder(),
+                                              child: Icon(
+                                                Icons.close,
+                                                size: 20.0,
+                                                color: Colors.white,
+                                              ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  _selectedTime = null;
+                                                });
+                                              },
+                                            ),
+                                          )
+                                        : Container()
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),

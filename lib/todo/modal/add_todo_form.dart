@@ -166,7 +166,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                             child: Center(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 15.0, horizontal: 3.0),
+                                    vertical: 15.0, horizontal: 15.0),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -193,6 +193,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                                 .display4,
                                           ),
                                     SizedBox(width: 30.0),
+                                    Spacer(),
                                     _dateTime != null
                                         ? Container(
                                             width: 23.0,
