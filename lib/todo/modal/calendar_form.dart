@@ -117,54 +117,54 @@ class _CalendarFormState extends State<CalendarForm> {
                           },
                         ),
                         SizedBox(height: 30.0),
-                        Container(
-                          width: double.infinity,
-                          height: null,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(0, 10),
-                                blurRadius: 30,
-                              ),
-                            ],
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              CupertinoRoundedDatePicker.show(context,
-                                  fontFamily: 'Poppins-Medium',
-                                  borderRadius: 8.0,
-                                  textColor: Theme.of(context).dividerColor,
-                                  initialDatePickerMode:
-                                      CupertinoDatePickerMode.time,
-                                  background: Theme.of(context).canvasColor,
-                                  onDateTimeChanged: (newTime) {
-                                dateTime = new DateTime(
-                                    dateTime == null
-                                        ? DateTime.now().year
-                                        : dateTime.year,
-                                    dateTime == null
-                                        ? DateTime.now().month
-                                        : dateTime.month,
-                                    dateTime == null
-                                        ? DateTime.now().day
-                                        : dateTime.day,
-                                    newTime.hour,
-                                    newTime.minute,
-                                    newTime.second,
-                                    newTime.millisecond,
-                                    newTime.microsecond);
+                        GestureDetector(
+                          onTap: () {
+                            CupertinoRoundedDatePicker.show(context,
+                                fontFamily: 'Poppins-Medium',
+                                borderRadius: 8.0,
+                                textColor: Theme.of(context).dividerColor,
+                                initialDatePickerMode:
+                                    CupertinoDatePickerMode.time,
+                                background: Theme.of(context).canvasColor,
+                                onDateTimeChanged: (newTime) {
+                              dateTime = new DateTime(
+                                  dateTime == null
+                                      ? DateTime.now().year
+                                      : dateTime.year,
+                                  dateTime == null
+                                      ? DateTime.now().month
+                                      : dateTime.month,
+                                  dateTime == null
+                                      ? DateTime.now().day
+                                      : dateTime.day,
+                                  newTime.hour,
+                                  newTime.minute,
+                                  newTime.second,
+                                  newTime.millisecond,
+                                  newTime.microsecond);
 
-                                print(dateTime);
+                              print(dateTime);
 
-                                setState(() {
-                                  _selectedTime = dateTime;
-                                });
-                                print("SS" + _selectedTime.toString());
+                              setState(() {
+                                _selectedTime = dateTime;
                               });
-                            },
+                              print("SS" + _selectedTime.toString());
+                            });
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: null,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(0, 10),
+                                  blurRadius: 30,
+                                ),
+                              ],
+                            ),
                             child: Center(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(

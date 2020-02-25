@@ -141,28 +141,28 @@ class _AddTodoFormState extends State<AddTodoForm> {
                           ),
                         ),
                         SizedBox(height: 30.0),
-                        Container(
-                          width: double.infinity,
-                          height: null,
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).cardColor,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black26,
-                                offset: Offset(0, 10),
-                                blurRadius: 30,
-                              ),
-                            ],
-                          ),
-                          child: GestureDetector(
-                            onTap: () {
-                              CalendarModal(onDateSelected: (dateTime) {
-                                setState(() {
-                                  _dateTime = dateTime;
-                                });
-                              }).mainBottomSheet(context, '1');
-                            },
+                        GestureDetector(
+                          onTap: () {
+                            CalendarModal(onDateSelected: (dateTime) {
+                              setState(() {
+                                _dateTime = dateTime;
+                              });
+                            }).mainBottomSheet(context, '1');
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            height: null,
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).cardColor,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black26,
+                                  offset: Offset(0, 10),
+                                  blurRadius: 30,
+                                ),
+                              ],
+                            ),
                             child: Center(
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
