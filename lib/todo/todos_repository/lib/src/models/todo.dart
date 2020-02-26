@@ -8,20 +8,32 @@ class Todo {
   final String note;
   final String task;
   final String userId;
+  final int time;
 
   Todo(this.task,
-      {this.complete = false, String note = '', String id, String userId = ''})
+      {this.complete = false,
+      String note = '',
+      String id,
+      String userId = '',
+      int time = 0})
       : this.note = note ?? '',
         this.id = id,
-        this.userId = userId ?? '';
+        this.userId = userId ?? '',
+        this.time = time ?? 0;
 
   Todo copyWith(
-      {bool complete, String id, String note, String task, String userId}) {
+      {bool complete,
+      String id,
+      String note,
+      String task,
+      String userId,
+      int time}) {
     return Todo(task ?? this.task,
         complete: complete ?? this.complete,
         id: id ?? this.id,
         note: note ?? this.note,
-        userId: userId ?? userId);
+        userId: userId ?? userId,
+        time: time ?? time);
   }
 
   @override
@@ -30,7 +42,8 @@ class Todo {
       task.hashCode ^
       note.hashCode ^
       id.hashCode ^
-      userId.hashCode;
+      userId.hashCode ^
+      time.hashCode;
 
   @override
   bool operator ==(Object other) =>
@@ -41,15 +54,16 @@ class Todo {
           task == other.task &&
           note == other.note &&
           id == other.id &&
-          userId == other.userId;
+          userId == other.userId &&
+          time == other.time;
 
   @override
   String toString() {
-    return 'Todo{complete: $complete, task: $task, note: $note, id: $id, userId: $userId}';
+    return 'Todo{complete: $complete, task: $task, note: $note, id: $id, userId: $userId, time: $time}';
   }
 
   TodoEntity toEntity() {
-    return TodoEntity(task, id, note, complete, userId);
+    return TodoEntity(task, id, note, complete, userId, time);
   }
 
   static Todo fromEntity(TodoEntity entity) {
@@ -57,6 +71,7 @@ class Todo {
         complete: entity.complete ?? false,
         note: entity.note,
         id: entity.id,
-        userId: entity.userId ?? '');
+        userId: entity.userId ?? '',
+        time: entity.time ?? 0);
   }
 }

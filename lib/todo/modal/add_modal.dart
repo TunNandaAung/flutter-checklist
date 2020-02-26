@@ -12,9 +12,10 @@ class AddModal {
         isScrollControlled: true,
         builder: (BuildContext context) {
           return AddTodoForm(
-            onSave: (task, note) {
+            onSave: (task, note, time) {
               BlocProvider.of<TodosBloc>(context).add(
-                AddTodo(Todo(task, note: note, userId: userId)),
+                AddTodo(
+                    Todo(task, note: note, userId: userId, time: time ?? 0)),
               );
             },
             isEditing: false,
