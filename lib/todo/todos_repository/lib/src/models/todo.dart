@@ -32,8 +32,8 @@ class Todo {
         complete: complete ?? this.complete,
         id: id ?? this.id,
         note: note ?? this.note,
-        userId: userId ?? userId,
-        time: time ?? time);
+        userId: userId ?? this.userId,
+        time: time ?? this.time);
   }
 
   @override

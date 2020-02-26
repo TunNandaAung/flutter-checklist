@@ -2,6 +2,7 @@ import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_check_box/circular_check_box.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class TodoItem extends StatelessWidget {
@@ -67,53 +68,62 @@ class TodoItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   ListTile(
-                    onTap: onTap,
-                    leading: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipOval(
-                        child: SizedBox(
-                          width: Checkbox.width * 1.2,
-                          height: Checkbox.width * 1.2,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                border: Border.all(width: 2),
-                                borderRadius: BorderRadius.circular(100)),
-                            child: CircularCheckBox(
-                              value: todo.complete,
-                              onChanged: onCheckboxChanged,
-                              activeColor: Color(0xFF17ead9),
+                      onTap: onTap,
+                      leading: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ClipOval(
+                          child: SizedBox(
+                            width: Checkbox.width * 1.2,
+                            height: Checkbox.width * 1.2,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(width: 2),
+                                  borderRadius: BorderRadius.circular(100)),
+                              child: CircularCheckBox(
+                                value: todo.complete,
+                                onChanged: onCheckboxChanged,
+                                activeColor: Color(0xFF17ead9),
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    title: Hero(
-                      tag: '${todo.id}__heroTag',
-                      child: Container(
-                        width: MediaQuery.of(context).size.width,
-                        child: Text(todo.task,
-                            style: todo.complete
-                                ? TextStyle(
-                                    fontFamily: 'Poppins-Bold',
-                                    color: Colors.grey,
-                                    fontSize: 23.0,
-                                    decoration: TextDecoration.lineThrough)
-                                : Theme.of(context).textTheme.title),
-                      ),
-                    ),
-                    subtitle: todo.note.isNotEmpty
-                        ? Hero(
-                            tag: '${todo.id}__noteheroTag',
-                            child: Text(
-                              todo.note,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
+                      title: Hero(
+                        tag: '${todo.id}__heroTag',
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          child: Text(todo.task,
                               style: todo.complete
-                                  ? Theme.of(context).textTheme.body2
-                                  : Theme.of(context).textTheme.body1,
-                            ))
-                        : null,
-                  ),
+                                  ? TextStyle(
+                                      fontFamily: 'Poppins-Bold',
+                                      color: Colors.grey,
+                                      fontSize: 23.0,
+                                      decoration: TextDecoration.lineThrough)
+                                  : Theme.of(context).textTheme.title),
+                        ),
+                      ),
+                      subtitle: todo.note.isNotEmpty
+                          ? Hero(
+                              tag: '${todo.id}__noteheroTag',
+                              child: Text(
+                                todo.note,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: todo.complete
+                                    ? Theme.of(context).textTheme.body2
+                                    : Theme.of(context).textTheme.body1,
+                              ))
+                          : null,
+                      trailing: todo.time != 0 || todo.time != null
+                          ? Text(
+                              convertEpochtoDateString(todo.time),
+                              style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: todo.complete
+                                      ? Colors.grey
+                                      : Color(0xFF1dc3f5)),
+                            )
+                          : Text("")),
                 ],
               ),
             ),
@@ -121,5 +131,13 @@ class TodoItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String convertEpochtoDateString(int epoch) {
+    DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(epoch);
+    String dateString =
+        DateFormat('EEE, d MMM\nhh:mm a').format(dateTime.toLocal());
+
+    return epoch == 0 ? "" : dateString;
   }
 }

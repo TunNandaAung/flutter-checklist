@@ -111,8 +111,8 @@ class _CalendarFormState extends State<CalendarForm> {
                             // print(DateFormat('EEE d MMM hh:mm:ss a')
                             //     .format(day.toLocal()));
                             // Navigator.pop(context, day);
-                            dateTime =
-                                new DateTime(day.year, day.month, day.day);
+                            dateTime = new DateTime(
+                                day.year, day.month, day.day, 24, 00, 00);
                             print(dateTime);
                           },
                         ),
@@ -148,7 +148,6 @@ class _CalendarFormState extends State<CalendarForm> {
                               setState(() {
                                 _selectedTime = dateTime;
                               });
-                              print("SS" + _selectedTime.toString());
                             });
                           },
                           child: Container(
