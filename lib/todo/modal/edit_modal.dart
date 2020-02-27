@@ -12,14 +12,11 @@ class EditModal {
         isScrollControlled: true,
         builder: (BuildContext context) {
           return EditTodoForm(
-            onSave: (task, note) {
+            onSave: (task, note, time) {
               BlocProvider.of<TodosBloc>(context).add(
                 UpdateTodo(
                   todo.copyWith(
-                      task: task,
-                      note: note,
-                      userId: todo.userId,
-                      time: todo.time),
+                      task: task, note: note, userId: todo.userId, time: time),
                 ),
               );
             },

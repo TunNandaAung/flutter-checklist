@@ -3,7 +3,7 @@ import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-typedef OnSaveCallback = Function(String task, String note);
+typedef OnSaveCallback = Function(String task, String note, int time);
 
 class EditTodoForm extends StatefulWidget {
   final bool isEditing;
@@ -29,7 +29,9 @@ class _EditTodoFormState extends State<EditTodoForm> {
 
   @override
   void initState() {
-    _dateTime = DateTime.fromMillisecondsSinceEpoch(widget.todo.time);
+    _dateTime = widget.todo.time == 0
+        ? null
+        : DateTime.fromMillisecondsSinceEpoch(widget.todo.time);
     super.initState();
   }
 
@@ -87,7 +89,13 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                   onPressed: () {
                                     if (_formKey.currentState.validate()) {
                                       _formKey.currentState.save();
-                                      widget.onSave(_task, _note);
+                                      widget.onSave(
+                                          _task,
+                                          _note,
+                                          _dateTime == null
+                                              ? 0
+                                              : _dateTime
+                                                  .millisecondsSinceEpoch);
                                       Navigator.pop(context);
                                     }
                                   },
@@ -274,7 +282,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                                   .hintStyle,
                                             )
                                           : Text(
-                                              DateFormat('EEE d MMM hh:mm:ss a')
+                                              DateFormat('EEE d MMM hh:mm a')
                                                   .format(_dateTime.toLocal()),
                                               style: Theme.of(context)
                                                   .textTheme

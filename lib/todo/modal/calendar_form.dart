@@ -111,8 +111,8 @@ class _CalendarFormState extends State<CalendarForm> {
                             // print(DateFormat('EEE d MMM hh:mm:ss a')
                             //     .format(day.toLocal()));
                             // Navigator.pop(context, day);
-                            dateTime = new DateTime(
-                                day.year, day.month, day.day, 24, 00, 00);
+                            dateTime =
+                                new DateTime(day.year, day.month, day.day);
                             print(dateTime);
                           },
                         ),
@@ -181,7 +181,7 @@ class _CalendarFormState extends State<CalendarForm> {
                                                 .hintStyle,
                                           )
                                         : Text(
-                                            DateFormat('hh:mm:ss a').format(
+                                            DateFormat('hh:mm a').format(
                                                 _selectedTime.toLocal()),
                                             style: Theme.of(context)
                                                 .textTheme
