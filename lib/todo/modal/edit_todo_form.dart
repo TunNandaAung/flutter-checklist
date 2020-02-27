@@ -1,5 +1,7 @@
+import 'package:checklist/todo/modal/calendar_modal.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 typedef OnSaveCallback = Function(String task, String note);
 
@@ -19,10 +21,17 @@ class EditTodoForm extends StatefulWidget {
 class _EditTodoFormState extends State<EditTodoForm> {
   String _task;
   String _note;
+  DateTime _dateTime;
 
   bool get isEditing => widget.isEditing;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _dateTime = DateTime.fromMillisecondsSinceEpoch(widget.todo.time);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -217,7 +226,92 @@ class _EditTodoFormState extends State<EditTodoForm> {
                               ),
                             ),
                           ),
-
+                          SizedBox(height: 30.0),
+                          GestureDetector(
+                            onTap: () {
+                              CalendarModal(onDateSelected: (dateTime) {
+                                setState(() {
+                                  _dateTime = dateTime;
+                                });
+                              }).mainBottomSheet(context, '1');
+                            },
+                            child: Container(
+                              width: double.infinity,
+                              height: null,
+                              margin: EdgeInsets.symmetric(horizontal: 22),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).cardColor,
+                                borderRadius: BorderRadius.circular(8),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.black26,
+                                    offset: Offset(0, 10),
+                                    blurRadius: 30,
+                                  ),
+                                ],
+                              ),
+                              child: Center(
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 15.0, horizontal: 15.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: <Widget>[
+                                      Icon(
+                                        Icons.calendar_today,
+                                        size: 20.0,
+                                        color: _dateTime == null
+                                            ? Theme.of(context).hintColor
+                                            : Theme.of(context).dividerColor,
+                                      ),
+                                      SizedBox(width: 15.0),
+                                      _dateTime == null
+                                          ? Text(
+                                              'Add date and time',
+                                              style: Theme.of(context)
+                                                  .inputDecorationTheme
+                                                  .hintStyle,
+                                            )
+                                          : Text(
+                                              DateFormat('EEE d MMM hh:mm:ss a')
+                                                  .format(_dateTime.toLocal()),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .display4,
+                                            ),
+                                      SizedBox(width: 30.0),
+                                      Spacer(),
+                                      _dateTime != null
+                                          ? Container(
+                                              width: 23.0,
+                                              height: 23.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    Theme.of(context).hintColor,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: RawMaterialButton(
+                                                shape: CircleBorder(),
+                                                child: Icon(
+                                                  Icons.close,
+                                                  size: 15.0,
+                                                  color: Colors.white,
+                                                ),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _dateTime = null;
+                                                  });
+                                                },
+                                              ),
+                                            )
+                                          : Container()
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                           SizedBox(
                             height: 35,
                           ),

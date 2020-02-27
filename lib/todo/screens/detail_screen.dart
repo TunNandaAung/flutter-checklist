@@ -4,6 +4,7 @@ import 'package:checklist/todo/modal/edit_modal.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class DetailsScreen extends StatelessWidget {
   final String id;
@@ -157,6 +158,64 @@ class DetailsScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+                          todo.time == null || todo.time == 0
+                              ? Column()
+                              : Column(
+                                  children: <Widget>[
+                                    SizedBox(height: 30.0),
+                                    Container(
+                                      width: double.infinity,
+                                      height: null,
+                                      decoration: BoxDecoration(
+                                        color: todo.time + 60 >
+                                                DateTime.now()
+                                                    .millisecondsSinceEpoch
+                                            ? Color(0xFF1dc3f5).withOpacity(.8)
+                                            : Colors.red.withOpacity(.8),
+                                        borderRadius: BorderRadius.circular(8),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black26,
+                                            offset: Offset(0, 10),
+                                            blurRadius: 30,
+                                          ),
+                                        ],
+                                      ),
+                                      child: Center(
+                                        child: Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 15.0, horizontal: 15.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.calendar_today,
+                                                size: 25.0,
+                                                color: Colors.white,
+                                              ),
+                                              SizedBox(width: 15.0),
+                                              Text(
+                                                DateFormat('EEE, d MMM hh:mm a')
+                                                    .format(DateTime
+                                                            .fromMillisecondsSinceEpoch(
+                                                                todo.time)
+                                                        .toLocal()),
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontFamily: 'Poppins-Medium',
+                                                  fontSize: 21.0,
+                                                ),
+                                              ),
+                                              SizedBox(width: 30.0),
+                                              Spacer(),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
                         ],
                       ),
                     ),
