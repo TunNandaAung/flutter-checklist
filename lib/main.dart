@@ -1,8 +1,9 @@
-import 'package:firebase_integrations/data/user_repository.dart';
-import 'package:firebase_integrations/home_page.dart';
-import 'package:firebase_integrations/login/ui/login_page.dart';
-import 'package:firebase_integrations/splash_screen.dart';
-import 'package:firebase_integrations/utils/bloc_delegate.dart';
+import 'package:checklist/data/user_repository.dart';
+import 'package:checklist/home_page.dart';
+import 'package:checklist/login/bloc/login_barrel.dart';
+import 'package:checklist/login/ui/login_page.dart';
+import 'package:checklist/splash_screen.dart';
+import 'package:checklist/utils/bloc_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
@@ -46,23 +47,30 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Firebase',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
-          builder: (context, state) {
-        if (state is Unauthenticated) {
-          return LoginPage(userRepository: _userRepository);
-        }
-        if (state is Authenticated) {
-          return HomePage(name: state.displayName);
-        }
-        return SplashScreen();
-        // if (state is Authenticated) {
-        //   return HomeScreen(name: state.displayName);
-        // }
-      }),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(
+          builder: (context) => LoginBloc(userRepository: _userRepository),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Flutter Firebase',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(),
+        home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+            builder: (context, state) {
+          if (state is Unauthenticated) {
+            return LoginPage(userRepository: _userRepository);
+          }
+          if (state is Authenticated) {
+            return HomePage(name: state.displayName);
+          }
+          return SplashScreen();
+          // if (state is Authenticated) {
+          //   return HomeScreen(name: state.displayName);
+          // }
+        }),
+      ),
     );
   }
 }

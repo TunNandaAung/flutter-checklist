@@ -69,3 +69,49 @@ class LoginWithCredentialsPressed extends LoginEvent {
     return 'LoginWithCredentialsPressed { email: $email, password: $password }';
   }
 }
+
+class SendOTPPressed extends LoginEvent {
+  final String phoneNumber;
+
+  const SendOTPPressed({@required this.phoneNumber});
+
+  @override
+  List<Object> get props => [phoneNumber];
+
+  @override
+  String toString() {
+    return 'SendOTPPressed { phoneNumber: $phoneNumber}';
+  }
+}
+
+class VerifyOtpEvent extends LoginEvent {
+  final String otp;
+
+  const VerifyOtpEvent({@required this.otp});
+
+  @override
+  List<Object> get props => [otp];
+
+  @override
+  String toString() {
+    return 'VerifyOtpEvent { otp: $otp}';
+  }
+}
+
+class PhoneChanged extends LoginEvent {
+  final String phone;
+
+  const PhoneChanged({@required this.phone});
+
+  @override
+  List<Object> get props => [phone];
+
+  @override
+  String toString() => 'PhoneChanged { Phone: $phone }';
+}
+
+class OtpSentEvent extends LoginEvent {}
+
+class OtpErrorEvent extends LoginEvent {}
+
+class ResetLoginEvent extends LoginEvent {}

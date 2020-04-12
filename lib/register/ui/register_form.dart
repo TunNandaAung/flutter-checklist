@@ -1,6 +1,6 @@
-import 'package:firebase_integrations/authentication_bloc/bloc.dart';
-import 'package:firebase_integrations/register/bloc/register_barrel.dart';
-import 'package:firebase_integrations/register/ui/register_button.dart';
+import 'package:checklist/authentication_bloc/bloc.dart';
+import 'package:checklist/register/bloc/register_barrel.dart';
+import 'package:checklist/register/ui/register_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

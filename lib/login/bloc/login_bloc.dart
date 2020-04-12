@@ -1,7 +1,10 @@
-import 'package:firebase_integrations/data/user_repository.dart';
+import 'dart:async';
+
+import 'package:checklist/data/user_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:firebase_integrations/login/bloc/login_barrel.dart';
-import 'package:firebase_integrations/utils/validators.dart';
+import 'package:checklist/login/bloc/login_barrel.dart';
+import 'package:checklist/utils/validators.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -13,6 +16,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   })  : assert(userRepository != null),
         _userRepository = userRepository;
 
+  String verID = "";
+  StreamSubscription subscription;
+
   @override
   LoginState get initialState => LoginState.empty();
 
@@ -23,10 +29,14 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   ) {
     final observableStream = events as Observable<LoginEvent>;
     final nonDebounceStream = observableStream.where((event) {
-      return (event is! EmailChanged && event is! PasswordChanged);
+      return (event is! EmailChanged &&
+          event is! PasswordChanged &&
+          event is! PhoneChanged);
     });
     final debounceStream = observableStream.where((event) {
-      return (event is EmailChanged || event is PasswordChanged);
+      return (event is EmailChanged ||
+          event is PasswordChanged ||
+          event is PhoneChanged);
     }).debounceTime(Duration(milliseconds: 300));
     return super
         .transformEvents(nonDebounceStream.mergeWith([debounceStream]), next);
@@ -45,6 +55,28 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
         email: event.email,
         password: event.password,
       );
+    } else if (event is ResetLoginEvent) {
+      yield LoginState.empty();
+    } else if (event is PhoneChanged) {
+      yield* _mapPhoneChangedToState(event.phone);
+    } else if (event is SendOTPPressed) {
+      yield* _mapSendOTPPressedToState(event.phoneNumber);
+    } else if (event is OtpSentEvent) {
+      yield* _mapOtpSentEventToState();
+    } else if (event is VerifyOtpEvent) {
+      yield LoginState.loading();
+      try {
+        AuthResult result =
+            await _userRepository.verifyAndLogin(verID, event.otp);
+        if (result.user != null) {
+          yield LoginState.success();
+        }
+      } catch (e) {
+        yield LoginState.failure();
+        print(e);
+      }
+    } else if (event is OtpErrorEvent) {
+      yield LoginState.failure();
     }
   }
 
@@ -80,5 +112,64 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     } catch (_) {
       yield LoginState.failure();
     }
+  }
+
+  Stream<LoginState> _mapPhoneChangedToState(String phone) async* {
+    yield state.update(
+      isPhoneValid: Validators.isValidPhone(phone),
+    );
+  }
+
+  Stream<LoginState> _mapSendOTPPressedToState(String phoneNumber) async* {
+    yield LoginState.loading();
+    print('phoneNumber');
+    try {
+      subscription = sendOtp(phoneNumber).listen((event) {
+        add(event);
+      });
+    } catch (_) {
+      yield LoginState.failure();
+    }
+  }
+
+  Stream<LoginState> _mapOtpSentEventToState() async* {
+    yield LoginState.otpSent();
+  }
+
+  Stream<LoginEvent> sendOtp(String phoneNumber) async* {
+    StreamController<LoginEvent> eventStream = StreamController();
+    final phoneVerificationCompleted = (AuthCredential authCredential) {
+      _userRepository.getUser();
+      _userRepository.getUser().catchError((onError) {
+        eventStream.add(OtpErrorEvent());
+        print('OnError' + onError);
+      }).then((user) {
+        eventStream.close();
+      });
+    };
+    final phoneVerificationFailed = (AuthException authException) {
+      print('Excepion:' + authException.message);
+      eventStream.add(OtpErrorEvent());
+      eventStream.close();
+    };
+    final phoneCodeSent = (String verId, [int forceResent]) {
+      this.verID = verId;
+      eventStream.add(OtpSentEvent());
+    };
+    final phoneCodeAutoRetrievalTimeout = (String verid) {
+      this.verID = verid;
+      eventStream.close();
+    };
+
+    await _userRepository.sendOtp(
+      phoneNumber,
+      Duration(seconds: 1),
+      phoneVerificationFailed,
+      phoneVerificationCompleted,
+      phoneCodeSent,
+      phoneCodeAutoRetrievalTimeout,
+    );
+
+    yield* eventStream.stream;
   }
 }

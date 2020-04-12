@@ -1,9 +1,11 @@
-import 'package:firebase_integrations/authentication_bloc/bloc.dart';
-import 'package:firebase_integrations/data/user_repository.dart';
-import 'package:firebase_integrations/login/bloc/login_barrel.dart';
-import 'package:firebase_integrations/register/ui/register_modal.dart';
-import 'package:firebase_integrations/utils/custom_icons.dart';
-import 'package:firebase_integrations/utils/social_icons.dart';
+import 'package:checklist/authentication_bloc/bloc.dart';
+import 'package:checklist/data/user_repository.dart';
+import 'package:checklist/login/bloc/login_barrel.dart';
+import 'package:checklist/login/ui/otp_screen.dart';
+import 'package:checklist/register/ui/register_modal.dart';
+import 'package:checklist/utils/custom_icons.dart';
+import 'package:checklist/utils/social_icons.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -265,6 +267,13 @@ class _LoginFormState extends State<LoginForm> {
                             ? _onFormSubmitted
                             : null,
                       ),
+                      SigninButton(
+                          enable: true,
+                          onTap: () {
+                            Navigator.of(context).push(CupertinoPageRoute(
+                              builder: (_) => OtpScreen(),
+                            ));
+                          }),
                       SizedBox(
                         height: ScreenUtil.getInstance().setHeight(40.0),
                       ),
@@ -312,7 +321,9 @@ class _LoginFormState extends State<LoginForm> {
                           SocialIcon(
                             colors: [Color(0xFF00c6fb), Color(0xFF005bea)],
                             iconData: CustomIcons.linkedin,
-                            onPressed: () {},
+                            onPressed: () {
+                              // _loginBloc.add(VerifyOtpEvent(otp: '123456'));
+                            },
                           )
                         ],
                       ),

@@ -5,8 +5,10 @@ class LoginState {
   final bool isEmailValid;
   final bool isPasswordValid;
   final bool isSubmitting;
+  final bool isPhoneValid;
   final bool isSuccess;
   final bool isFailure;
+  final bool isOtpSent;
 
   bool get isFormValid => isEmailValid && isPasswordValid;
 
@@ -16,6 +18,8 @@ class LoginState {
     @required this.isSubmitting,
     @required this.isSuccess,
     @required this.isFailure,
+    @required this.isPhoneValid,
+    @required this.isOtpSent,
   });
 
   factory LoginState.empty() {
@@ -25,6 +29,8 @@ class LoginState {
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
+      isPhoneValid: false,
+      isOtpSent: false,
     );
   }
 
@@ -35,6 +41,8 @@ class LoginState {
       isSubmitting: true,
       isSuccess: false,
       isFailure: false,
+      isPhoneValid: true,
+      isOtpSent: false,
     );
   }
 
@@ -45,6 +53,20 @@ class LoginState {
       isSubmitting: false,
       isSuccess: false,
       isFailure: true,
+      isPhoneValid: false,
+      isOtpSent: false,
+    );
+  }
+
+  factory LoginState.otpSent() {
+    return LoginState(
+      isEmailValid: true,
+      isPasswordValid: true,
+      isSubmitting: false,
+      isSuccess: false,
+      isFailure: true,
+      isPhoneValid: true,
+      isOtpSent: true,
     );
   }
 
@@ -55,12 +77,15 @@ class LoginState {
       isSubmitting: false,
       isSuccess: true,
       isFailure: false,
+      isPhoneValid: true,
+      isOtpSent: true,
     );
   }
 
   LoginState update({
     bool isEmailValid,
     bool isPasswordValid,
+    bool isPhoneValid,
   }) {
     return copyWith(
       isEmailValid: isEmailValid,
@@ -68,6 +93,7 @@ class LoginState {
       isSubmitting: false,
       isSuccess: false,
       isFailure: false,
+      isPhoneValid: isPasswordValid,
     );
   }
 
@@ -78,14 +104,16 @@ class LoginState {
     bool isSubmitting,
     bool isSuccess,
     bool isFailure,
+    bool isPhoneValid,
   }) {
     return LoginState(
-      isEmailValid: isEmailValid ?? this.isEmailValid,
-      isPasswordValid: isPasswordValid ?? this.isPasswordValid,
-      isSubmitting: isSubmitting ?? this.isSubmitting,
-      isSuccess: isSuccess ?? this.isSuccess,
-      isFailure: isFailure ?? this.isFailure,
-    );
+        isEmailValid: isEmailValid ?? this.isEmailValid,
+        isPasswordValid: isPasswordValid ?? this.isPasswordValid,
+        isSubmitting: isSubmitting ?? this.isSubmitting,
+        isSuccess: isSuccess ?? this.isSuccess,
+        isFailure: isFailure ?? this.isFailure,
+        isPhoneValid: isPhoneValid ?? this.isPhoneValid,
+        isOtpSent: isOtpSent ?? this.isOtpSent);
   }
 
   @override
@@ -96,6 +124,8 @@ class LoginState {
       isSubmitting: $isSubmitting,
       isSuccess: $isSuccess,
       isFailure: $isFailure,
+      isPhoneValid: $isPhoneValid,
+      isOtpSent: $isOtpSent,
     }''';
   }
 }

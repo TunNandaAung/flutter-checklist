@@ -44,10 +44,38 @@ class UserRepository {
     return (await _firebaseAuth.currentUser()).email;
   }
 
+  Future<FirebaseUser> getCurrentUser() async {
+    return (await _firebaseAuth.currentUser());
+  }
+
   Future<void> signUp({String email, String password}) async {
     return await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
+  }
+
+  Future<void> sendOtp(
+      String phoneNumber,
+      Duration timeOut,
+      PhoneVerificationFailed phoneVerificationFailed,
+      PhoneVerificationCompleted phoneVerificationCompleted,
+      PhoneCodeSent phoneCodeSent,
+      PhoneCodeAutoRetrievalTimeout autoRetrievalTimeout) async {
+    _firebaseAuth.verifyPhoneNumber(
+        phoneNumber: phoneNumber,
+        timeout: timeOut,
+        verificationCompleted: phoneVerificationCompleted,
+        verificationFailed: phoneVerificationFailed,
+        codeSent: phoneCodeSent,
+        codeAutoRetrievalTimeout: autoRetrievalTimeout);
+  }
+
+  Future<AuthResult> verifyAndLogin(
+      String verificationId, String smsCode) async {
+    AuthCredential authCredential = PhoneAuthProvider.getCredential(
+        verificationId: verificationId, smsCode: smsCode);
+
+    return _firebaseAuth.signInWithCredential(authCredential);
   }
 }
