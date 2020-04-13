@@ -15,6 +15,7 @@ class OtpForm extends StatefulWidget {
 
 class _OtpFormState extends State<OtpForm> {
   final TextEditingController _phoneNumberController = TextEditingController();
+  String phoneNumber;
 
   LoginBloc _loginBloc;
 
@@ -94,7 +95,8 @@ class _OtpFormState extends State<OtpForm> {
           Scaffold.of(context)..hideCurrentSnackBar();
           Navigator.of(context).push(
             CupertinoPageRoute(
-              builder: (_) => VerifyOtpScreen(),
+              builder: (_) =>
+                  VerifyOtpScreen(phoneNumber: _phoneNumberController.text),
             ),
           );
         }

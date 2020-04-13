@@ -261,19 +261,57 @@ class _LoginFormState extends State<LoginForm> {
                       SizedBox(
                         height: ScreenUtil.getInstance().setHeight(40.0),
                       ),
-                      SigninButton(
-                        enable: isLoginButtonEnabled(state),
-                        onTap: isLoginButtonEnabled(state)
-                            ? _onFormSubmitted
-                            : null,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Container(
+                            child: InkWell(
+                              child: Container(
+                                width: ScreenUtil.getInstance().setWidth(100),
+                                height: ScreenUtil.getInstance().setHeight(100),
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Color(0xFF17ead9),
+                                        Color(0xFF6078ea)
+                                      ],
+                                    ),
+                                    borderRadius: BorderRadius.circular(30.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color:
+                                              Color(0xFF6078ea).withOpacity(.3),
+                                          offset: Offset(0.0, 8.0),
+                                          blurRadius: 8.0)
+                                    ]),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      Navigator.of(context)
+                                          .push(CupertinoPageRoute(
+                                        builder: (_) => OtpScreen(),
+                                      ));
+                                    },
+                                    child: Center(
+                                      child: Icon(
+                                        Icons.phone,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SigninButton(
+                            enable: isLoginButtonEnabled(state),
+                            onTap: isLoginButtonEnabled(state)
+                                ? _onFormSubmitted
+                                : null,
+                          ),
+                        ],
                       ),
-                      SigninButton(
-                          enable: true,
-                          onTap: () {
-                            Navigator.of(context).push(CupertinoPageRoute(
-                              builder: (_) => OtpScreen(),
-                            ));
-                          }),
                       SizedBox(
                         height: ScreenUtil.getInstance().setHeight(40.0),
                       ),

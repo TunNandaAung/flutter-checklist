@@ -1,6 +1,5 @@
 import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/login/bloc/login_barrel.dart';
-import 'package:checklist/login/ui/verify_otp_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -9,7 +8,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class VerifyOtpForm extends StatefulWidget {
-  VerifyOtpForm({Key key}) : super(key: key);
+  final String phoneNumber;
+  VerifyOtpForm({Key key, this.phoneNumber}) : super(key: key);
 
   @override
   _VerifyOtpFormState createState() => _VerifyOtpFormState();
@@ -159,7 +159,7 @@ class _VerifyOtpFormState extends State<VerifyOtpForm> {
                           ),
                           Center(
                             child: Text(
-                              'A SMS with 6 digits verification code \nhas been sent to this number',
+                              'A SMS with 6 digits verification code \nhas been sent to +95 0${widget.phoneNumber}',
                               style: TextStyle(
                                   color: Colors.white, fontSize: 15.0),
                             ),

@@ -2,6 +2,9 @@ import 'package:checklist/login/ui/verify_otp_form.dart';
 import 'package:flutter/material.dart';
 
 class VerifyOtpScreen extends StatelessWidget {
+  final String phoneNumber;
+
+  const VerifyOtpScreen({Key key, this.phoneNumber}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +23,7 @@ class VerifyOtpScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomPadding: true,
         backgroundColor: Colors.transparent,
-        body: VerifyOtpForm(),
+        body: VerifyOtpForm(phoneNumber: this.phoneNumber),
       ),
     );
   }
