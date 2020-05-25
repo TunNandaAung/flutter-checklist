@@ -43,7 +43,7 @@ class Header extends StatelessWidget {
                         '$text',
                         style: Theme.of(context)
                             .textTheme
-                            .title
+                            .headline6
                             .copyWith(fontSize: 30.0),
                       )
                     : Text(''),

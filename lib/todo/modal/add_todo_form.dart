@@ -68,7 +68,8 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                   style: TextStyle(
                                       fontFamily: "Poppins-Medium",
                                       fontSize: 18.0,
-                                      color: Color(0xFF5d74e3))),
+                                      color: Color(0xFF5d74e3),
+                                      decoration: TextDecoration.none)),
                             ),
                             FlatButton(
                               onPressed: () {
@@ -103,7 +104,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                           },
                           onSaved: (value) => _task = value,
                           cursorColor: Color(0xFF5d74e3),
-                          style: Theme.of(context).textTheme.display4,
+                          style: Theme.of(context).textTheme.headline1,
                           decoration: InputDecoration(
                               fillColor: Theme.of(context)
                                   .inputDecorationTheme
@@ -128,7 +129,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                               initialValue: isEditing ? widget.todo.note : '',
                               maxLines: null,
                               onSaved: (value) => _note = value,
-                              style: Theme.of(context).textTheme.display4,
+                              style: Theme.of(context).textTheme.headline1,
                               decoration: InputDecoration(
                                   fillColor: Theme.of(context)
                                       .inputDecorationTheme
@@ -192,7 +193,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                                 .format(_dateTime.toLocal()),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .display4,
+                                                .headline1,
                                           ),
                                     SizedBox(width: 30.0),
                                     Spacer(),

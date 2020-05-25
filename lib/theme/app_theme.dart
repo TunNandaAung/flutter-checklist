@@ -4,6 +4,7 @@ enum AppTheme { Light, Dark }
 
 final appThemeData = {
   AppTheme.Light: ThemeData(
+    scaffoldBackgroundColor: Colors.transparent,
     brightness: Brightness.light,
     primaryColor: Color(0xFF5d74e3),
     appBarTheme: AppBarTheme(color: Color(0xfff5f9ff)),
@@ -27,37 +28,60 @@ final appThemeData = {
         hintStyle: TextStyle(
             fontFamily: 'Poppins-Medium',
             color: Colors.black38,
-            fontSize: 21.0)),
+            fontSize: 21.0,
+            decoration: TextDecoration.none)),
     textTheme: TextTheme(
-        title: TextStyle(
+        headline6: TextStyle(
             fontFamily: 'Poppins-Bold',
             color: Colors.black,
             fontSize: 23.0,
             decoration: TextDecoration.none),
-        body1: TextStyle(
+        bodyText1: TextStyle(
             fontFamily: 'Poppins-Medium',
             fontSize: 16.0,
             decoration: TextDecoration.none,
             color: Colors.black),
-        body2: TextStyle(
+        bodyText2: TextStyle(
             fontFamily: 'Poppins-Medium',
             fontSize: 16.0,
             decoration: TextDecoration.lineThrough,
             color: Colors.grey),
-        display1: TextStyle(
-            fontFamily: 'Poppins-Bold', color: Colors.black, fontSize: 30.0),
-        display2: TextStyle(
-            fontFamily: 'Poppins-Medium,', color: Colors.black, fontSize: 18.0),
-        display3: TextStyle(
-            color: Colors.black54, fontFamily: 'Poppins-Bold', fontSize: 15.0),
-        display4: TextStyle(
-            color: Colors.black, fontFamily: 'Poppins-Medium', fontSize: 21.0),
-        headline: TextStyle(
-            color: Colors.black, fontFamily: 'Poppins-Bold', fontSize: 25.0),
+        headline4: TextStyle(
+            fontFamily: 'Poppins-Bold',
+            color: Colors.black,
+            fontSize: 30.0,
+            decoration: TextDecoration.none),
+        headline3: TextStyle(
+            fontFamily: 'Poppins-Medium,',
+            color: Colors.black,
+            fontSize: 18.0,
+            decoration: TextDecoration.none),
+        headline2: TextStyle(
+            color: Colors.black54,
+            fontFamily: 'Poppins-Bold',
+            fontSize: 15.0,
+            decoration: TextDecoration.none),
+        headline1: TextStyle(
+            color: Colors.black,
+            fontFamily: 'Poppins-Medium',
+            fontSize: 21.0,
+            decoration: TextDecoration.none),
+        headline5: TextStyle(
+            color: Colors.black,
+            fontFamily: 'Poppins-Bold',
+            fontSize: 25.0,
+            decoration: TextDecoration.none),
+        subtitle1: TextStyle(decoration: TextDecoration.none),
+        subtitle2: TextStyle(decoration: TextDecoration.none),
+        caption: TextStyle(decoration: TextDecoration.none),
         button: TextStyle(
-            fontFamily: 'Poppins-Bold', fontSize: 15.0, color: Colors.white)),
+            fontFamily: 'Poppins-Bold',
+            fontSize: 15.0,
+            color: Colors.white,
+            decoration: TextDecoration.none)),
   ),
   AppTheme.Dark: ThemeData(
+    scaffoldBackgroundColor: Colors.transparent,
     brightness: Brightness.light,
     primaryColor: Color(0xFF5d74e3),
     // backgroundColor: Color(0xFF1b1e44),
@@ -84,35 +108,57 @@ final appThemeData = {
         hintStyle: TextStyle(
             fontFamily: 'Poppins-Medium',
             color: Colors.white30,
-            fontSize: 21.0)),
+            fontSize: 21.0,
+            decoration: TextDecoration.none)),
     textTheme: TextTheme(
-      title: TextStyle(
+      headline6: TextStyle(
           fontFamily: 'Poppins-Bold',
           color: Colors.white,
           fontSize: 23.0,
           decoration: TextDecoration.none),
-      body1: TextStyle(
+      bodyText1: TextStyle(
           fontFamily: 'Poppins-Medium',
           fontSize: 16.0,
           decoration: TextDecoration.none,
           color: Colors.white),
-      body2: TextStyle(
+      bodyText2: TextStyle(
           fontFamily: 'Poppins-Medium',
           fontSize: 16.0,
           decoration: TextDecoration.lineThrough,
           color: Colors.grey),
-      display1: TextStyle(
-          fontFamily: 'Poppins-Bold', color: Colors.white, fontSize: 30.0),
-      display2: TextStyle(
-          fontFamily: 'Poppins-Medium,', color: Colors.white, fontSize: 18.0),
-      display3: TextStyle(
-          color: Colors.white54, fontFamily: 'Poppins-Bold', fontSize: 15.0),
-      display4: TextStyle(
-          color: Colors.white, fontFamily: 'Poppins-Medium', fontSize: 21.0),
-      headline: TextStyle(
-          color: Colors.white, fontFamily: 'Poppins-Bold', fontSize: 25.0),
+      headline4: TextStyle(
+          fontFamily: 'Poppins-Bold',
+          color: Colors.white,
+          fontSize: 30.0,
+          decoration: TextDecoration.none),
+      headline3: TextStyle(
+          fontFamily: 'Poppins-Medium,',
+          color: Colors.white,
+          fontSize: 18.0,
+          decoration: TextDecoration.none),
+      headline2: TextStyle(
+          color: Colors.white54,
+          fontFamily: 'Poppins-Bold',
+          fontSize: 15.0,
+          decoration: TextDecoration.none),
+      headline1: TextStyle(
+          color: Colors.white,
+          fontFamily: 'Poppins-Medium',
+          fontSize: 21.0,
+          decoration: TextDecoration.none),
+      headline5: TextStyle(
+          color: Colors.white,
+          fontFamily: 'Poppins-Bold',
+          fontSize: 25.0,
+          decoration: TextDecoration.none),
+      subtitle1: TextStyle(decoration: TextDecoration.none),
+      subtitle2: TextStyle(decoration: TextDecoration.none),
+      caption: TextStyle(decoration: TextDecoration.none),
       button: TextStyle(
-          fontFamily: 'Poppins-Bold', fontSize: 15.0, color: Color(0xFF5d74e3)),
+          fontFamily: 'Poppins-Bold',
+          fontSize: 15.0,
+          color: Color(0xFF5d74e3),
+          decoration: TextDecoration.none),
     ),
   )
 };

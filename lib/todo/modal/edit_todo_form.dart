@@ -169,7 +169,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                   },
                                   onSaved: (value) => _task = value,
                                   cursorColor: Color(0xFF5d74e3),
-                                  style: Theme.of(context).textTheme.display4,
+                                  style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     suffixIcon: Icon(Icons.title),
@@ -218,7 +218,8 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                           : null;
                                     },
                                     cursorColor: Color(0xFF5d74e3),
-                                    style: Theme.of(context).textTheme.display4,
+                                    style:
+                                        Theme.of(context).textTheme.headline1,
                                     decoration: InputDecoration(
                                       border: InputBorder.none,
                                       hintText: "What needs to be done?",
@@ -286,7 +287,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                                   .format(_dateTime.toLocal()),
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .display4,
+                                                  .headline1,
                                             ),
                                       SizedBox(width: 30.0),
                                       Spacer(),

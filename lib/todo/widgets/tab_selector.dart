@@ -41,7 +41,7 @@ class TabSelector extends StatelessWidget {
             tab == AppTab.stats
                 ? 'Stats'
                 : tab == AppTab.todos ? 'Todos' : 'Profile',
-            style: Theme.of(context).textTheme.display2,
+            style: Theme.of(context).textTheme.headline3,
           ),
         );
       }).toList(),

@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
 import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
 import 'package:checklist/todo/screens/screen.dart';
@@ -35,7 +34,7 @@ class FilteredTodos extends StatelessWidget {
                           height: 10.0,
                         ),
                         Text('You have no task! Enjoy your day',
-                            style: Theme.of(context).textTheme.body1)
+                            style: Theme.of(context).textTheme.bodyText1)
                       ],
                     ),
                   ),

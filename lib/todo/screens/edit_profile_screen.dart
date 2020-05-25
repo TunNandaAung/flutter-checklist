@@ -99,7 +99,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   },
                                   onSaved: (value) => _name = value,
                                   cursorColor: Color(0xFF5d74e3),
-                                  style: Theme.of(context).textTheme.display4,
+                                  style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     suffixIcon: Icon(Icons.person_outline),
@@ -140,7 +140,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         : null;
                                   },
                                   cursorColor: Color(0xFF5d74e3),
-                                  style: Theme.of(context).textTheme.display4,
+                                  style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
                                     suffixIcon: Icon(Icons.alternate_email),
@@ -193,7 +193,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                           'Change Password',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .display4,
+                                              .headline1,
                                         ),
                                         Icon(
                                           Icons.arrow_forward_ios,

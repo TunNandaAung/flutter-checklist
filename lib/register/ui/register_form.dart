@@ -164,7 +164,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             },
                             cursorColor: Color(0xFF5d74e3),
                             autofocus: true,
-                            style: Theme.of(context).textTheme.display4,
+                            style: Theme.of(context).textTheme.headline1,
                             decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 hintText: "name",
@@ -188,7 +188,7 @@ class _RegisterFormState extends State<RegisterForm> {
                             },
                             cursorColor: Color(0xFF5d74e3),
                             autofocus: true,
-                            style: Theme.of(context).textTheme.display4,
+                            style: Theme.of(context).textTheme.headline1,
                             decoration: InputDecoration(
                                 fillColor: Colors.white,
                                 hintText: "email",
@@ -211,7 +211,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                   ? 'Invalid Password'
                                   : null;
                             },
-                            style: Theme.of(context).textTheme.display4,
+                            style: Theme.of(context).textTheme.headline1,
                             decoration: InputDecoration(
                                 hintText: "Password",
                                 errorStyle:

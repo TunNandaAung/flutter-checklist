@@ -71,7 +71,6 @@ class HomeScreen extends StatelessWidget {
                       tileMode: TileMode.clamp)),
               child: Scaffold(
                 key: _scaffoldKey,
-                backgroundColor: Colors.transparent,
                 appBar: activeTab == AppTab.profile
                     ? null
                     : activeTab == AppTab.stats
@@ -109,12 +108,12 @@ class HomeScreen extends StatelessWidget {
                                   bottom: PreferredSize(
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(
-                                          0, 0.0, 150.0, 0.0),
+                                          8.0, 0.0, 150.0, 0.0),
                                       child: Text(
-                                        '\nCurrent Status',
+                                        'Current Status',
                                         style: Theme.of(context)
                                             .textTheme
-                                            .display1,
+                                            .headline4,
                                       ),
                                     ),
                                     preferredSize: Size(0.0, 0.0),
@@ -164,7 +163,7 @@ class HomeScreen extends StatelessWidget {
                                           'Checklist',
                                           style: Theme.of(context)
                                               .textTheme
-                                              .display1,
+                                              .headline4,
                                         ),
                                       ),
                                     ),

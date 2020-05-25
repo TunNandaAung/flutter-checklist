@@ -75,6 +75,7 @@ class _CalendarFormState extends State<CalendarForm> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize: 18.0,
                                   color: Color(0xFF5d74e3),
+                                  decoration: TextDecoration.none,
                                 ),
                               ),
                             ),
@@ -94,7 +95,19 @@ class _CalendarFormState extends State<CalendarForm> {
                         ),
                         SizedBox(height: 12.0),
                         TableCalendar(
+                          daysOfWeekStyle: DaysOfWeekStyle(
+                            weekdayStyle: TextStyle(
+                              decoration: TextDecoration.none,
+                            ),
+                            weekendStyle: TextStyle(
+                              decoration: TextDecoration.none,
+                            ),
+                          ),
                           headerStyle: HeaderStyle(
+                            titleTextStyle:
+                                TextStyle(decoration: TextDecoration.none),
+                            formatButtonTextStyle:
+                                TextStyle(decoration: TextDecoration.none),
                             leftChevronIcon: Icon(
                               Icons.arrow_back_ios,
                               size: 18.0,
@@ -185,7 +198,7 @@ class _CalendarFormState extends State<CalendarForm> {
                                                 _selectedTime.toLocal()),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .display4,
+                                                .headline1,
                                           ),
                                     SizedBox(width: 30.0),
                                     Spacer(),

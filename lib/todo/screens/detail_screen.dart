@@ -35,7 +35,7 @@ class DetailsScreen extends StatelessWidget {
               elevation: 0.0,
               title: Text(
                 'Todo Details',
-                style: Theme.of(context).textTheme.display1,
+                style: Theme.of(context).textTheme.headline4,
               ),
               leading: Container(
                 decoration: BoxDecoration(shape: BoxShape.circle),
@@ -139,7 +139,7 @@ class DetailsScreen extends StatelessWidget {
                                                       .lineThrough)
                                               : Theme.of(context)
                                                   .textTheme
-                                                  .title,
+                                                  .headline6,
                                         ),
                                       ),
                                     ),
@@ -149,8 +149,12 @@ class DetailsScreen extends StatelessWidget {
                                       child: Text(
                                         todo.note,
                                         style: todo.complete
-                                            ? Theme.of(context).textTheme.body2
-                                            : Theme.of(context).textTheme.body1,
+                                            ? Theme.of(context)
+                                                .textTheme
+                                                .bodyText2
+                                            : Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
                                       ),
                                     ),
                                   ],
@@ -202,10 +206,12 @@ class DetailsScreen extends StatelessWidget {
                                                                 todo.time)
                                                         .toLocal()),
                                                 style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontFamily: 'Poppins-Medium',
-                                                  fontSize: 21.0,
-                                                ),
+                                                    color: Colors.white,
+                                                    fontFamily:
+                                                        'Poppins-Medium',
+                                                    fontSize: 21.0,
+                                                    decoration:
+                                                        TextDecoration.none),
                                               ),
                                               SizedBox(width: 30.0),
                                               Spacer(),

@@ -55,12 +55,7 @@ class TodoItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black54,
-                          offset: Offset(0, 10),
-                          blurRadius: 30)
-                    ]),
+                    boxShadow: []),
               ),
             ),
             Center(
@@ -99,7 +94,7 @@ class TodoItem extends StatelessWidget {
                                     color: Colors.grey,
                                     fontSize: 23.0,
                                     decoration: TextDecoration.lineThrough)
-                                : Theme.of(context).textTheme.title),
+                                : Theme.of(context).textTheme.headline6),
                       ),
                     ),
                     subtitle: todo.note.isNotEmpty
@@ -110,8 +105,8 @@ class TodoItem extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: todo.complete
-                                  ? Theme.of(context).textTheme.body2
-                                  : Theme.of(context).textTheme.body1,
+                                  ? Theme.of(context).textTheme.bodyText2
+                                  : Theme.of(context).textTheme.bodyText1,
                             ))
                         : null,
                     trailing: todo.time != 0 || todo.time != null
@@ -134,6 +129,7 @@ class TodoItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 14.0,
               color: todo.complete ? Colors.grey : Color(0xFF1dc3f5),
+              decoration: TextDecoration.none,
             ),
           )
         : Text(
@@ -141,6 +137,7 @@ class TodoItem extends StatelessWidget {
             style: TextStyle(
               fontSize: 14.0,
               color: todo.complete ? Colors.grey : Colors.red.withOpacity(.8),
+              decoration: TextDecoration.none,
             ),
           );
   }

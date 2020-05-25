@@ -181,12 +181,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             state.user == null || state.user.displayName == null
                                 ? 'No Name'
                                 : state.user.displayName,
-                            style: Theme.of(context).textTheme.headline),
+                            style: Theme.of(context).textTheme.headline5),
                         Text(
                             state.user == null || state.user.email == null
                                 ? 'No Email'
                                 : state.user.email,
-                            style: Theme.of(context).textTheme.display3),
+                            style: Theme.of(context).textTheme.headline2),
                         Transform.translate(
                           offset: Offset(0.0,
                               -1 * MediaQuery.of(context).viewInsets.bottom),

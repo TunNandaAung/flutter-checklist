@@ -1,7 +1,6 @@
 import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/login/bloc/login_barrel.dart';
-import 'package:checklist/main.dart';
 import 'package:checklist/register/ui/register_screen.dart';
 import 'package:checklist/todo/widgets/dialogs.dart';
 import 'package:checklist/utils/custom_icons.dart';

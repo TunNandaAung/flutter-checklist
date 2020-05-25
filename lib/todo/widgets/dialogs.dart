@@ -14,10 +14,10 @@ class Dialogs {
               borderRadius: BorderRadius.circular(10),
             ),
             backgroundColor: Theme.of(context).cardColor,
-            title: Text(title, style: Theme.of(context).textTheme.display4),
+            title: Text(title, style: Theme.of(context).textTheme.headline1),
             content: Text(
               body,
-              style: Theme.of(context).textTheme.display3,
+              style: Theme.of(context).textTheme.headline2,
             ),
             actions: <Widget>[
               FlatButton(

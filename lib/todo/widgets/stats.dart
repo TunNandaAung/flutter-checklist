@@ -57,7 +57,8 @@ class Stats extends StatelessWidget {
                                   style: TextStyle(
                                       fontFamily: 'Poppins-Medium',
                                       color: Colors.white,
-                                      fontSize: 18.0),
+                                      fontSize: 18.0,
+                                      decoration: TextDecoration.none),
                                 ),
                               ],
                             ),
@@ -73,14 +74,17 @@ class Stats extends StatelessWidget {
                                   style: TextStyle(
                                       fontFamily: 'Poppins-Bold',
                                       color: Colors.white,
-                                      fontSize: 39.0),
+                                      fontSize: 39.0,
+                                      decoration: TextDecoration.none),
                                 ),
                                 SizedBox(width: 8.0),
                                 Text(
                                   'Done',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Colors.white, fontSize: 15.0),
+                                      color: Colors.white,
+                                      fontSize: 15.0,
+                                      decoration: TextDecoration.none),
                                 ),
                               ],
                             ),
@@ -128,7 +132,8 @@ class Stats extends StatelessWidget {
                                     style: TextStyle(
                                         fontFamily: 'Poppins-Medium',
                                         color: Colors.white,
-                                        fontSize: 18.0),
+                                        fontSize: 18.0,
+                                        decoration: TextDecoration.none),
                                   ),
                                 ],
                               ),
@@ -144,14 +149,17 @@ class Stats extends StatelessWidget {
                                     style: TextStyle(
                                         fontFamily: 'Poppins-Bold',
                                         color: Colors.white,
-                                        fontSize: 39.0),
+                                        fontSize: 39.0,
+                                        decoration: TextDecoration.none),
                                   ),
                                   SizedBox(width: 8.0),
                                   Text(
                                     'Left',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 15.0),
+                                        color: Colors.white,
+                                        fontSize: 15.0,
+                                        decoration: TextDecoration.none),
                                   ),
                                 ],
                               ),
