@@ -1,9 +1,11 @@
 import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/login/bloc/login_barrel.dart';
+import 'package:checklist/main.dart';
 import 'package:checklist/register/ui/register_screen.dart';
 import 'package:checklist/todo/widgets/dialogs.dart';
 import 'package:checklist/utils/custom_icons.dart';
+import 'package:checklist/utils/header.dart';
 import 'package:checklist/utils/social_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -176,256 +178,293 @@ class _LoginFormState extends State<LoginForm> {
               child:
                   BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
                 return Column(children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(top: 63.0),
-                    child: Image(
-                      image: AssetImage(
-                        'assets/app_icon/app-icon-tick-box-128.png',
+                  // Padding(
+                  //   padding: EdgeInsets.only(top: 63.0),
+                  //   child: Image(
+                  //     image: AssetImage(
+                  //       'assets/app_icon/app-icon-tick-box-128.png',
+                  //     ),
+                  //     width: 64,
+                  //     height: 64,
+                  //   ),
+                  // ),
+
+                  Stack(
+                    children: <Widget>[
+                      Header(
+                        text: 'Checklist',
                       ),
-                      width: 64,
-                      height: 64,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        left: 28.0, right: 28.0, top: 25.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          width: double.infinity,
-                          height: null,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(8.0),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0.0, 15.0),
-                                    blurRadius: 15.0),
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    offset: Offset(0.0, -10.0),
-                                    blurRadius: 10.0),
-                              ]),
-                          child: Form(
-                            key: _formKey,
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 16.0, right: 16.0, top: 16.0),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Text("Login",
-                                        style: TextStyle(
-                                            fontSize: ScreenUtil.getInstance()
-                                                .setSp(45),
-                                            color:
-                                                Colors.black.withOpacity(.80),
-                                            fontFamily: "Poppins-Bold",
-                                            letterSpacing: .6)),
-                                    SizedBox(
-                                      height: ScreenUtil.getInstance()
-                                          .setHeight(30),
-                                    ),
-                                    Text("Email",
-                                        style: TextStyle(
-                                            fontFamily: "Poppins-Medium",
-                                            color:
-                                                Colors.black.withOpacity(.80),
-                                            fontSize: ScreenUtil.getInstance()
-                                                .setSp(26))),
-                                    TextFormField(
-                                      controller: _emailController,
-                                      focusNode: _focusNode,
-                                      autovalidate: true,
-                                      autocorrect: false,
-                                      validator: (_) {
-                                        if (!state.isEmailValid) {
-                                          return ('Invalid Email');
-                                        }
-                                        return null;
-                                      },
-                                      cursorColor: Color(0xFF5d74e3),
-                                      decoration: InputDecoration(
-                                          hintText: "email",
-                                          errorStyle: TextStyle(
-                                              fontFamily: 'Poppins-Medium'),
-                                          hintStyle: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.0)),
-                                    ),
-                                    SizedBox(
-                                      height: ScreenUtil.getInstance()
-                                          .setHeight(20),
-                                    ),
-                                    Text("Password",
-                                        style: TextStyle(
-                                            color:
-                                                Colors.black.withOpacity(.80),
-                                            fontFamily: "Poppins-Medium",
-                                            fontSize: ScreenUtil.getInstance()
-                                                .setSp(26))),
-                                    TextFormField(
-                                      controller: _passwordController,
-                                      autovalidate: true,
-                                      autocorrect: false,
-                                      validator: (_) {
-                                        if (!state.isPasswordValid) {
-                                          return ('Invalid Password');
-                                        }
-                                        return null;
-                                      },
-                                      obscureText: true,
-                                      cursorColor: Color(0xFF5d74e3),
-                                      decoration: InputDecoration(
-                                          errorStyle: TextStyle(
-                                              fontFamily: 'Poppins-Medium'),
-                                          hintText: "Password",
-                                          hintStyle: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 12.0)),
-                                    ),
-                                    SizedBox(
-                                      height: ScreenUtil.getInstance()
-                                          .setHeight(30),
-                                    ),
-                                    // SizedBox(
-                                    //   height:
-                                    //       ScreenUtil.getInstance().setHeight(35),
-                                    // ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: <Widget>[
-                                        FlatButton(
-                                          onPressed: () async {
-                                            if (isForgotPasswordEnabled(
-                                                state)) {
-                                              _onForgotPasswordPressed();
-                                              final action = await Dialogs
-                                                  .passwordResetDialog(
-                                                      context,
-                                                      'Don\'t Worry :)',
-                                                      'A password reset link will be sent to your email. Make sure to check spam folders if you don\'t see one');
-                                              if (action ==
-                                                  DialogAction.close) {}
-                                            }
-                                          },
-                                          child: Text(
-                                            "Forgot Password?",
-                                            style: TextStyle(
-                                                color: Color(0xFF5d74e3),
-                                                fontFamily: "Poppins-Medium",
-                                                fontSize:
-                                                    ScreenUtil.getInstance()
-                                                        .setSp(28)),
+                      Align(
+                        alignment: Alignment(-0.9, -0.9),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: 28.0,
+                            right: 28.0,
+                            top: kToolbarHeight +
+                                MediaQuery.of(context).size.height / 7,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Container(
+                                width: double.infinity,
+                                height: null,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0.0, 15.0),
+                                          blurRadius: 15.0),
+                                      BoxShadow(
+                                          color: Colors.black12,
+                                          offset: Offset(0.0, -10.0),
+                                          blurRadius: 10.0),
+                                    ]),
+                                child: Form(
+                                  key: _formKey,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 16.0, right: 16.0, top: 16.0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text("Login",
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      ScreenUtil.getInstance()
+                                                          .setSp(45),
+                                                  color: Colors.black
+                                                      .withOpacity(.80),
+                                                  fontFamily: "Poppins-Bold",
+                                                  letterSpacing: .6)),
+                                          SizedBox(
+                                            height: ScreenUtil.getInstance()
+                                                .setHeight(30),
                                           ),
-                                        )
-                                      ],
+                                          Text("Email",
+                                              style: TextStyle(
+                                                  fontFamily: "Poppins-Medium",
+                                                  color: Colors.black
+                                                      .withOpacity(.80),
+                                                  fontSize:
+                                                      ScreenUtil.getInstance()
+                                                          .setSp(26))),
+                                          TextFormField(
+                                            controller: _emailController,
+                                            focusNode: _focusNode,
+                                            autovalidate: true,
+                                            autocorrect: false,
+                                            validator: (_) {
+                                              if (!state.isEmailValid) {
+                                                return ('Invalid Email');
+                                              }
+                                              return null;
+                                            },
+                                            cursorColor: Color(0xFF5d74e3),
+                                            decoration: InputDecoration(
+                                                hintText: "email",
+                                                errorStyle: TextStyle(
+                                                    fontFamily:
+                                                        'Poppins-Medium'),
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 12.0)),
+                                          ),
+                                          SizedBox(
+                                            height: ScreenUtil.getInstance()
+                                                .setHeight(20),
+                                          ),
+                                          Text("Password",
+                                              style: TextStyle(
+                                                  color: Colors.black
+                                                      .withOpacity(.80),
+                                                  fontFamily: "Poppins-Medium",
+                                                  fontSize:
+                                                      ScreenUtil.getInstance()
+                                                          .setSp(26))),
+                                          TextFormField(
+                                            controller: _passwordController,
+                                            autovalidate: true,
+                                            autocorrect: false,
+                                            validator: (_) {
+                                              if (!state.isPasswordValid) {
+                                                return ('Invalid Password');
+                                              }
+                                              return null;
+                                            },
+                                            obscureText: true,
+                                            cursorColor: Color(0xFF5d74e3),
+                                            decoration: InputDecoration(
+                                                errorStyle: TextStyle(
+                                                    fontFamily:
+                                                        'Poppins-Medium'),
+                                                hintText: "Password",
+                                                hintStyle: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 12.0)),
+                                          ),
+                                          SizedBox(
+                                            height: ScreenUtil.getInstance()
+                                                .setHeight(30),
+                                          ),
+                                          // SizedBox(
+                                          //   height:
+                                          //       ScreenUtil.getInstance().setHeight(35),
+                                          // ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: <Widget>[
+                                              FlatButton(
+                                                onPressed: () async {
+                                                  if (isForgotPasswordEnabled(
+                                                      state)) {
+                                                    _onForgotPasswordPressed();
+                                                    final action = await Dialogs
+                                                        .passwordResetDialog(
+                                                            context,
+                                                            'Don\'t Worry :)',
+                                                            'A password reset link will be sent to your email. Make sure to check spam folders if you don\'t see one');
+                                                    if (action ==
+                                                        DialogAction.close) {}
+                                                  }
+                                                },
+                                                child: Text(
+                                                  "Forgot Password?",
+                                                  style: TextStyle(
+                                                      color: Color(0xFF5d74e3),
+                                                      fontFamily:
+                                                          "Poppins-Medium",
+                                                      fontSize: ScreenUtil
+                                                              .getInstance()
+                                                          .setSp(28)),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 10.0,
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 10.0,
-                                    )
-                                  ],
+                                  ),
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                height:
+                                    ScreenUtil.getInstance().setHeight(40.0),
+                              ),
+                              SigninButton(
+                                enable: isLoginButtonEnabled(state),
+                                onTap: isLoginButtonEnabled(state)
+                                    ? _onFormSubmitted
+                                    : null,
+                              ),
+                              SizedBox(
+                                height:
+                                    ScreenUtil.getInstance().setHeight(40.0),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  horizontalLine(),
+                                  Text(
+                                    'Social Login',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: 'Poppins-Medium',
+                                        color: Theme.of(context).dividerColor),
+                                  ),
+                                  horizontalLine(),
+                                ],
+                              ),
+                              SizedBox(
+                                height:
+                                    ScreenUtil.getInstance().setHeight(30.0),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  SocialIcon(
+                                    colors: [
+                                      Color(0xFF102397),
+                                      Color(0xFF187adf),
+                                      Color(0xFF00eaf8)
+                                    ],
+                                    iconData: CustomIcons.facebook,
+                                    onPressed: () {},
+                                  ),
+                                  SocialIcon(
+                                    colors: [
+                                      Color(0xFFff4f38),
+                                      Color(0xFFff355d)
+                                    ],
+                                    iconData: CustomIcons.googlePlus,
+                                    onPressed: () {
+                                      _loginBloc.add(LoginWithGooglePressed());
+                                    },
+                                  ),
+                                  SocialIcon(
+                                    colors: [
+                                      Color(0xFF17ead9),
+                                      Color(0xFF6078ea)
+                                    ],
+                                    iconData: CustomIcons.twitter,
+                                    onPressed: () {},
+                                  ),
+                                  SocialIcon(
+                                    colors: [
+                                      Color(0xFF00c6fb),
+                                      Color(0xFF005bea)
+                                    ],
+                                    iconData: CustomIcons.linkedin,
+                                    onPressed: () {},
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                  height:
+                                      ScreenUtil.getInstance().setHeight(30.0)),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Text(
+                                    'New User?',
+                                    style: TextStyle(
+                                        fontFamily: 'Poppins-Medium',
+                                        color: Theme.of(context).dividerColor),
+                                  ),
+                                  SizedBox(
+                                    width:
+                                        ScreenUtil.getInstance().setWidth(4.0),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(builder: (context) {
+                                        return RegisterScreen(
+                                            userRepository: _userRepository);
+                                      }));
+                                    },
+                                    child: Text(
+                                      'SignUp',
+                                      style: TextStyle(
+                                          color: Color(0xFF5d74e3),
+                                          fontFamily: 'Poppins-Bold'),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                        SizedBox(
-                          height: ScreenUtil.getInstance().setHeight(40.0),
-                        ),
-                        SigninButton(
-                          enable: isLoginButtonEnabled(state),
-                          onTap: isLoginButtonEnabled(state)
-                              ? _onFormSubmitted
-                              : null,
-                        ),
-                        SizedBox(
-                          height: ScreenUtil.getInstance().setHeight(40.0),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            horizontalLine(),
-                            Text(
-                              'Social Login',
-                              style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontFamily: 'Poppins-Medium',
-                                  color: Theme.of(context).dividerColor),
-                            ),
-                            horizontalLine(),
-                          ],
-                        ),
-                        SizedBox(
-                          height: ScreenUtil.getInstance().setHeight(30.0),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            SocialIcon(
-                              colors: [
-                                Color(0xFF102397),
-                                Color(0xFF187adf),
-                                Color(0xFF00eaf8)
-                              ],
-                              iconData: CustomIcons.facebook,
-                              onPressed: () {},
-                            ),
-                            SocialIcon(
-                              colors: [Color(0xFFff4f38), Color(0xFFff355d)],
-                              iconData: CustomIcons.googlePlus,
-                              onPressed: () {
-                                _loginBloc.add(LoginWithGooglePressed());
-                              },
-                            ),
-                            SocialIcon(
-                              colors: [Color(0xFF17ead9), Color(0xFF6078ea)],
-                              iconData: CustomIcons.twitter,
-                              onPressed: () {},
-                            ),
-                            SocialIcon(
-                              colors: [Color(0xFF00c6fb), Color(0xFF005bea)],
-                              iconData: CustomIcons.linkedin,
-                              onPressed: () {},
-                            )
-                          ],
-                        ),
-                        SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(30.0)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'New User?',
-                              style: TextStyle(
-                                  fontFamily: 'Poppins-Medium',
-                                  color: Theme.of(context).dividerColor),
-                            ),
-                            SizedBox(
-                              width: ScreenUtil.getInstance().setWidth(4.0),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (context) {
-                                  return RegisterScreen(
-                                      userRepository: _userRepository);
-                                }));
-                              },
-                              child: Text(
-                                'SignUp',
-                                style: TextStyle(
-                                    color: Color(0xFF5d74e3),
-                                    fontFamily: 'Poppins-Bold'),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ]);
               }),
