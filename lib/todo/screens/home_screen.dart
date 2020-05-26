@@ -75,16 +75,18 @@ class HomeScreen extends StatelessWidget {
                     ? null
                     : activeTab == AppTab.stats
                         ? PreferredSize(
-                            preferredSize: Size.fromHeight(150.0),
+                            preferredSize: Size.fromHeight(90.0),
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),
                               child: Container(
                                 height: null,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).appBarTheme.color,
-                                    borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(30.0),
-                                        bottomLeft: Radius.circular(30.0))),
+                                  color: Theme.of(context).appBarTheme.color,
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(30.0),
+                                    bottomLeft: Radius.circular(30.0),
+                                  ),
+                                ),
                                 child: AppBar(
                                   backgroundColor: Colors.transparent,
                                   elevation: 0.0,

@@ -76,11 +76,15 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                 padding: const EdgeInsets.only(left: 22.0),
                                 child: GestureDetector(
                                   onTap: () => Navigator.of(context).pop(),
-                                  child: Text("Cancel",
-                                      style: TextStyle(
-                                          fontFamily: "Poppins-Medium",
-                                          fontSize: 18.0,
-                                          color: Color(0xFF5d74e3))),
+                                  child: Text(
+                                    "Cancel",
+                                    style: TextStyle(
+                                      fontFamily: "Poppins-Medium",
+                                      fontSize: 18.0,
+                                      color: Color(0xFF5d74e3),
+                                      decoration: TextDecoration.none,
+                                    ),
+                                  ),
                                 ),
                               ),
                               Padding(
