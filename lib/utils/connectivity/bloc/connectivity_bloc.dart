@@ -5,10 +5,8 @@ import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
 import 'package:meta/meta.dart';
 
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
-  ConnectivityBloc({@required this.result});
+  ConnectivityBloc({@required this.result}) : super(Offline());
 
-  @override
-  ConnectivityState get initialState => Offline();
   final ConnectivityResult result;
 
   StreamSubscription _connectivitySubscription;

@@ -37,7 +37,7 @@ flutter pub get
 ## Future Works
 
 - Add ability to add and update profile avatar
-- Add date/time and reminder to todos
+- Add reminder to todos
 
 ## Disclaimer
 

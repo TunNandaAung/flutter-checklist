@@ -12,7 +12,7 @@ import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
 import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
 import 'package:checklist/todo/screens/screen.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
-import 'package:checklist/utils/bloc_delegate.dart';
+import 'package:checklist/utils/bloc_observer.dart';
 import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,7 +22,7 @@ import 'authentication_bloc/bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  Bloc.observer = SimpleBlocObserver();
   final UserRepository userRepository = UserRepository();
   Prefer.prefs = await SharedPreferences.getInstance();
   Prefer.themeIndexPref = Prefer.prefs.getInt('theme') ?? 1;

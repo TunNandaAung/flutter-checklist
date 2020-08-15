@@ -4,8 +4,7 @@ import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
 import 'package:checklist/todo/model/models.dart';
 
 class TabBloc extends Bloc<TabEvent, AppTab> {
-  @override
-  AppTab get initialState => AppTab.todos;
+  TabBloc() : super(AppTab.todos);
 
   @override
   Stream<AppTab> mapEventToState(TabEvent event) async* {

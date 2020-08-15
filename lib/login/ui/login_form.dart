@@ -236,6 +236,8 @@ class _LoginFormState extends State<LoginForm> {
                                                   fontSize:
                                                       ScreenUtil.getInstance()
                                                           .setSp(45),
+                                                  decoration:
+                                                      TextDecoration.none,
                                                   color: Colors.black
                                                       .withOpacity(.80),
                                                   fontFamily: "Poppins-Bold",
@@ -249,6 +251,8 @@ class _LoginFormState extends State<LoginForm> {
                                                   fontFamily: "Poppins-Medium",
                                                   color: Colors.black
                                                       .withOpacity(.80),
+                                                  decoration:
+                                                      TextDecoration.none,
                                                   fontSize:
                                                       ScreenUtil.getInstance()
                                                           .setSp(26))),
@@ -281,6 +285,8 @@ class _LoginFormState extends State<LoginForm> {
                                               style: TextStyle(
                                                   color: Colors.black
                                                       .withOpacity(.80),
+                                                  decoration:
+                                                      TextDecoration.none,
                                                   fontFamily: "Poppins-Medium",
                                                   fontSize:
                                                       ScreenUtil.getInstance()
@@ -377,6 +383,7 @@ class _LoginFormState extends State<LoginForm> {
                                     style: TextStyle(
                                         fontSize: 16.0,
                                         fontFamily: 'Poppins-Medium',
+                                        decoration: TextDecoration.none,
                                         color: Theme.of(context).dividerColor),
                                   ),
                                   horizontalLine(),
@@ -435,6 +442,7 @@ class _LoginFormState extends State<LoginForm> {
                                   Text(
                                     'New User?',
                                     style: TextStyle(
+                                        decoration: TextDecoration.none,
                                         fontFamily: 'Poppins-Medium',
                                         color: Theme.of(context).dividerColor),
                                   ),
@@ -454,6 +462,7 @@ class _LoginFormState extends State<LoginForm> {
                                       'SignUp',
                                       style: TextStyle(
                                           color: Color(0xFF5d74e3),
+                                          decoration: TextDecoration.none,
                                           fontFamily: 'Poppins-Bold'),
                                     ),
                                   ),

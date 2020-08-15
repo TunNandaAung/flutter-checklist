@@ -6,8 +6,7 @@ import 'package:checklist/theme/bloc/theme_barrel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, AppTheme> {
-  @override
-  AppTheme get initialState => AppTheme.values[Prefer.themeIndexPref];
+  ThemeBloc() : super(AppTheme.values[Prefer.themeIndexPref]);
 
   @override
   Stream<AppTheme> mapEventToState(

@@ -19,28 +19,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^0.16.0
-  cloud_firestore: ^0.13.5
-  flutter_bloc: ^2.1.1
-  equatable: ^1.0.1
-  meta: ^1.1.7
+  firebase_auth: ^0.16.1
+  cloud_firestore: ^0.13.7
+  flutter_bloc: ^6.0.1
+  equatable: ^1.2.3
+  meta: ^1.1.8
   google_sign_in: ^4.5.1
   bubble_bottom_bar: ^1.2.0
   material_design_icons_flutter: ^3.3.4595
-  firebase_core: ^0.4.4+3
-  circular_check_box: ^1.0.1
-  shared_preferences: ^0.5.4+3
-  flutter_spinkit: ^4.1.0
+  firebase_core: ^0.4.5
+  circular_check_box: 1.0.1
+  shared_preferences: ^0.5.8
+  flutter_spinkit: ^4.1.2+1
   flutter_svg: ^0.17.4
-  connectivity: ^0.4.6+2
-  table_calendar: ^2.2.2
+  connectivity: ^0.4.9
+  table_calendar: ^2.2.3
   intl: ^0.16.1
-  flutter_rounded_date_picker: ^1.0.3
+  flutter_rounded_date_picker: ^1.0.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   flutter_screenutil: ^0.6.0
+  rxdart: ^0.24.1
 
 dev_dependencies:
   flutter_test:
@@ -55,7 +56,6 @@ flutter_icons:
   adaptive_icon_foreground: "assets/app_icon/app-icon-tick-box-128.png"
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -76,10 +76,8 @@ flutter:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -105,6 +103,5 @@ flutter:
     - family: Poppins-Medium
       fonts:
         - asset: assets/Poppins-Medium.ttf
-  #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
