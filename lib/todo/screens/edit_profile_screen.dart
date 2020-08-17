@@ -259,6 +259,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         'Cancel',
                         style: TextStyle(
                             color: Colors.white,
+                            decoration: TextDecoration.none,
                             fontFamily: 'Poppins-Medium',
                             fontSize: 15.0),
                       ),
