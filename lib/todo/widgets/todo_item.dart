@@ -55,7 +55,12 @@ class TodoItem extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(8),
-                    boxShadow: []),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black12.withOpacity(0.01),
+                          offset: Offset(0, 10),
+                          blurRadius: 10.0)
+                    ]),
               ),
             ),
             Center(

@@ -55,7 +55,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black54,
+                            color: Theme.of(context).highlightColor,
                             blurRadius: 30.0,
                             offset: Offset(0, -30))
                       ],
@@ -250,7 +250,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         borderRadius: BorderRadius.circular(20.0),
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.black54.withOpacity(.3),
+                              color: Theme.of(context).highlightColor,
                               offset: Offset(0.0, 8.0),
                               blurRadius: 8.0)
                         ]),
@@ -278,7 +278,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black54,
+                            color: Theme.of(context).highlightColor,
                             blurRadius: 30.0,
                             offset: Offset(0, 10))
                       ],

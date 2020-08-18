@@ -23,7 +23,7 @@ class RegisterScreen extends StatelessWidget {
           ),
           boxShadow: [
             BoxShadow(
-                color: Colors.black12,
+                color: Theme.of(context).highlightColor,
                 offset: Offset(3.0, 6.0),
                 blurRadius: 10.0)
           ],

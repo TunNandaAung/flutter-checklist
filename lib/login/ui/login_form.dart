@@ -213,11 +213,13 @@ class _LoginFormState extends State<LoginForm> {
                                     borderRadius: BorderRadius.circular(8.0),
                                     boxShadow: [
                                       BoxShadow(
-                                          color: Colors.black12,
+                                          color:
+                                              Theme.of(context).highlightColor,
                                           offset: Offset(0.0, 15.0),
                                           blurRadius: 15.0),
                                       BoxShadow(
-                                          color: Colors.black12,
+                                          color:
+                                              Theme.of(context).highlightColor,
                                           offset: Offset(0.0, -10.0),
                                           blurRadius: 10.0),
                                     ]),

@@ -31,7 +31,7 @@ class Stats extends StatelessWidget {
                             tileMode: TileMode.clamp),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black54,
+                            color: Theme.of(context).highlightColor,
                             blurRadius: 10.0,
                             offset: Offset(0, 10),
                           )
@@ -107,7 +107,7 @@ class Stats extends StatelessWidget {
                             //    color: Color(0xFFd43759),
                             boxShadow: [
                               BoxShadow(
-                                color: Colors.black54,
+                                color: Theme.of(context).highlightColor,
                                 blurRadius: 10.0,
                                 offset: Offset(0, 10),
                               )

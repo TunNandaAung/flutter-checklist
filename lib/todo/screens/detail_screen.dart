@@ -179,7 +179,8 @@ class DetailsScreen extends StatelessWidget {
                                         borderRadius: BorderRadius.circular(8),
                                         boxShadow: [
                                           BoxShadow(
-                                            color: Colors.black26,
+                                            color: Theme.of(context)
+                                                .highlightColor,
                                             offset: Offset(0, 10),
                                             blurRadius: 30,
                                           ),

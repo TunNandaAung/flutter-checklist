@@ -39,7 +39,9 @@ class _AddTodoFormState extends State<AddTodoForm> {
         ),
         boxShadow: [
           BoxShadow(
-              color: Colors.black12, offset: Offset(3.0, 6.0), blurRadius: 10.0)
+              color: Theme.of(context).highlightColor,
+              offset: Offset(3.0, 6.0),
+              blurRadius: 10.0)
         ],
         color: Theme.of(context).canvasColor,
       ),
@@ -160,7 +162,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                               borderRadius: BorderRadius.circular(8),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black26,
+                                  color: Theme.of(context).highlightColor,
                                   offset: Offset(0, 10),
                                   blurRadius: 30,
                                 ),

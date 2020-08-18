@@ -160,18 +160,23 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black38,
+                            color: Theme.of(context).highlightColor,
                             blurRadius: 30.0,
                             offset: Offset(0, -30))
                       ],
-                      gradient: LinearGradient(
-                          colors: [
-                            Theme.of(context).backgroundColor,
-                            Theme.of(context).canvasColor,
-                          ],
-                          begin: Alignment.bottomCenter,
-                          end: Alignment.topCenter,
-                          tileMode: TileMode.clamp),
+                      gradient: Prefer.prefs.getInt('theme') == 0
+                          ? LinearGradient(
+                              colors: [
+                                  Theme.of(context).backgroundColor,
+                                  Theme.of(context).canvasColor,
+                                ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
+                              tileMode: TileMode.clamp)
+                          : null,
+                      color: Prefer.prefs.getInt('theme') == 1
+                          ? Theme.of(context).cardColor.withOpacity(0.4)
+                          : null,
                       borderRadius: BorderRadius.circular(30.0)),
                   child: Padding(
                     padding: EdgeInsets.only(top: 60.0),
@@ -254,7 +259,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.black54.withOpacity(.3),
+                              color: Theme.of(context).highlightColor,
                               offset: Offset(0.0, 8.0),
                               blurRadius: 8.0)
                         ]),
@@ -298,7 +303,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         shape: BoxShape.circle,
                         boxShadow: [
                           BoxShadow(
-                              color: Colors.black54.withOpacity(.3),
+                              color: Theme.of(context).highlightColor,
                               offset: Offset(0.0, 8.0),
                               blurRadius: 8.0)
                         ]),
@@ -326,7 +331,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                            color: Colors.black54,
+                            color: Theme.of(context).highlightColor,
                             blurRadius: 30.0,
                             offset: Offset(0, 10))
                       ],

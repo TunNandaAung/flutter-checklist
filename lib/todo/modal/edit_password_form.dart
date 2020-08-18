@@ -30,7 +30,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
           ),
           boxShadow: [
             BoxShadow(
-                color: Colors.black12,
+                color: Theme.of(context).highlightColor,
                 offset: Offset(3.0, 6.0),
                 blurRadius: 10.0)
           ],
@@ -104,7 +104,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
-                                      color: Colors.black26,
+                                      color: Theme.of(context).highlightColor,
                                       offset: Offset(0, 10),
                                       blurRadius: 30)
                                 ]),
@@ -147,7 +147,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                 borderRadius: BorderRadius.circular(8),
                                 boxShadow: [
                                   BoxShadow(
-                                      color: Colors.black26,
+                                      color: Theme.of(context).highlightColor,
                                       offset: Offset(0, 10),
                                       blurRadius: 30)
                                 ]),
