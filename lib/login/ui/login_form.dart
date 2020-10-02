@@ -58,9 +58,8 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
-    ScreenUtil.instance =
-        ScreenUtil(width: 750, height: 1250, allowFontScaling: true);
+    ScreenUtil.init(context,
+        designSize: Size(750, 1250), allowFontScaling: true);
 
     return Container(
       decoration: BoxDecoration(
@@ -236,8 +235,7 @@ class _LoginFormState extends State<LoginForm> {
                                           Text("Login",
                                               style: TextStyle(
                                                   fontSize:
-                                                      ScreenUtil.getInstance()
-                                                          .setSp(45),
+                                                      ScreenUtil().setSp(45),
                                                   decoration:
                                                       TextDecoration.none,
                                                   color: Colors.black
@@ -245,8 +243,7 @@ class _LoginFormState extends State<LoginForm> {
                                                   fontFamily: "Poppins-Bold",
                                                   letterSpacing: .6)),
                                           SizedBox(
-                                            height: ScreenUtil.getInstance()
-                                                .setHeight(30),
+                                            height: ScreenUtil().setHeight(30),
                                           ),
                                           Text("Email",
                                               style: TextStyle(
@@ -256,8 +253,7 @@ class _LoginFormState extends State<LoginForm> {
                                                   decoration:
                                                       TextDecoration.none,
                                                   fontSize:
-                                                      ScreenUtil.getInstance()
-                                                          .setSp(26))),
+                                                      ScreenUtil().setSp(26))),
                                           TextFormField(
                                             controller: _emailController,
                                             focusNode: _focusNode,
@@ -280,8 +276,7 @@ class _LoginFormState extends State<LoginForm> {
                                                     fontSize: 12.0)),
                                           ),
                                           SizedBox(
-                                            height: ScreenUtil.getInstance()
-                                                .setHeight(20),
+                                            height: ScreenUtil().setHeight(20),
                                           ),
                                           Text("Password",
                                               style: TextStyle(
@@ -291,8 +286,7 @@ class _LoginFormState extends State<LoginForm> {
                                                       TextDecoration.none,
                                                   fontFamily: "Poppins-Medium",
                                                   fontSize:
-                                                      ScreenUtil.getInstance()
-                                                          .setSp(26))),
+                                                      ScreenUtil().setSp(26))),
                                           TextFormField(
                                             controller: _passwordController,
                                             autovalidate: true,
@@ -315,12 +309,11 @@ class _LoginFormState extends State<LoginForm> {
                                                     fontSize: 12.0)),
                                           ),
                                           SizedBox(
-                                            height: ScreenUtil.getInstance()
-                                                .setHeight(30),
+                                            height: ScreenUtil().setHeight(30),
                                           ),
                                           // SizedBox(
                                           //   height:
-                                          //       ScreenUtil.getInstance().setHeight(35),
+                                          //       ScreenUtil().setHeight(35),
                                           // ),
                                           Row(
                                             mainAxisAlignment:
@@ -346,8 +339,7 @@ class _LoginFormState extends State<LoginForm> {
                                                       color: Color(0xFF5d74e3),
                                                       fontFamily:
                                                           "Poppins-Medium",
-                                                      fontSize: ScreenUtil
-                                                              .getInstance()
+                                                      fontSize: ScreenUtil()
                                                           .setSp(28)),
                                                 ),
                                               )
@@ -363,8 +355,7 @@ class _LoginFormState extends State<LoginForm> {
                                 ),
                               ),
                               SizedBox(
-                                height:
-                                    ScreenUtil.getInstance().setHeight(40.0),
+                                height: ScreenUtil().setHeight(40.0),
                               ),
                               SigninButton(
                                 enable: isLoginButtonEnabled(state),
@@ -373,8 +364,7 @@ class _LoginFormState extends State<LoginForm> {
                                     : null,
                               ),
                               SizedBox(
-                                height:
-                                    ScreenUtil.getInstance().setHeight(40.0),
+                                height: ScreenUtil().setHeight(40.0),
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -392,8 +382,7 @@ class _LoginFormState extends State<LoginForm> {
                                 ],
                               ),
                               SizedBox(
-                                height:
-                                    ScreenUtil.getInstance().setHeight(30.0),
+                                height: ScreenUtil().setHeight(30.0),
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -435,9 +424,7 @@ class _LoginFormState extends State<LoginForm> {
                                   )
                                 ],
                               ),
-                              SizedBox(
-                                  height:
-                                      ScreenUtil.getInstance().setHeight(30.0)),
+                              SizedBox(height: ScreenUtil().setHeight(30.0)),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
@@ -449,8 +436,7 @@ class _LoginFormState extends State<LoginForm> {
                                         color: Theme.of(context).dividerColor),
                                   ),
                                   SizedBox(
-                                    width:
-                                        ScreenUtil.getInstance().setWidth(4.0),
+                                    width: ScreenUtil().setWidth(4.0),
                                   ),
                                   InkWell(
                                     onTap: () {
@@ -486,7 +472,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget horizontalLine() => Padding(
       padding: EdgeInsets.symmetric(horizontal: 16.0),
       child: Container(
-        width: ScreenUtil.getInstance().setHeight(120),
+        width: ScreenUtil().setHeight(120),
         height: 1.0,
         color: Theme.of(context).dividerColor,
       ));

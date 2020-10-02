@@ -10,7 +10,7 @@ abstract class ProfileEvent extends Equatable {
 class LoadProfile extends ProfileEvent {}
 
 class UpdateProfile extends ProfileEvent {
-  final FirebaseUser user;
+  final User user;
   final String name;
   final String email;
 
@@ -24,7 +24,7 @@ class UpdateProfile extends ProfileEvent {
 }
 
 class ChangePassword extends ProfileEvent {
-  final FirebaseUser user;
+  final User user;
   final String currentPassword;
   final String newPassword;
 

@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/todo/modal/edit_password_modal.dart';
 import 'package:flutter/material.dart';
 
-typedef OnSaveCallback = Function(FirebaseUser user, String name, String email);
+typedef OnSaveCallback = Function(User user, String name, String email);
 typedef OnPasswordChangedCallBack = Function(
     String currentPassword, String newPassword);
 
 class EditProfileScreen extends StatefulWidget {
-  final FirebaseUser user;
+  final User user;
   final OnSaveCallback onSave;
   final OnPasswordChangedCallBack onPasswordChanged;
 

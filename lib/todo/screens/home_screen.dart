@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeScreen extends StatelessWidget {
-  final FirebaseUser user;
+  final User user;
 
   HomeScreen({Key key, this.user}) : super(key: key);
 

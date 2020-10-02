@@ -1,24 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:google_sign_in/google_sign_in.dart';
 
 class UserRepository {
-  final FirebaseAuth _firebaseAuth;
+  final firebase_auth.FirebaseAuth _firebaseAuth;
   final GoogleSignIn _googleSignIn;
 
-  UserRepository({FirebaseAuth firebaseAuth, GoogleSignIn googleSignin})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _googleSignIn = googleSignin ?? GoogleSignIn();
+  UserRepository({
+    firebase_auth.FirebaseAuth firebaseAuth,
+    GoogleSignIn googleSignIn,
+  })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
+        _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
 
-  Future<FirebaseUser> signInWithGoogle() async {
-    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
-    final AuthCredential credential = GoogleAuthProvider.getCredential(
+  Future<void> signInWithGoogle() async {
+    final googleUser = await _googleSignIn.signIn();
+    final googleAuth = await googleUser.authentication;
+    final credential = firebase_auth.GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
     await _firebaseAuth.signInWithCredential(credential);
-    return _firebaseAuth.currentUser();
   }
 
   Future<void> signInWithCredentials(String email, String password) {
@@ -36,33 +36,25 @@ class UserRepository {
   }
 
   Future<bool> isSignedIn() async {
-    final currentUser = await _firebaseAuth.currentUser();
+    final currentUser = _firebaseAuth.currentUser;
     return currentUser != null;
   }
 
-  Future<FirebaseUser> getUser() async {
-    return await _firebaseAuth.currentUser();
+  Future<firebase_auth.User> getUser() async {
+    return _firebaseAuth.currentUser;
   }
 
   Future<void> signUp({String name, String email, String password}) async {
-    AuthResult auth = await _firebaseAuth.createUserWithEmailAndPassword(
+    await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
-    UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
-    userUpdateInfo.displayName = name;
-
-    await auth.user.updateProfile(userUpdateInfo);
-    await auth.user.reload();
   }
 
-  Future<FirebaseUser> updateProfile(
-      {FirebaseUser user, String name, String email}) async {
-    UserUpdateInfo userUpdateInfo = new UserUpdateInfo();
-    userUpdateInfo.displayName = name;
-
+  Future<firebase_auth.User> updateProfile(
+      {firebase_auth.User user, String name, String email}) async {
     await user.updateEmail(email);
-    await user.updateProfile(userUpdateInfo);
+    await user.updateProfile(displayName: name);
 
     return this.getUser();
   }
@@ -72,8 +64,10 @@ class UserRepository {
   }
 
   Future changePassword(
-      {FirebaseUser user, String currentPassword, String newPassword}) async {
-    final credential = EmailAuthProvider.getCredential(
+      {firebase_auth.User user,
+      String currentPassword,
+      String newPassword}) async {
+    final credential = firebase_auth.EmailAuthProvider.credential(
         email: user.email, password: currentPassword);
     print(credential);
     await user.reauthenticateWithCredential(credential).then((_) {

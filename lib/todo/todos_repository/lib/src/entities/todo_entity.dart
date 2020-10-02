@@ -42,8 +42,9 @@ class TodoEntity extends Equatable {
   }
 
   static TodoEntity fromSnapshot(DocumentSnapshot snap) {
-    return TodoEntity(snap.data['task'], snap.documentID, snap.data['note'],
-        snap.data['complete'], snap.data['userId'], snap.data['time']);
+    Map<String, dynamic> data = snap.data();
+    return TodoEntity(data['task'], snap.id, data['note'], data['complete'],
+        data['userId'], data['time']);
   }
 
   Map<String, Object> toDocument() {

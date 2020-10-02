@@ -11,7 +11,7 @@ abstract class AuthenticationState extends Equatable {
 class Uninitialized extends AuthenticationState {}
 
 class Authenticated extends AuthenticationState {
-  final FirebaseUser displayUser;
+  final User displayUser;
 
   const Authenticated(this.displayUser);
 

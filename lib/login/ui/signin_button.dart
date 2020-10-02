@@ -30,8 +30,8 @@ class SigninButton extends StatelessWidget {
               : Text(''),
           InkWell(
             child: Container(
-              width: ScreenUtil.getInstance().setWidth(330),
-              height: ScreenUtil.getInstance().setHeight(100),
+              width: ScreenUtil().setWidth(330),
+              height: ScreenUtil().setHeight(100),
               decoration: BoxDecoration(
                   gradient: _enable
                       ? LinearGradient(

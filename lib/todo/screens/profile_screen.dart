@@ -12,7 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'edit_profile_screen.dart';
 
 class Profile extends StatefulWidget {
-  final FirebaseUser user;
+  final User user;
 
   Profile({Key key, this.user}) : super(key: key);
 

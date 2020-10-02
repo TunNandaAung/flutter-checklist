@@ -6,7 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ExtraActions extends StatelessWidget {
-  final FirebaseUser user;
+  final User user;
 
   const ExtraActions({Key key, this.user}) : super(key: key);
 

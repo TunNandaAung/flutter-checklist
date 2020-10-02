@@ -123,8 +123,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                   },
                                   child: Text("Cancel",
                                       style: TextStyle(
-                                          fontSize: ScreenUtil.getInstance()
-                                              .setSp(30),
+                                          fontSize: ScreenUtil().setSp(30),
                                           fontFamily: "Poppins-Medium",
                                           letterSpacing: .6,
                                           color: Color(0xFF5d74e3))),
@@ -143,15 +142,14 @@ class _RegisterFormState extends State<RegisterForm> {
                             children: <Widget>[
                               Text("Create Account",
                                   style: TextStyle(
-                                      fontSize:
-                                          ScreenUtil.getInstance().setSp(42),
+                                      fontSize: ScreenUtil().setSp(42),
                                       fontFamily: "Poppins-Bold",
                                       letterSpacing: .6,
                                       color: Theme.of(context).dividerColor)),
                             ],
                           ),
                           SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(30),
+                            height: ScreenUtil().setHeight(30),
                           ),
                           TextFormField(
                             controller: _nameController,
@@ -175,7 +173,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                     .hintStyle),
                           ),
                           SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(15),
+                            height: ScreenUtil().setHeight(15),
                           ),
                           TextFormField(
                             controller: _emailController,
@@ -199,7 +197,7 @@ class _RegisterFormState extends State<RegisterForm> {
                                     .hintStyle),
                           ),
                           SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(15),
+                            height: ScreenUtil().setHeight(15),
                           ),
                           TextFormField(
                             controller: _passwordController,

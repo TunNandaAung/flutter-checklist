@@ -19,10 +19,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'authentication_bloc/bloc.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = SimpleBlocObserver();
+  await Firebase.initializeApp();
   final UserRepository userRepository = UserRepository();
   Prefer.prefs = await SharedPreferences.getInstance();
   Prefer.themeIndexPref = Prefer.prefs.getInt('theme') ?? 1;

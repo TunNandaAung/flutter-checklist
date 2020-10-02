@@ -39,7 +39,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   Stream<ProfileState> _mapUpdateProfileToState(UpdateProfile event) async* {
     try {
       yield ProfileLoading();
-      FirebaseUser user = await _userRepository.updateProfile(
+      User user = await _userRepository.updateProfile(
           user: event.user, name: event.name, email: event.email);
       print('User : $user');
 

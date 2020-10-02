@@ -11,7 +11,7 @@ abstract class ProfileState extends Equatable {
 class ProfileLoading extends ProfileState {}
 
 class ProfileLoaded extends ProfileState {
-  final FirebaseUser user;
+  final User user;
   final String message;
 
   const ProfileLoaded({this.user, this.message = ''});
@@ -24,7 +24,7 @@ class ProfileLoaded extends ProfileState {
 }
 
 class ProfileUpdated extends ProfileState {
-  final FirebaseUser user;
+  final User user;
 
   const ProfileUpdated(this.user);
 
