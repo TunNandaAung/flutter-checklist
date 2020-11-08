@@ -19,29 +19,26 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  firebase_auth: ^0.18.1+1
-  cloud_firestore: ^0.14.1+2
-  flutter_bloc: ^6.0.5
-  equatable: ^1.2.5
-  meta: ^1.1.8
-  google_sign_in: ^4.5.4
   bubble_bottom_bar: ^1.2.0
-  material_design_icons_flutter: ^3.3.4595
-  firebase_core: ^0.5.0
   circular_check_box: 1.0.1
-  shared_preferences: ^0.5.12
+  cloud_firestore: ^0.14.1+2
+  connectivity: ^0.4.9+3
+  cupertino_icons: ^0.1.2
+  equatable: ^1.2.5
+  firebase_auth: ^0.18.1+1
+  firebase_core: ^0.5.0
+  flutter_bloc: ^6.1.0
+  flutter_rounded_date_picker: ^1.0.4
+  flutter_screenutil: ^3.1.1
   flutter_spinkit: ^4.1.2+1
   flutter_svg: ^0.19.0
-  connectivity: ^0.4.9+3
-  table_calendar: ^2.2.3
+  google_sign_in: ^4.5.4
   intl: ^0.16.1
-  flutter_rounded_date_picker: ^1.0.4
-
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.2
-  flutter_screenutil: ^3.1.1
+  material_design_icons_flutter: ^3.3.4595
+  meta: ^1.1.8
   rxdart: ^0.24.1
+  shared_preferences: ^0.5.12
+  table_calendar: ^2.2.3
 
 dev_dependencies:
   flutter_test:
