@@ -257,7 +257,8 @@ class _LoginFormState extends State<LoginForm> {
                                           TextFormField(
                                             controller: _emailController,
                                             focusNode: _focusNode,
-                                            autovalidate: true,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             autocorrect: false,
                                             validator: (_) {
                                               if (!state.isEmailValid) {
@@ -289,7 +290,8 @@ class _LoginFormState extends State<LoginForm> {
                                                       ScreenUtil().setSp(26))),
                                           TextFormField(
                                             controller: _passwordController,
-                                            autovalidate: true,
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
                                             autocorrect: false,
                                             validator: (_) {
                                               if (!state.isPasswordValid) {

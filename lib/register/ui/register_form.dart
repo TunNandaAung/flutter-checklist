@@ -154,7 +154,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           TextFormField(
                             controller: _nameController,
                             autocorrect: false,
-                            autovalidate: true,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (_) {
                               return !state.isNameValid
                                   ? 'Plase enter a name'
@@ -178,7 +179,8 @@ class _RegisterFormState extends State<RegisterForm> {
                           TextFormField(
                             controller: _emailController,
                             autocorrect: false,
-                            autovalidate: true,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (_) {
                               return !state.isEmailValid
                                   ? 'Invalid Email'
@@ -203,7 +205,8 @@ class _RegisterFormState extends State<RegisterForm> {
                             controller: _passwordController,
                             obscureText: true,
                             autocorrect: false,
-                            autovalidate: true,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (_) {
                               return !state.isPasswordValid
                                   ? 'Invalid Password'

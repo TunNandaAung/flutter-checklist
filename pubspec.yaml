@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.9.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -22,7 +22,7 @@ dependencies:
   bubble_bottom_bar: ^1.2.0
   circular_check_box: 1.0.1
   cloud_firestore: ^0.14.1+2
-  connectivity: ^0.4.9+3
+  connectivity: ^2.0.1
   cupertino_icons: ^0.1.2
   equatable: ^1.2.5
   firebase_auth: ^0.18.1+1
