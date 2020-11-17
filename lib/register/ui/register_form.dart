@@ -33,7 +33,7 @@ class _RegisterFormState extends State<RegisterForm> {
   @override
   void initState() {
     super.initState();
-    _registerBloc = BlocProvider.of<RegisterBloc>(context);
+    _registerBloc = context.read<RegisterBloc>();
     _nameController.addListener(_onNameChanged);
     _emailController.addListener(_onEmailChanged);
     _passwordController.addListener(_onPasswordChanged);
@@ -69,7 +69,7 @@ class _RegisterFormState extends State<RegisterForm> {
           CircularProgressIndicator();
         }
         if (state.isSuccess) {
-          BlocProvider.of<AuthenticationBloc>(context).add(LoggedIn());
+          context.read<AuthenticationBloc>().add(LoggedIn());
           Navigator.of(context).pop();
         }
         if (state.isFailure) {

@@ -54,7 +54,7 @@ class DetailsScreen extends StatelessWidget {
                     color: Theme.of(context).dividerColor,
                   ),
                   onPressed: () {
-                    BlocProvider.of<TodosBloc>(context).add(DeleteTodo(todo));
+                    context.read<TodosBloc>().add(DeleteTodo(todo));
                     Navigator.pop(context, todo);
                   },
                 )
@@ -97,14 +97,13 @@ class DetailsScreen extends StatelessWidget {
                                       child: CircularCheckBox(
                                         value: todo.complete,
                                         onChanged: (_) {
-                                          BlocProvider.of<TodosBloc>(context)
-                                              .add(
-                                            UpdateTodo(
-                                              todo.copyWith(
-                                                  complete: !todo.complete,
-                                                  userId: todo.userId),
-                                            ),
-                                          );
+                                          context.read<TodosBloc>().add(
+                                                UpdateTodo(
+                                                  todo.copyWith(
+                                                      complete: !todo.complete,
+                                                      userId: todo.userId),
+                                                ),
+                                              );
                                         },
                                         activeColor: Color(0xFF17ead9),
                                       ),
@@ -256,7 +255,7 @@ class DetailsScreen extends StatelessWidget {
                         //     builder: (context) {
                         //       return AddEditScreen(
                         //         onSave: (task, note) {
-                        //           BlocProvider.of<TodosBloc>(context).add(
+                        //           context.read<TodosBloc>().add(
                         //             UpdateTodo(
                         //               todo.copyWith(task: task, note: note),
                         //             ),

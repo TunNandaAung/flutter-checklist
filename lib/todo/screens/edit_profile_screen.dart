@@ -161,7 +161,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               EditPasswordModal().mainBottomSheet(
                                   context: context,
                                   // onSave: (currentPassword, newPassword) {
-                                  //   BlocProvider.of<ProfileBloc>(context).add(
+                                  //   context.read<ProfileBloc>().add(
                                   //     ChangePassword(widget.user,
                                   //         currentPassword, newPassword),
                                   //   );

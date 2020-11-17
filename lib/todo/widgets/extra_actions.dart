@@ -30,11 +30,10 @@ class ExtraActions extends StatelessWidget {
               onSelected: (action) {
                 switch (action) {
                   case ExtraAction.clearCompleted:
-                    BlocProvider.of<TodosBloc>(context).add(ClearCompleted());
+                    context.read<TodosBloc>().add(ClearCompleted());
                     break;
                   case ExtraAction.toggleAllComplete:
-                    BlocProvider.of<TodosBloc>(context)
-                        .add(ToggleAll(user.uid));
+                    context.read<TodosBloc>().add(ToggleAll(user.uid));
                     break;
                 }
               },

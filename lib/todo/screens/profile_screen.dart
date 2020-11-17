@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     void _onThemeDarkTapUp(TapUpDetails details) {
       animController.forward();
-      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(AppTheme.Dark));
+      context.read<ThemeBloc>().add(ThemeChanged(AppTheme.Dark));
     }
 
     void _onThemeDarkTapDown(TapDownDetails details) {
@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
 
     void _onThemeLightTapUp(TapUpDetails details) {
       animController.forward();
-      BlocProvider.of<ThemeBloc>(context).add(ThemeChanged(AppTheme.Light));
+      context.read<ThemeBloc>().add(ThemeChanged(AppTheme.Light));
     }
 
     void _onThemeLightTapDown(TapDownDetails details) {
@@ -206,7 +206,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                       onTapDown: _onThemeDarkTapDown,
                                       // onTap: () {
                                       //   animController.forward();
-                                      //   BlocProvider.of<ThemeBloc>(context)
+                                      //   context.read<ThemeBloc>()
                                       //       .add(ThemeChanged(
                                       //           AppTheme.Dark));
                                       // },
@@ -225,7 +225,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                       onTapDown: _onThemeLightTapDown,
                                       // onTap: () {
                                       //   animController.reverse();
-                                      //   BlocProvider.of<ThemeBloc>(context)
+                                      //   context.read<ThemeBloc>()
                                       //       .add(ThemeChanged(AppTheme.Light));
                                       // },
                                       child: Transform.scale(
@@ -275,16 +275,16 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             builder: (_) => EditProfileScreen(
                                   user: state.user,
                                   onSave: (user, name, email) {
-                                    BlocProvider.of<ProfileBloc>(context).add(
-                                      UpdateProfile(user, name, email),
-                                    );
+                                    context.read<ProfileBloc>().add(
+                                          UpdateProfile(user, name, email),
+                                        );
                                   },
                                   onPasswordChanged:
                                       (currentPassword, newPassword) {
-                                    BlocProvider.of<ProfileBloc>(context).add(
-                                      ChangePassword(widget.user,
-                                          currentPassword, newPassword),
-                                    );
+                                    context.read<ProfileBloc>().add(
+                                          ChangePassword(widget.user,
+                                              currentPassword, newPassword),
+                                        );
                                   },
                                 )));
                       },
@@ -315,9 +315,9 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         color: Colors.white,
                       ),
                       onPressed: () {
-                        BlocProvider.of<AuthenticationBloc>(context).add(
-                          LoggedOut(),
-                        );
+                        context.read<AuthenticationBloc>().add(
+                              LoggedOut(),
+                            );
                       },
                     ),
                   )),

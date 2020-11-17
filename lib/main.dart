@@ -51,13 +51,13 @@ class Checklist extends StatefulWidget {
 }
 
 class _ChecklistState extends State<Checklist> {
-  final UserRepository _userRepository = UserRepository();
   AuthenticationBloc _authenticationBloc;
 
   @override
   void initState() {
     super.initState();
-    _authenticationBloc = AuthenticationBloc(userRepository: _userRepository);
+    _authenticationBloc =
+        AuthenticationBloc(userRepository: widget._userRepository);
     _authenticationBloc.add(AppStarted());
   }
 
@@ -73,7 +73,7 @@ class _ChecklistState extends State<Checklist> {
         BlocProvider<TodosBloc>(
           create: (context) {
             return TodosBloc(
-              _userRepository,
+              widget._userRepository,
               todosRepository: FirebaseTodosRepository(),
             );
           },
@@ -89,7 +89,7 @@ class _ChecklistState extends State<Checklist> {
               return BlocBuilder<AuthenticationBloc, AuthenticationState>(
                 builder: (context, state) {
                   if (state is Authenticated) {
-                    BlocProvider.of<TodosBloc>(context).add(LoadTodos());
+                    context.watch<TodosBloc>().add(LoadTodos());
                     return MultiBlocProvider(
                       providers: [
                         BlocProvider<TabBloc>(
@@ -97,17 +97,17 @@ class _ChecklistState extends State<Checklist> {
                         ),
                         BlocProvider<FilteredTodosBloc>(
                           create: (context) => FilteredTodosBloc(
-                            todosBloc: BlocProvider.of<TodosBloc>(context),
+                            todosBloc: context.read<TodosBloc>(),
                           ),
                         ),
                         BlocProvider<StatsBloc>(
                           create: (context) => StatsBloc(
-                            todosBloc: BlocProvider.of<TodosBloc>(context),
+                            todosBloc: context.read<TodosBloc>(),
                           ),
                         ),
                         BlocProvider<ProfileBloc>(
                           create: (context) => ProfileBloc(
-                            userRepository: _userRepository,
+                            userRepository: widget._userRepository,
                           )..add(LoadProfile()),
                         ),
                       ],
@@ -115,7 +115,7 @@ class _ChecklistState extends State<Checklist> {
                     );
                   }
                   if (state is Unauthenticated) {
-                    return LoginPage(userRepository: _userRepository);
+                    return LoginPage(userRepository: widget._userRepository);
                   }
                   return SplashScreen();
                 },
@@ -124,9 +124,9 @@ class _ChecklistState extends State<Checklist> {
             '/addTodo': (context) {
               return AddEditScreen(
                 onSave: (task, note) {
-                  BlocProvider.of<TodosBloc>(context).add(
-                    AddTodo(Todo(task, note: note)),
-                  );
+                  context.read<TodosBloc>().add(
+                        AddTodo(Todo(task, note: note)),
+                      );
                 },
                 isEditing: false,
               );

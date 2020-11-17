@@ -220,7 +220,7 @@ class HomeScreen extends StatelessWidget {
                 bottomNavigationBar: TabSelector(
                   activeTab: activeTab,
                   onTabSelected: (tab) =>
-                      BlocProvider.of<TabBloc>(context).add(UpdateTab(tab)),
+                      context.read<TabBloc>().add(UpdateTab(tab)),
                 ),
               ),
             );
