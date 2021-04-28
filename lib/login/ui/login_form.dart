@@ -58,8 +58,12 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(context,
-        designSize: Size(750, 1250), allowFontScaling: true);
+    ScreenUtil.init(
+      BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width,
+          maxHeight: MediaQuery.of(context).size.height),
+      designSize: Size(750, 1250),
+    );
 
     return Container(
       decoration: BoxDecoration(
@@ -78,7 +82,7 @@ class _LoginFormState extends State<LoginForm> {
             child: BlocListener<LoginBloc, LoginState>(
               listener: (context, state) {
                 if (state.isFailure) {
-                  Scaffold.of(context)
+                  ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
                       SnackBar(
@@ -101,7 +105,7 @@ class _LoginFormState extends State<LoginForm> {
                     );
                 }
                 if (state.isPasswordResetFailure) {
-                  Scaffold.of(context)
+                  ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
                       SnackBar(
@@ -124,7 +128,7 @@ class _LoginFormState extends State<LoginForm> {
                     );
                 }
                 if (state.isPasswordResetMailSent) {
-                  Scaffold.of(context)
+                  ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
                       SnackBar(
@@ -147,7 +151,7 @@ class _LoginFormState extends State<LoginForm> {
                     );
                 }
                 if (state.isSubmitting) {
-                  Scaffold.of(context)
+                  ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
                       SnackBar(
@@ -321,7 +325,7 @@ class _LoginFormState extends State<LoginForm> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: <Widget>[
-                                              FlatButton(
+                                              TextButton(
                                                 onPressed: () async {
                                                   if (isForgotPasswordEnabled(
                                                       state)) {

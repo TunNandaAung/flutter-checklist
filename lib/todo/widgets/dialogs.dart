@@ -20,12 +20,16 @@ class Dialogs {
               style: Theme.of(context).textTheme.headline2,
             ),
             actions: <Widget>[
-              FlatButton(
+              TextButton(
                 onPressed: () => Navigator.of(context).pop(DialogAction.abort),
-                color:
-                    Theme.of(context).floatingActionButtonTheme.backgroundColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50.0)),
+                style: TextButton.styleFrom(
+                  backgroundColor: Theme.of(context)
+                      .floatingActionButtonTheme
+                      .backgroundColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
                 child: Text(
                   'Close',
                   style: Theme.of(context).textTheme.button,

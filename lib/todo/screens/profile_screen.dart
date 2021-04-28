@@ -26,7 +26,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   int themeIndex = 1;
   double _scale;
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   void initState() {
@@ -93,7 +93,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
     return BlocListener<ProfileBloc, ProfileState>(
       listener: (context, state) {
         if (state is PasswordChanged) {
-          Scaffold.of(context)
+          ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
@@ -117,7 +117,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
             );
         } else if (state is ProfileNotUpdated) {
           if (state.error.trim().length != 0) {
-            _scaffoldKey.currentState.showSnackBar(
+            _scaffoldMessengerKey.currentState.showSnackBar(
               SnackBar(
                 elevation: 6.0,
                 behavior: SnackBarBehavior.floating,
@@ -146,7 +146,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
         }
       },
       child: Scaffold(
-        key: _scaffoldKey,
+        key: _scaffoldMessengerKey,
         body: BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
           if (state is ProfileLoaded) {
             return Stack(alignment: Alignment.center, children: <Widget>[

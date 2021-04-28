@@ -214,7 +214,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 top: 35.0,
                 right: 30.0,
                 height: 40.0,
-                child: FlatButton(
+                child: TextButton(
                   onPressed: () {
                     if (_formKey.currentState.validate()) {
                       _formKey.currentState.save();
@@ -222,12 +222,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       Navigator.of(context).pop();
                     }
                   },
-                  color: Theme.of(context)
-                      .floatingActionButtonTheme
-                      .backgroundColor,
-                  disabledColor: Colors.grey,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0)),
+                  style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context)
+                        .floatingActionButtonTheme
+                        .backgroundColor,
+                    onSurface: Colors.grey,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0),
+                    ),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(0.0),
                     child: Text('Update',

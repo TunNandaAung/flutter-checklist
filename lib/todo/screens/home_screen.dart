@@ -13,14 +13,14 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({Key key, this.user}) : super(key: key);
 
-  final _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final _scaffoldMessengerKey = new GlobalKey<ScaffoldMessengerState>();
 
   @override
   Widget build(BuildContext context) {
     return BlocListener<ConnectivityBloc, ConnectivityState>(
       listener: (context, state) {
         if (state is Offline) {
-          _scaffoldKey.currentState
+          _scaffoldMessengerKey.currentState
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
@@ -47,12 +47,12 @@ class HomeScreen extends StatelessWidget {
                   label: 'Dismiss',
                   textColor: Colors.white,
                   onPressed: () =>
-                      _scaffoldKey.currentState.hideCurrentSnackBar(),
+                      _scaffoldMessengerKey.currentState.hideCurrentSnackBar(),
                 ),
               ),
             );
         } else {
-          _scaffoldKey.currentState.hideCurrentSnackBar();
+          _scaffoldMessengerKey.currentState.hideCurrentSnackBar();
         }
       },
       child: BlocBuilder<ConnectivityBloc, ConnectivityState>(
@@ -70,7 +70,7 @@ class HomeScreen extends StatelessWidget {
                       end: Alignment.topCenter,
                       tileMode: TileMode.clamp)),
               child: Scaffold(
-                key: _scaffoldKey,
+                key: _scaffoldMessengerKey,
                 appBar: activeTab == AppTab.profile
                     ? null
                     : activeTab == AppTab.stats

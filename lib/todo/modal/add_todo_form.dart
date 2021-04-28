@@ -73,7 +73,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                       color: Color(0xFF5d74e3),
                                       decoration: TextDecoration.none)),
                             ),
-                            FlatButton(
+                            TextButton(
                               onPressed: () {
                                 if (_formKey.currentState.validate()) {
                                   _formKey.currentState.save();
@@ -86,10 +86,13 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                   Navigator.pop(context);
                                 }
                               },
-                              color: Theme.of(context).buttonColor,
-                              disabledColor: Colors.grey,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(50.0)),
+                              style: TextButton.styleFrom(
+                                backgroundColor: Theme.of(context).buttonColor,
+                                onSurface: Colors.grey,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                ),
+                              ),
                               child: Text('Add',
                                   style: Theme.of(context).textTheme.button),
                             )
@@ -182,7 +185,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                           ? Theme.of(context).hintColor
                                           : Theme.of(context).dividerColor,
                                     ),
-                                    SizedBox(width: 15.0),
+                                    SizedBox(width: 10.0),
                                     _dateTime == null
                                         ? Text(
                                             'Add date and time',
@@ -191,7 +194,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                                 .hintStyle,
                                           )
                                         : Text(
-                                            DateFormat('EEE d MMM hh:mm:ss a')
+                                            DateFormat('EEE d MMM hh:mm a')
                                                 .format(_dateTime.toLocal()),
                                             style: Theme.of(context)
                                                 .textTheme

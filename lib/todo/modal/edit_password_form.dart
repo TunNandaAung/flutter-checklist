@@ -67,7 +67,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(right: 22.0),
-                                child: FlatButton(
+                                child: TextButton(
                                   onPressed: () {
                                     if (_formKey.currentState.validate()) {
                                       _formKey.currentState.save();
@@ -79,11 +79,14 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                           .popUntil((_) => count++ >= 2);
                                     }
                                   },
-                                  color: Theme.of(context).buttonColor,
-                                  disabledColor: Colors.grey,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(50.0)),
+                                  style: TextButton.styleFrom(
+                                    backgroundColor:
+                                        Theme.of(context).buttonColor,
+                                    onSurface: Colors.grey,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50.0),
+                                    ),
+                                  ),
                                   child: Padding(
                                     padding: const EdgeInsets.all(0.0),
                                     child: Text('Update',
@@ -125,7 +128,8 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                   style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    suffixIcon: Icon(MdiIcons.textboxPassword),
+                                    suffixIcon:
+                                        Icon(MdiIcons.formTextboxPassword),
                                     hintText: "Current Password",
                                     errorStyle:
                                         TextStyle(fontFamily: 'Poppins-Medium'),

@@ -89,7 +89,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(right: 22.0),
-                                child: FlatButton(
+                                child: TextButton(
                                   onPressed: () {
                                     if (_formKey.currentState.validate()) {
                                       _formKey.currentState.save();
@@ -103,11 +103,14 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                       Navigator.pop(context);
                                     }
                                   },
-                                  color: Theme.of(context).buttonColor,
-                                  disabledColor: Colors.grey,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius:
-                                          BorderRadius.circular(50.0)),
+                                  style: TextButton.styleFrom(
+                                    backgroundColor:
+                                        Theme.of(context).buttonColor,
+                                    onSurface: Colors.grey,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50.0),
+                                    ),
+                                  ),
                                   child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text('Update',

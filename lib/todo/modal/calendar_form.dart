@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rounded_date_picker/rounded_picker.dart';
+import 'package:flutter_rounded_date_picker/flutter_rounded_date_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
 
@@ -14,21 +14,20 @@ class CalendarForm extends StatefulWidget {
 class _CalendarFormState extends State<CalendarForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  CalendarController _calendarController;
+  CalendarFormat _calendarFormat = CalendarFormat.month;
 
   @override
   void initState() {
-    _calendarController = CalendarController();
     super.initState();
   }
 
   DateTime dateTime;
 
   DateTime _selectedTime;
+  DateTime _focusedDay = DateTime.now();
 
   @override
   void dispose() {
-    _calendarController.dispose();
     super.dispose();
   }
 
@@ -81,14 +80,16 @@ class _CalendarFormState extends State<CalendarForm> {
                                 ),
                               ),
                             ),
-                            FlatButton(
+                            TextButton(
                               onPressed: () {
                                 Navigator.pop(context, dateTime);
                               },
-                              color: Theme.of(context).buttonColor,
-                              disabledColor: Colors.grey,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50.0),
+                              style: TextButton.styleFrom(
+                                backgroundColor: Theme.of(context).buttonColor,
+                                onSurface: Colors.grey,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(50.0),
+                                ),
                               ),
                               child: Text('Add',
                                   style: Theme.of(context).textTheme.button),
@@ -97,6 +98,12 @@ class _CalendarFormState extends State<CalendarForm> {
                         ),
                         SizedBox(height: 12.0),
                         TableCalendar(
+                          calendarFormat: _calendarFormat,
+                          onFormatChanged: (format) {
+                            setState(() {
+                              _calendarFormat = format;
+                            });
+                          },
                           daysOfWeekStyle: DaysOfWeekStyle(
                             weekdayStyle: TextStyle(
                               decoration: TextDecoration.none,
@@ -121,14 +128,22 @@ class _CalendarFormState extends State<CalendarForm> {
                               color: Theme.of(context).dividerColor,
                             ),
                           ),
-                          calendarController: _calendarController,
-                          onDaySelected: (day, event) {
-                            // print(DateFormat('EEE d MMM hh:mm:ss a')
-                            //     .format(day.toLocal()));
-                            // Navigator.pop(context, day);
-                            dateTime =
-                                new DateTime(day.year, day.month, day.day);
-                            print(dateTime);
+                          firstDay: DateTime.now().subtract(Duration(days: 1)),
+                          lastDay: DateTime.utc(2030, 3, 14),
+                          focusedDay: _focusedDay,
+                          selectedDayPredicate: (day) {
+                            return isSameDay(dateTime, day);
+                          },
+                          onPageChanged: (focusedDay) {
+                            _focusedDay = focusedDay;
+                          },
+                          onDaySelected: (selectedDay, focusedDay) {
+                            setState(() {
+                              _focusedDay = focusedDay;
+                              dateTime = selectedDay;
+                            });
+
+                            print(_focusedDay);
                           },
                         ),
                         SizedBox(height: 30.0),

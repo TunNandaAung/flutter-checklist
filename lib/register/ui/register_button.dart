@@ -12,12 +12,14 @@ class RegisterButton extends StatelessWidget {
     return Container(
       width: 70.0,
       height: 30.0,
-      child: FlatButton(
+      child: TextButton(
         onPressed: _onPressed,
-        color: Color(0xFF5d74e3),
-        disabledColor: Colors.grey,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+        style: TextButton.styleFrom(
+          backgroundColor: Color(0xFF5d74e3),
+          onSurface: Colors.grey,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+        ),
         child: Text('Next',
             style: TextStyle(fontFamily: 'Poppins-Bold', color: Colors.white)),
       ),

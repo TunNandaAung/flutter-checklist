@@ -50,7 +50,7 @@ class FilteredTodos extends StatelessWidget {
                 todo: todo,
                 onDismissed: (direction) {
                   context.read<TodosBloc>().add(DeleteTodo(todo));
-                  Scaffold.of(context).showSnackBar(DeleteTodoSnackBar(
+                  ScaffoldMessenger.of(context).showSnackBar(DeleteTodoSnackBar(
                     todo: todo,
                     onUndo: () => context.read<TodosBloc>().add(AddTodo(todo)),
                   ));
@@ -62,7 +62,7 @@ class FilteredTodos extends StatelessWidget {
                     }),
                   );
                   if (removedTodo != null) {
-                    Scaffold.of(context).showSnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(
                       DeleteTodoSnackBar(
                         todo: todo,
                         onUndo: () =>

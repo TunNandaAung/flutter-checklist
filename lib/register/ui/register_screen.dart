@@ -30,7 +30,7 @@ class RegisterScreen extends StatelessWidget {
           color: Theme.of(context).bottomSheetTheme.backgroundColor,
         ),
         child: Scaffold(
-            resizeToAvoidBottomPadding: true,
+            resizeToAvoidBottomInset: true,
             backgroundColor: Colors.transparent,
             body: BlocProvider<RegisterBloc>(
                 create: (context) =>

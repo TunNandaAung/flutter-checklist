@@ -110,7 +110,12 @@ class TodoItem extends StatelessWidget {
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: todo.complete
-                                  ? Theme.of(context).textTheme.bodyText2
+                                  ? Theme.of(context)
+                                      .textTheme
+                                      .bodyText1
+                                      .copyWith(
+                                          decoration:
+                                              TextDecoration.lineThrough)
                                   : Theme.of(context).textTheme.bodyText1,
                             ))
                         : null,

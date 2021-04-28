@@ -45,7 +45,7 @@ final appThemeData = {
         bodyText2: TextStyle(
             fontFamily: 'Poppins-Medium',
             fontSize: 16.0,
-            decoration: TextDecoration.lineThrough,
+            decoration: TextDecoration.none,
             color: Colors.grey),
         headline4: TextStyle(
             fontFamily: 'Poppins-Bold',
@@ -126,7 +126,7 @@ final appThemeData = {
       bodyText2: TextStyle(
           fontFamily: 'Poppins-Medium',
           fontSize: 16.0,
-          decoration: TextDecoration.lineThrough,
+          decoration: TextDecoration.none,
           color: Colors.grey),
       headline4: TextStyle(
           fontFamily: 'Poppins-Bold',
