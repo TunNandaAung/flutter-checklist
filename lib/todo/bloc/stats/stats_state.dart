@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'stats_bloc.dart';
 
 abstract class StatsState extends Equatable {
   const StatsState();

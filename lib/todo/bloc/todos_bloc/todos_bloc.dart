@@ -1,9 +1,12 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
-import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+
+part 'todos_event.dart';
+part 'todos_state.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
@@ -14,28 +17,17 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   TodosBloc(this._userRepository, {@required TodosRepository todosRepository})
       : assert(todosRepository != null),
         _todosRepository = todosRepository,
-        super(TodosLoading());
-
-  @override
-  Stream<TodosState> mapEventToState(TodosEvent event) async* {
-    if (event is LoadTodos) {
-      yield* _mapLoadTodosToState();
-    } else if (event is AddTodo) {
-      yield* _mapAddTodoToState(event);
-    } else if (event is UpdateTodo) {
-      yield* _mapUpdateTodoToState(event);
-    } else if (event is DeleteTodo) {
-      yield* _mapDeleteTodoToState(event);
-    } else if (event is ToggleAll) {
-      yield* _mapToggleAllToState(event);
-    } else if (event is ClearCompleted) {
-      yield* _mapClearCompletedToState();
-    } else if (event is TodosUpdated) {
-      yield* _mapTodosUpdateToState(event);
-    }
+        super(TodosLoading()) {
+    on<LoadTodos>(_onLoadTodos);
+    on<AddTodo>(_onAddTodo);
+    on<UpdateTodo>(_onUpdateTodo);
+    on<DeleteTodo>(_onDeleteTodo);
+    on<ToggleAll>(_onToggleAll);
+    on<ClearCompleted>(_onClearCompleted);
+    on<TodosUpdated>(_onTodosUpdate);
   }
 
-  Stream<TodosState> _mapLoadTodosToState() async* {
+  Future<void> _onLoadTodos(LoadTodos event, Emitter<TodosState> emit) async {
     _todosSubscription?.cancel();
     final user = await _userRepository.getUser();
     _todosSubscription = _todosRepository.todos(user.uid).listen(
@@ -43,19 +35,19 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
         );
   }
 
-  Stream<TodosState> _mapAddTodoToState(AddTodo event) async* {
+  Future<void> _onAddTodo(AddTodo event, Emitter<TodosState> emit) async {
     _todosRepository.addNewTodo(event.todo);
   }
 
-  Stream<TodosState> _mapUpdateTodoToState(UpdateTodo event) async* {
+  Future<void> _onUpdateTodo(UpdateTodo event, Emitter<TodosState> emit) async {
     _todosRepository.updateTodo(event.updatedTodo);
   }
 
-  Stream<TodosState> _mapDeleteTodoToState(DeleteTodo event) async* {
+  Future<void> _onDeleteTodo(DeleteTodo event, Emitter<TodosState> emit) async {
     _todosRepository.deleteTodo(event.todo);
   }
 
-  Stream<TodosState> _mapToggleAllToState(ToggleAll event) async* {
+  Future<void> _onToggleAll(ToggleAll event, Emitter<TodosState> emit) async {
     final currentState = state;
     if (currentState is TodosLoaded) {
       final allComplete = currentState.todos.every((todo) => todo.complete);
@@ -69,7 +61,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     }
   }
 
-  Stream<TodosState> _mapClearCompletedToState() async* {
+  Future<void> _onClearCompleted(
+      ClearCompleted event, Emitter<TodosState> emit) async {
     final currentState = state;
     if (currentState is TodosLoaded) {
       final List<Todo> completedTodos =
@@ -80,8 +73,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     }
   }
 
-  Stream<TodosState> _mapTodosUpdateToState(TodosUpdated event) async* {
-    yield TodosLoaded(event.todos);
+  Future<void> _onTodosUpdate(
+      TodosUpdated event, Emitter<TodosState> emit) async {
+    emit(TodosLoaded(event.todos));
   }
 
   @override

@@ -1,9 +1,9 @@
+import 'package:checklist/theme/cubit/theme_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/preferences/preferences.dart';
-import 'package:checklist/profile_bloc/profile_barrel.dart';
+import 'package:checklist/profile_bloc/profile_bloc.dart';
 import 'package:checklist/theme/app_theme.dart';
-import 'package:checklist/theme/bloc/theme_barrel.dart';
 import 'package:checklist/todo/widgets/loading_indicator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +73,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     void _onThemeDarkTapUp(TapUpDetails details) {
       animController.forward();
-      context.read<ThemeBloc>().add(ThemeChanged(AppTheme.Dark));
+      context.read<ThemeCubit>().changeTheme(AppTheme.Dark);
     }
 
     void _onThemeDarkTapDown(TapDownDetails details) {
@@ -82,7 +82,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
 
     void _onThemeLightTapUp(TapUpDetails details) {
       animController.forward();
-      context.read<ThemeBloc>().add(ThemeChanged(AppTheme.Light));
+      context.read<ThemeCubit>().changeTheme(AppTheme.Light);
     }
 
     void _onThemeLightTapDown(TapDownDetails details) {

@@ -1,7 +1,6 @@
-import 'package:checklist/todo/bloc/stats/stats_barrel.dart';
+import 'package:checklist/todo/bloc/stats/stats_bloc.dart';
 import 'package:checklist/todo/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 

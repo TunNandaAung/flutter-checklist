@@ -1,7 +1,5 @@
 import 'package:bubble_bottom_bar/bubble_bottom_bar.dart';
 import 'package:checklist/todo/model/models.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -40,7 +38,9 @@ class TabSelector extends StatelessWidget {
           title: Text(
             tab == AppTab.stats
                 ? 'Stats'
-                : tab == AppTab.todos ? 'Todos' : 'Profile',
+                : tab == AppTab.todos
+                    ? 'Todos'
+                    : 'Profile',
             style: Theme.of(context).textTheme.headline3,
           ),
         );

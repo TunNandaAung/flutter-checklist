@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/model/extra_action.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

@@ -1,4 +1,4 @@
-import 'package:equatable/equatable.dart';
+part of 'connectivity_bloc.dart';
 
 abstract class ConnectivityState extends Equatable {
   const ConnectivityState();

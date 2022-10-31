@@ -1,4 +1,4 @@
-import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/modal/edit_todo_form.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:flutter/material.dart';

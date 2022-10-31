@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
+part of 'stats_bloc.dart';
 
 abstract class StatsEvent extends Equatable {
   const StatsEvent();

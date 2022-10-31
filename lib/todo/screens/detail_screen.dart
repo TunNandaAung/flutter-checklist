@@ -1,7 +1,6 @@
 import 'package:circular_check_box/circular_check_box.dart';
-import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/modal/edit_modal.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';

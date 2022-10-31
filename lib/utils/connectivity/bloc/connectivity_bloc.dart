@@ -1,36 +1,34 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:connectivity/connectivity.dart';
-import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
-  ConnectivityBloc({@required this.result}) : super(Offline());
+part 'connectivity_event.dart';
+part 'connectivity_state.dart';
 
+class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   final ConnectivityResult result;
 
   StreamSubscription _connectivitySubscription;
 
-  @override
-  Stream<ConnectivityState> mapEventToState(ConnectivityEvent event) async* {
-    _connectivitySubscription?.cancel();
-
-    if (event is ConnectivityChanged) {
-      yield* _mapConnectivityChangedToState(event);
-    } else
-      Connectivity().onConnectivityChanged.listen((result) {
-        add(ConnectivityChanged(result: result));
-      });
+  ConnectivityBloc({@required this.result}) : super(Offline()) {
+    Connectivity().onConnectivityChanged.listen((result) {
+      add(ConnectivityChanged(result: result));
+    });
+    on<ConnectivityChanged>(_onConnectivityChanged);
   }
 
-  Stream<ConnectivityState> _mapConnectivityChangedToState(
-      ConnectivityChanged event) async* {
+  Future<void> _onConnectivityChanged(
+    ConnectivityChanged event,
+    Emitter<ConnectivityState> emit,
+  ) async {
     if (event.result == ConnectivityResult.mobile) {
-      yield Mobile();
+      emit(Mobile());
     } else if (event.result == ConnectivityResult.wifi) {
-      yield WiFi();
+      emit(WiFi());
     } else
-      yield Offline();
+      emit(Offline());
   }
 
   @override

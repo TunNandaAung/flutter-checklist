@@ -1,4 +1,6 @@
-import 'package:connectivity/connectivity.dart';
+import 'package:checklist/todo/bloc/tabs/tab_cubit.dart';
+import 'package:checklist/utils/connectivity/bloc/connectivity_bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/login/ui/login_page.dart';
 import 'package:checklist/preferences/preferences.dart';
@@ -6,17 +8,14 @@ import 'package:checklist/profile_bloc/profile_bloc.dart';
 import 'package:checklist/splash_screen.dart';
 import 'package:checklist/theme/app_theme.dart';
 import 'package:checklist/theme/cubit/theme_cubit.dart';
-import 'package:checklist/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
-import 'package:checklist/todo/bloc/stats/stats_barrel.dart';
-import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
-import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/bloc/filtered_todos/filtered_todos_bloc.dart';
+import 'package:checklist/todo/bloc/stats/stats_bloc.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/screens/screen.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:checklist/utils/bloc_observer.dart';
-import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:bloc/bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'authentication_bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -92,8 +91,8 @@ class _ChecklistState extends State<Checklist> {
                     context.watch<TodosBloc>().add(LoadTodos());
                     return MultiBlocProvider(
                       providers: [
-                        BlocProvider<TabBloc>(
-                          create: (context) => TabBloc(),
+                        BlocProvider<TabCubit>(
+                          create: (context) => TabCubit(),
                         ),
                         BlocProvider<FilteredTodosBloc>(
                           create: (context) => FilteredTodosBloc(

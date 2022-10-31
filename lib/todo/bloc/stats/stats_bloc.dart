@@ -1,7 +1,11 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
-import 'package:checklist/todo/bloc/stats/stats_barrel.dart';
-import 'package:checklist/todo/bloc/todos_bloc/todos_bloc_barrel.dart';
+import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
+import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
+import 'package:equatable/equatable.dart';
+
+part 'stats_event.dart';
+part 'stats_state.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
   StreamSubscription _todosSubscription;

@@ -1,10 +1,10 @@
+import 'package:checklist/todo/bloc/tabs/tab_cubit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
 import 'package:checklist/todo/modal/add_modal.dart';
 import 'package:checklist/todo/model/models.dart';
 import 'package:checklist/todo/screens/profile_screen.dart';
 import 'package:checklist/todo/widgets/widgets.dart';
-import 'package:checklist/utils/connectivity/bloc/connectivity_barrel.dart';
+import 'package:checklist/utils/connectivity/bloc/connectivity_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,18 +57,19 @@ class HomeScreen extends StatelessWidget {
       },
       child: BlocBuilder<ConnectivityBloc, ConnectivityState>(
           builder: (context, state) {
-        return BlocBuilder<TabBloc, AppTab>(
+        return BlocBuilder<TabCubit, AppTab>(
           builder: (context, activeTab) {
             return Container(
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [
-                    Theme.of(context).backgroundColor,
-                    Theme.of(context).canvasColor
-                  ],
-                      begin: Alignment.bottomCenter,
-                      end: Alignment.topCenter,
-                      tileMode: TileMode.clamp)),
+                gradient: LinearGradient(
+                    colors: [
+                      Theme.of(context).backgroundColor,
+                      Theme.of(context).canvasColor
+                    ],
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    tileMode: TileMode.clamp),
+              ),
               child: Scaffold(
                 key: _scaffoldMessengerKey,
                 appBar: activeTab == AppTab.profile
@@ -220,7 +221,7 @@ class HomeScreen extends StatelessWidget {
                 bottomNavigationBar: TabSelector(
                   activeTab: activeTab,
                   onTabSelected: (tab) =>
-                      context.read<TabBloc>().add(UpdateTab(tab)),
+                      context.read<TabCubit>().updateTab(tab),
                 ),
               ),
             );
