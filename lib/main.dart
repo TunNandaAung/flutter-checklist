@@ -2,10 +2,10 @@ import 'package:connectivity/connectivity.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/login/ui/login_page.dart';
 import 'package:checklist/preferences/preferences.dart';
-import 'package:checklist/profile_bloc/profile_barrel.dart';
+import 'package:checklist/profile_bloc/profile_bloc.dart';
 import 'package:checklist/splash_screen.dart';
 import 'package:checklist/theme/app_theme.dart';
-import 'package:checklist/theme/bloc/theme_barrel.dart';
+import 'package:checklist/theme/cubit/theme_cubit.dart';
 import 'package:checklist/todo/bloc/filtered_todos/filtered_todos_barrel.dart';
 import 'package:checklist/todo/bloc/stats/stats_barrel.dart';
 import 'package:checklist/todo/bloc/tabs/tabs_barrel.dart';
@@ -65,7 +65,7 @@ class _ChecklistState extends State<Checklist> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<ThemeBloc>(create: (context) => ThemeBloc()),
+        BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
         BlocProvider<ConnectivityBloc>(
           create: (context) => ConnectivityBloc(result: ConnectivityResult.none)
             ..add(CheckConnectivity()),
@@ -79,7 +79,7 @@ class _ChecklistState extends State<Checklist> {
           },
         ),
       ],
-      child: BlocBuilder<ThemeBloc, AppTheme>(builder: (context, appTheme) {
+      child: BlocBuilder<ThemeCubit, AppTheme>(builder: (context, appTheme) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Firestore Todos',

@@ -1,6 +1,5 @@
-import 'package:meta/meta.dart';
+part of 'register_bloc.dart';
 
-@immutable
 class RegisterState {
   final bool isNameValid;
   final bool isEmailValid;
@@ -103,7 +102,7 @@ class RegisterState {
     return '''RegisterState {
       isNameValid: $isNameValid
       isEmailValid: $isEmailValid,
-      isPasswordValid: $isPasswordValid,      
+      isPasswordValid: $isPasswordValid,
       isSubmitting: $isSubmitting,
       isSuccess: $isSuccess,
       isFailure: $isFailure,

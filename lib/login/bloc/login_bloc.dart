@@ -1,9 +1,21 @@
 import 'package:checklist/data/user_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:checklist/login/bloc/login_barrel.dart';
 import 'package:checklist/utils/validators.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:stream_transform/stream_transform.dart';
+
+part 'login_event.dart';
+part 'login_state.dart';
+
+const throttleDuration = Duration(milliseconds: 300);
+
+EventTransformer<E> throttleDroppable<E>(Duration duration) {
+  return (events, mapper) {
+    return droppable<E>().call(events.throttle(duration), mapper);
+  };
+}
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   UserRepository _userRepository;
@@ -12,83 +24,64 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     @required UserRepository userRepository,
   })  : assert(userRepository != null),
         _userRepository = userRepository,
-        super(LoginState.empty());
-
-  @override
-  Stream<Transition<LoginEvent, LoginState>> transformEvents(
-    Stream<LoginEvent> events,
-    TransitionFunction<LoginEvent, LoginState> transitionFn,
-  ) {
-    final nonDebounceStream = events.where((event) {
-      return (event is! EmailChanged && event is! PasswordChanged);
-    });
-    final debounceStream = events.where((event) {
-      return (event is EmailChanged || event is PasswordChanged);
-    }).debounceTime(Duration(milliseconds: 300));
-    return super.transformEvents(
-      nonDebounceStream.mergeWith([debounceStream]),
-      transitionFn,
+        super(LoginState.empty()) {
+    on<EmailChanged>(
+      _onEmailChanged,
+      transformer: throttleDroppable(throttleDuration),
     );
-  }
-
-  @override
-  Stream<LoginState> mapEventToState(LoginEvent event) async* {
-    if (event is EmailChanged) {
-      yield* _mapEmailChangedToState(event.email);
-    } else if (event is PasswordChanged) {
-      yield* _mapPasswordChangedToState(event.password);
-    } else if (event is LoginWithGooglePressed) {
-      yield* _mapLoginWithGooglePressedToState();
-    } else if (event is ForgotPasswordPressed) {
-      yield* _mapForgotPasswordPressedToState(event.email);
-    } else if (event is LoginWithCredentialsPressed) {
-      yield* _mapLoginWithCredentialsPressedToState(
-        email: event.email,
-        password: event.password,
-      );
-    }
-  }
-
-  Stream<LoginState> _mapEmailChangedToState(String email) async* {
-    yield state.update(
-      isEmailValid: Validators.isValidEmail(email),
+    on<PasswordChanged>(
+      _onPasswordChanged,
+      transformer: throttleDroppable(throttleDuration),
     );
+    on<ForgotPasswordPressed>(_onForgotPasswordPressed);
+    on<LoginWithCredentialsPressed>(_onLoginWithCredentialsPressed);
+    on<LoginWithGooglePressed>(_onLoginWithGooglePressed);
+    on<ForgotPasswordPressed>(_onForgotPasswordPressed);
+    on<LoginWithCredentialsPressed>(_onLoginWithCredentialsPressed);
   }
 
-  Stream<LoginState> _mapPasswordChangedToState(String password) async* {
-    yield state.update(
-      isPasswordValid: Validators.isValidPassword(password),
-    );
+  Future<void> _onEmailChanged(
+      EmailChanged event, Emitter<LoginState> emit) async {
+    emit(state.update(
+      isEmailValid: Validators.isValidEmail(event.email),
+    ));
   }
 
-  Stream<LoginState> _mapLoginWithGooglePressedToState() async* {
+  Future<void> _onPasswordChanged(
+      PasswordChanged event, Emitter<LoginState> emit) async {
+    emit(state.update(
+      isPasswordValid: Validators.isValidPassword(event.password),
+    ));
+  }
+
+  Future<void> _onLoginWithGooglePressed(
+      LoginWithGooglePressed event, Emitter<LoginState> emit) async {
     try {
       await _userRepository.signInWithGoogle();
-      yield LoginState.success();
+      emit(LoginState.success());
     } catch (_) {
-      yield LoginState.failure();
+      emit(LoginState.failure());
     }
   }
 
-  Stream<LoginState> _mapForgotPasswordPressedToState(String email) async* {
+  Future<void> _onForgotPasswordPressed(
+      ForgotPasswordPressed event, Emitter<LoginState> emit) async {
     try {
-      await _userRepository.resetPassword(email);
-      yield LoginState.passwordResetMailSent();
+      await _userRepository.resetPassword(event.email);
+      emit(LoginState.passwordResetMailSent());
     } catch (_) {
-      yield LoginState.passwordResetFailure();
+      emit(LoginState.passwordResetFailure());
     }
   }
 
-  Stream<LoginState> _mapLoginWithCredentialsPressedToState({
-    String email,
-    String password,
-  }) async* {
-    yield LoginState.loading();
+  Future<void> _onLoginWithCredentialsPressed(
+      LoginWithCredentialsPressed event, Emitter<LoginState> emit) async {
+    emit(LoginState.loading());
     try {
-      await _userRepository.signInWithCredentials(email, password);
-      yield LoginState.success();
+      await _userRepository.signInWithCredentials(event.email, event.password);
+      emit(LoginState.success());
     } catch (_) {
-      yield LoginState.failure();
+      emit(LoginState.failure());
     }
   }
 }

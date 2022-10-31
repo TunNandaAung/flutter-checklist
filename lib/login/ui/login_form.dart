@@ -1,6 +1,6 @@
 import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
-import 'package:checklist/login/bloc/login_barrel.dart';
+import 'package:checklist/login/bloc/login_bloc.dart';
 import 'package:checklist/register/ui/register_screen.dart';
 import 'package:checklist/todo/widgets/dialogs.dart';
 import 'package:checklist/utils/custom_icons.dart';
@@ -59,9 +59,6 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     ScreenUtil.init(
-      BoxConstraints(
-          maxWidth: MediaQuery.of(context).size.width,
-          maxHeight: MediaQuery.of(context).size.height),
       designSize: Size(750, 1250),
     );
 
@@ -112,7 +109,8 @@ class _LoginFormState extends State<LoginForm> {
                         elevation: 6.0,
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         content: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

@@ -1,6 +1,5 @@
-import 'package:meta/meta.dart';
+part of 'login_bloc.dart';
 
-@immutable
 class LoginState {
   final bool isEmailValid;
   final bool isPasswordValid;
@@ -137,7 +136,7 @@ class LoginState {
       isSubmitting: $isSubmitting,
       isSuccess: $isSuccess,
       isFailure: $isFailure,
-      
+
       isPasswordResetMailSent: $isPasswordResetMailSent
       isPasswordResetFailure: $isPasswordResetFailure
     }''';

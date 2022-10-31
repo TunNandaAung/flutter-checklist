@@ -1,10 +1,22 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
-import 'package:checklist/register/bloc/register_barrel.dart';
 import 'package:checklist/utils/validators.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:stream_transform/stream_transform.dart';
+
+part 'register_event.dart';
+part 'register_state.dart';
+
+const throttleDuration = Duration(milliseconds: 300);
+
+EventTransformer<E> throttleDroppable<E>(Duration duration) {
+  return (events, mapper) {
+    return droppable<E>().call(events.throttle(duration), mapper);
+  };
+}
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository _userRepository;
@@ -12,75 +24,62 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   RegisterBloc({@required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
-        super(RegisterState.empty());
+        super(RegisterState.empty()) {
+    on<EmailChanged>(
+      _onEmailChanged,
+      transformer: throttleDroppable(throttleDuration),
+    );
+    on<PasswordChanged>(
+      _onPasswordChanged,
+      transformer: throttleDroppable(throttleDuration),
+    );
+    on<NameChanged>(
+      _onNameChanged,
+      transformer: throttleDroppable(throttleDuration),
+    );
+    on<Submitted>(_onSubmitted);
+  }
 
-  @override
-  Stream<Transition<RegisterEvent, RegisterState>> transformEvents(
-    Stream<RegisterEvent> events,
-    TransitionFunction<RegisterEvent, RegisterState> transitionFn,
-  ) {
-    final nonDebounceStream = events.where((event) {
-      return (event is! EmailChanged &&
-          event is! PasswordChanged &&
-          event is! NameChanged);
-    });
-    final debounceStream = events.where((event) {
-      return (event is EmailChanged ||
-          event is PasswordChanged ||
-          event is NameChanged);
-    }).debounceTime(Duration(milliseconds: 300));
-    return super.transformEvents(
-      nonDebounceStream.mergeWith([debounceStream]),
-      transitionFn,
+  Future<void> _onNameChanged(
+      NameChanged event, Emitter<RegisterState> emit) async {
+    emit(
+      state.update(
+        isNameValid: Validators.isValidName(event.name),
+      ),
     );
   }
 
-  @override
-  Stream<RegisterState> mapEventToState(
-    RegisterEvent event,
-  ) async* {
-    if (event is NameChanged) {
-      yield* _mapNameChangedToState(event.name);
-    } else if (event is EmailChanged) {
-      yield* _mapEmailChangedToState(event.email);
-    } else if (event is PasswordChanged) {
-      yield* _mapPasswordChangedToState(event.password);
-    } else if (event is Submitted) {
-      yield* _mapFormSubmittedToState(event.name, event.email, event.password);
-    }
-  }
-
-  Stream<RegisterState> _mapNameChangedToState(String name) async* {
-    yield state.update(
-      isNameValid: Validators.isValidName(name),
+  Future<void> _onEmailChanged(
+      EmailChanged event, Emitter<RegisterState> emit) async {
+    emit(
+      state.update(
+        isEmailValid: Validators.isValidEmail(event.email),
+      ),
     );
   }
 
-  Stream<RegisterState> _mapEmailChangedToState(String email) async* {
-    yield state.update(
-      isEmailValid: Validators.isValidEmail(email),
+  Future<void> _onPasswordChanged(
+      PasswordChanged event, Emitter<RegisterState> emit) async {
+    emit(
+      state.update(
+        isPasswordValid: Validators.isValidPassword(event.password),
+      ),
     );
   }
 
-  Stream<RegisterState> _mapPasswordChangedToState(String password) async* {
-    yield state.update(
-      isPasswordValid: Validators.isValidPassword(password),
-    );
-  }
-
-  Stream<RegisterState> _mapFormSubmittedToState(
-      String name, String email, String password) async* {
-    yield RegisterState.loading();
+  Future<void> _onSubmitted(
+      Submitted event, Emitter<RegisterState> emit) async {
+    emit(RegisterState.loading());
     try {
       await _userRepository.signUp(
-        name: name,
-        email: email,
-        password: password,
+        name: event.name,
+        email: event.email,
+        password: event.password,
       );
-      yield RegisterState.success();
+      emit(RegisterState.success());
     } catch (e) {
       print(e);
-      yield RegisterState.failure();
+      emit(RegisterState.failure());
     }
   }
 }

@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/data/user_repository.dart';
-import 'package:checklist/profile_bloc/profile_barrel.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
+
+part 'profile_event.dart';
+part 'profile_state.dart';
 
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserRepository _userRepository;
@@ -14,60 +17,60 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ProfileBloc({@required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
-        super(ProfileLoading());
-
-  @override
-  Stream<ProfileState> mapEventToState(
-    ProfileEvent event,
-  ) async* {
-    if (event is LoadProfile) {
-      yield* _mapLoadProfileToState();
-    } else if (event is UpdateProfile) {
-      yield* _mapUpdateProfileToState(event);
-    } else if (event is ChangePassword) {
-      yield* _mapChangePasswordToState(event);
-    }
+        super(ProfileLoading()) {
+    on<LoadProfile>(_onLoadProfile);
+    on<UpdateProfile>(_onUpdateProfile);
+    on<ChangePassword>(_onChangePassword);
   }
 
-  Stream<ProfileState> _mapLoadProfileToState() async* {
+  Future<void> _onLoadProfile(
+    LoadProfile event,
+    Emitter<ProfileState> emit,
+  ) async {
     _profileSubscription?.cancel();
     final user = await _userRepository.getUser();
 
-    yield ProfileLoaded(user: user);
+    emit(ProfileLoaded(user: user));
   }
 
-  Stream<ProfileState> _mapUpdateProfileToState(UpdateProfile event) async* {
+  Future<void> _onUpdateProfile(
+    UpdateProfile event,
+    Emitter<ProfileState> emit,
+  ) async {
     try {
-      yield ProfileLoading();
+      emit(ProfileLoading());
       User user = await _userRepository.updateProfile(
           user: event.user, name: event.name, email: event.email);
       print('User : $user');
 
-      yield ProfileLoaded(user: user);
+      emit(ProfileLoaded(user: user));
     } catch (e) {
       print(e);
-      yield ProfileNotUpdated(e.toString());
+      emit(ProfileNotUpdated(e.toString()));
     }
   }
 
-  Stream<ProfileState> _mapChangePasswordToState(ChangePassword event) async* {
+  Future<void> _onChangePassword(
+    ChangePassword event,
+    Emitter<ProfileState> emit,
+  ) async {
     try {
-      yield ProfileLoading();
+      emit(ProfileLoading());
       await _userRepository.changePassword(
           user: event.user,
           currentPassword: event.currentPassword,
           newPassword: event.newPassword);
-      yield PasswordChanged();
+      emit(PasswordChanged());
 
       await Future.delayed(Duration(milliseconds: 300));
 
-      yield ProfileLoaded(user: event.user);
+      emit(ProfileLoaded(user: event.user));
     } on PlatformException catch (e) {
-      yield ProfileNotUpdated(e.message);
+      emit(ProfileNotUpdated(e.message));
 
       await Future.delayed(Duration(milliseconds: 300));
 
-      yield ProfileLoaded(user: event.user);
+      emit(ProfileLoaded(user: event.user));
     }
   }
 }

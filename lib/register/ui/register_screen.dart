@@ -1,5 +1,5 @@
 import 'package:checklist/data/user_repository.dart';
-import 'package:checklist/register/bloc/register_barrel.dart';
+import 'package:checklist/register/bloc/register_bloc.dart';
 import 'package:checklist/register/ui/register_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

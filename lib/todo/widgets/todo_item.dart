@@ -1,5 +1,4 @@
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_check_box/circular_check_box.dart';
 import 'package:intl/intl.dart';
