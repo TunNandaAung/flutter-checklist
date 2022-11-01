@@ -42,11 +42,11 @@ class FilterButton extends StatelessWidget {
 
 class _Button extends StatelessWidget {
   const _Button({
-    Key key,
-    @required this.onSelected,
-    @required this.activeFilter,
-    @required this.activeStyle,
-    @required this.defaultStyle,
+    Key? key,
+    required this.onSelected,
+    required this.activeFilter,
+    required this.activeStyle,
+    required this.defaultStyle,
   }) : super(key: key);
 
   final PopupMenuItemSelected<VisibilityFilter> onSelected;

@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 typedef OnSaveCallback = Function(String currentPassword, String newPassword);
 
 class EditPasswordModal {
-  mainBottomSheet({BuildContext context, OnSaveCallback onSave}) {
+  mainBottomSheet(
+      {required BuildContext context, required OnSaveCallback onSave}) {
     showModalBottomSheet(
         backgroundColor: Colors.transparent,
         context: context,

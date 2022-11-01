@@ -14,7 +14,7 @@ import 'edit_profile_screen.dart';
 class Profile extends StatefulWidget {
   final User user;
 
-  Profile({Key key, this.user}) : super(key: key);
+  Profile({Key? key, this.user}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();

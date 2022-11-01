@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 
 class CircularCheckbox extends StatelessWidget {
   final bool value;
-  final void Function(bool) onChanged;
-  final Color activeColor;
+  final void Function(bool?)? onChanged;
+  final Color? activeColor;
 
-  const CircularCheckbox(
-      {Key key, this.value, this.onChanged, this.activeColor})
-      : super(key: key);
+  const CircularCheckbox({
+    Key? key,
+    required this.value,
+    required this.onChanged,
+    this.activeColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

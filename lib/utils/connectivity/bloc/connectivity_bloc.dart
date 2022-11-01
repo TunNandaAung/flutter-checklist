@@ -12,7 +12,7 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
 
   StreamSubscription _connectivitySubscription;
 
-  ConnectivityBloc({@required this.result}) : super(Offline()) {
+  ConnectivityBloc({required this.result}) : super(Offline()) {
     Connectivity().onConnectivityChanged.listen((result) {
       add(ConnectivityChanged(result: result));
     });

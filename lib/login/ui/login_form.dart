@@ -14,9 +14,8 @@ import 'signin_button.dart';
 class LoginForm extends StatefulWidget {
   final UserRepository _userRepository;
 
-  LoginForm({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
+  LoginForm({Key? key, required UserRepository userRepository})
+      : _userRepository = userRepository,
         super(key: key);
 
   @override
@@ -27,7 +26,7 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  LoginBloc _loginBloc;
+  late LoginBloc _loginBloc;
   UserRepository get _userRepository => widget._userRepository;
 
   final _focusNode = FocusNode();

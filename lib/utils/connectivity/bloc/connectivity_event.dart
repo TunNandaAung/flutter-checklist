@@ -11,7 +11,7 @@ class CheckConnectivity extends ConnectivityEvent {}
 class ConnectivityChanged extends ConnectivityEvent {
   final ConnectivityResult result;
 
-  const ConnectivityChanged({this.result}) : assert(result != null);
+  const ConnectivityChanged({required this.result});
 
   List<Object> get props => [result];
 }

@@ -5,7 +5,7 @@ typedef OnSaveCallback = Function(String task, String note);
 
 class CalendarModal {
   final Function(DateTime) onDateSelected;
-  CalendarModal({this.onDateSelected});
+  CalendarModal({required this.onDateSelected});
 
   mainBottomSheet(BuildContext context, String userId) async {
     DateTime dateTime = await showModalBottomSheet(

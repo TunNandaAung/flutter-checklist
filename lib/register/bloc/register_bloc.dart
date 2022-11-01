@@ -21,7 +21,7 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository _userRepository;
 
-  RegisterBloc({@required UserRepository userRepository})
+  RegisterBloc({required UserRepository userRepository})
       : assert(userRepository != null),
         _userRepository = userRepository,
         super(RegisterState.empty()) {

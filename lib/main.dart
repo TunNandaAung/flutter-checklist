@@ -40,9 +40,8 @@ Future<void> main() async {
 class Checklist extends StatefulWidget {
   final UserRepository _userRepository;
 
-  Checklist({Key key, @required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
+  Checklist({Key? key, required UserRepository userRepository})
+      : _userRepository = userRepository,
         super(key: key);
 
   @override
@@ -50,7 +49,7 @@ class Checklist extends StatefulWidget {
 }
 
 class _ChecklistState extends State<Checklist> {
-  AuthenticationBloc _authenticationBloc;
+  late AuthenticationBloc _authenticationBloc;
 
   @override
   void initState() {

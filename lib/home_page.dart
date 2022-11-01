@@ -6,7 +6,7 @@ import 'authentication_bloc/bloc.dart';
 class HomePage extends StatelessWidget {
   final String name;
 
-  HomePage({Key key, @required this.name}) : super(key: key);
+  HomePage({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -21,9 +21,9 @@ class _CalendarFormState extends State<CalendarForm> {
     super.initState();
   }
 
-  DateTime dateTime;
+  DateTime? dateTime;
 
-  DateTime _selectedTime;
+  DateTime? _selectedTime;
   DateTime _focusedDay = DateTime.now();
 
   @override
@@ -87,7 +87,7 @@ class _CalendarFormState extends State<CalendarForm> {
                               style: TextButton.styleFrom(
                                 backgroundColor: Theme.of(context)
                                     .buttonTheme
-                                    .colorScheme
+                                    .colorScheme!
                                     .background,
                                 disabledBackgroundColor: Colors.grey,
                                 shape: RoundedRectangleBorder(
@@ -163,13 +163,13 @@ class _CalendarFormState extends State<CalendarForm> {
                               dateTime = new DateTime(
                                   dateTime == null
                                       ? DateTime.now().year
-                                      : dateTime.year,
+                                      : dateTime!.year,
                                   dateTime == null
                                       ? DateTime.now().month
-                                      : dateTime.month,
+                                      : dateTime!.month,
                                   dateTime == null
                                       ? DateTime.now().day
-                                      : dateTime.day,
+                                      : dateTime!.day,
                                   newTime.hour,
                                   newTime.minute,
                                   newTime.second,
@@ -215,7 +215,7 @@ class _CalendarFormState extends State<CalendarForm> {
                                           )
                                         : Text(
                                             DateFormat('hh:mm a').format(
-                                                _selectedTime.toLocal()),
+                                                _selectedTime!.toLocal()),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1,

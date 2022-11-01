@@ -21,11 +21,11 @@ final appThemeData = {
     bottomAppBarTheme: BottomAppBarTheme(color: Color(0xFF98c6f5)),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: Colors.black.withOpacity(.75)),
-    buttonTheme: ButtonThemeData(
-      colorScheme: ButtonThemeData().colorScheme.copyWith(
-            background: Color(0xFF5d74e3),
-          ),
-    ),
+    // buttonTheme: ButtonThemeData(
+    //   colorScheme: ButtonThemeData().colorScheme.copyWith(
+    //         background: Color(0xFF5d74e3),
+    //       ),
+    // ),
     bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFFf3f6fb)),
     hintColor: Colors.black38,
     inputDecorationTheme: InputDecorationTheme(
@@ -115,11 +115,11 @@ final appThemeData = {
     bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
     floatingActionButtonTheme:
         FloatingActionButtonThemeData(backgroundColor: Colors.black),
-    buttonTheme: ButtonThemeData(
-      colorScheme: ButtonThemeData().colorScheme.copyWith(
-            background: Colors.black.withOpacity(.40),
-          ),
-    ),
+    // buttonTheme: ButtonThemeData(
+    //   colorScheme: ButtonThemeData().colorScheme.copyWith(
+    //         background: Colors.black.withOpacity(.40),
+    //       ),
+    // ),
     bottomSheetTheme: BottomSheetThemeData(
       backgroundColor: Color(0xFF2d3447),
     ),

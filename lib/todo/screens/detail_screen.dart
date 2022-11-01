@@ -8,15 +8,16 @@ import 'package:intl/intl.dart';
 class DetailsScreen extends StatelessWidget {
   final String id;
 
-  DetailsScreen({Key key, @required this.id}) : super(key: key);
+  DetailsScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<TodosBloc, TodosState>(
       builder: (context, state) {
-        final todo = (state as TodosLoaded)
-            .todos
-            .firstWhere((todo) => todo.id == id, orElse: () => null);
+        final todo = (state as TodosLoaded).todos.firstWhere(
+              (todo) => todo.id == id,
+              orElse: () => null,
+            );
         return Container(
           decoration: BoxDecoration(
               gradient: LinearGradient(

@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterForm extends StatefulWidget {
-  RegisterForm({Key key}) : super(key: key);
+  RegisterForm({Key? key}) : super(key: key);
 
   @override
   _RegisterFormState createState() => _RegisterFormState();
@@ -17,7 +17,7 @@ class _RegisterFormState extends State<RegisterForm> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
-  RegisterBloc _registerBloc;
+  late RegisterBloc _registerBloc;
 
   bool get isPopulated =>
       _emailController.text.isNotEmpty &&

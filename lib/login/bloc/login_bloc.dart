@@ -2,7 +2,6 @@ import 'package:checklist/data/user_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:checklist/utils/validators.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -21,7 +20,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   UserRepository _userRepository;
 
   LoginBloc({
-    @required UserRepository userRepository,
+    required UserRepository userRepository,
   })  : assert(userRepository != null),
         _userRepository = userRepository,
         super(LoginState.empty()) {
@@ -34,9 +33,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       transformer: throttleDroppable(throttleDuration),
     );
     on<ForgotPasswordPressed>(_onForgotPasswordPressed);
-    on<LoginWithCredentialsPressed>(_onLoginWithCredentialsPressed);
     on<LoginWithGooglePressed>(_onLoginWithGooglePressed);
-    on<ForgotPasswordPressed>(_onForgotPasswordPressed);
     on<LoginWithCredentialsPressed>(_onLoginWithCredentialsPressed);
   }
 

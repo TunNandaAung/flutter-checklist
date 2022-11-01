@@ -10,14 +10,15 @@ class Todo {
   final String userId;
   final int time;
 
-  Todo(this.task,
-      {this.complete = false,
-      String note = '',
-      String id,
-      String userId = '',
-      int time = 0})
-      : this.note = note ?? '',
-        this.id = id,
+  Todo(
+    this.task, {
+    this.complete = false,
+    String? note,
+    String? id,
+    String? userId,
+    int? time,
+  })  : this.note = note ?? '',
+        this.id = id ?? '',
         this.userId = userId ?? '',
         this.time = time ?? 0;
 

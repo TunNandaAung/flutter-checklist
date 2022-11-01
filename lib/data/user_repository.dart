@@ -6,14 +6,14 @@ class UserRepository {
   final GoogleSignIn _googleSignIn;
 
   UserRepository({
-    firebase_auth.FirebaseAuth firebaseAuth,
-    GoogleSignIn googleSignIn,
+    firebase_auth.FirebaseAuth? firebaseAuth,
+    GoogleSignIn? googleSignIn,
   })  : _firebaseAuth = firebaseAuth ?? firebase_auth.FirebaseAuth.instance,
         _googleSignIn = googleSignIn ?? GoogleSignIn.standard();
 
   Future<void> signInWithGoogle() async {
     final googleUser = await _googleSignIn.signIn();
-    final googleAuth = await googleUser.authentication;
+    final googleAuth = await googleUser!.authentication;
     final credential = firebase_auth.GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
@@ -28,7 +28,7 @@ class UserRepository {
     );
   }
 
-  Future<void> signOut() async {
+  Future<Future<List<void>>> signOut() async {
     return Future.wait([
       _firebaseAuth.signOut(),
       _googleSignIn.signOut(),
@@ -40,19 +40,26 @@ class UserRepository {
     return currentUser != null;
   }
 
-  Future<firebase_auth.User> getUser() async {
+  Future<firebase_auth.User?> getUser() async {
     return _firebaseAuth.currentUser;
   }
 
-  Future<void> signUp({String name, String email, String password}) async {
+  Future<void> signUp({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
     await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
   }
 
-  Future<firebase_auth.User> updateProfile(
-      {firebase_auth.User user, String name, String email}) async {
+  Future<firebase_auth.User?> updateProfile({
+    required firebase_auth.User user,
+    required String name,
+    required String email,
+  }) async {
     await user.updateEmail(email);
     await user.updateDisplayName(name);
 
@@ -63,12 +70,13 @@ class UserRepository {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
   }
 
-  Future changePassword(
-      {firebase_auth.User user,
-      String currentPassword,
-      String newPassword}) async {
+  Future changePassword({
+    required firebase_auth.User user,
+    required String currentPassword,
+    required String newPassword,
+  }) async {
     final credential = firebase_auth.EmailAuthProvider.credential(
-        email: user.email, password: currentPassword);
+        email: user.email!, password: currentPassword);
     print(credential);
     await user.reauthenticateWithCredential(credential).then((_) {
       user.updatePassword(newPassword).then((_) {

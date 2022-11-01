@@ -5,15 +5,15 @@ typedef OnSaveCallback = Function(String currentPassword, String newPassword);
 
 class EditPasswordForm extends StatefulWidget {
   final OnSaveCallback onSave;
-  EditPasswordForm({Key key, @required this.onSave}) : super(key: key);
+  EditPasswordForm({Key? key, required this.onSave}) : super(key: key);
 
   @override
   _EditPasswordFormState createState() => _EditPasswordFormState();
 }
 
 class _EditPasswordFormState extends State<EditPasswordForm> {
-  String _currentPassword;
-  String _newPassword;
+  late String _currentPassword;
+  late String _newPassword;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
@@ -69,8 +69,8 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                 padding: EdgeInsets.only(right: 22.0),
                                 child: TextButton(
                                   onPressed: () {
-                                    if (_formKey.currentState.validate()) {
-                                      _formKey.currentState.save();
+                                    if (_formKey.currentState!.validate()) {
+                                      _formKey.currentState!.save();
 
                                       widget.onSave(
                                           _currentPassword, _newPassword);
@@ -82,7 +82,7 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                   style: TextButton.styleFrom(
                                     backgroundColor: Theme.of(context)
                                         .buttonTheme
-                                        .colorScheme
+                                        .colorScheme!
                                         .background,
                                     disabledBackgroundColor: Colors.grey,
                                     shape: RoundedRectangleBorder(
@@ -121,11 +121,11 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                   autofocus: true,
                                   obscureText: true,
                                   validator: (val) {
-                                    return val.trim().isEmpty
+                                    return val!.trim().isEmpty
                                         ? 'Please enter your password'
                                         : null;
                                   },
-                                  onSaved: (value) => _currentPassword = value,
+                                  onSaved: (value) => _currentPassword = value!,
                                   cursorColor: Color(0xFF5d74e3),
                                   style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
@@ -163,10 +163,10 @@ class _EditPasswordFormState extends State<EditPasswordForm> {
                                 child: SingleChildScrollView(
                                   child: TextFormField(
                                     obscureText: true,
-                                    onSaved: (value) => _newPassword = value,
+                                    onSaved: (value) => _newPassword = value!,
                                     autofocus: false,
                                     validator: (val) {
-                                      return val.trim().isEmpty
+                                      return val!.trim().isEmpty
                                           ? 'Please enter new password'
                                           : null;
                                     },

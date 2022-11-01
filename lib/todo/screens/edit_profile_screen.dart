@@ -12,10 +12,10 @@ class EditProfileScreen extends StatefulWidget {
   final OnPasswordChangedCallBack onPasswordChanged;
 
   EditProfileScreen(
-      {Key key,
-      @required this.user,
-      @required this.onSave,
-      @required this.onPasswordChanged})
+      {Key? key,
+      required this.user,
+      required this.onSave,
+      required this.onPasswordChanged})
       : super(key: key);
 
   @override

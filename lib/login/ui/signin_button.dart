@@ -2,13 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SigninButton extends StatelessWidget {
-  final bool _enable;
-  final VoidCallback _onTap;
+  final bool enable;
+  final VoidCallback? onTap;
 
-  SigninButton({Key key, bool enable, VoidCallback onTap})
-      : _onTap = onTap,
-        _enable = enable,
-        super(key: key);
+  SigninButton({Key? key, required this.enable, this.onTap}) : super(key: key);
 
   final bool _isLoading = false;
 
@@ -33,7 +30,7 @@ class SigninButton extends StatelessWidget {
               width: ScreenUtil().setWidth(330),
               height: ScreenUtil().setHeight(100),
               decoration: BoxDecoration(
-                  gradient: _enable
+                  gradient: enable
                       ? LinearGradient(
                           colors: [Color(0xFF17ead9), Color(0xFF6078ea)],
                         )
@@ -42,7 +39,7 @@ class SigninButton extends StatelessWidget {
                         ),
                   borderRadius: BorderRadius.circular(6.0),
                   boxShadow: [
-                    _enable
+                    enable
                         ? BoxShadow(
                             color: Color(0xFF6078ea).withOpacity(.3),
                             offset: Offset(0.0, 8.0),
@@ -52,7 +49,7 @@ class SigninButton extends StatelessWidget {
               child: Material(
                 color: Colors.transparent,
                 child: InkWell(
-                  onTap: _onTap,
+                  onTap: onTap,
                   child: Center(
                     child: Text('SIGN IN',
                         style: TextStyle(

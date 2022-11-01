@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FilteredTodos extends StatelessWidget {
   final String userId;
-  FilteredTodos({Key key, this.userId}) : super(key: key);
+  FilteredTodos({Key? key, this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

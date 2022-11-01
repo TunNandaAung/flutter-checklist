@@ -8,10 +8,10 @@ typedef OnSaveCallback = Function(String task, String note, int time);
 class AddTodoForm extends StatefulWidget {
   final bool isEditing;
   final OnSaveCallback onSave;
-  final Todo todo;
+  final Todo? todo;
 
   AddTodoForm(
-      {Key key, @required this.isEditing, @required this.onSave, this.todo})
+      {Key? key, required this.isEditing, required this.onSave, this.todo})
       : super(key: key);
 
   @override
@@ -19,9 +19,9 @@ class AddTodoForm extends StatefulWidget {
 }
 
 class _AddTodoFormState extends State<AddTodoForm> {
-  String _task;
-  String _note;
-  DateTime _dateTime;
+  late String _task;
+  late String _note;
+  DateTime? _dateTime;
 
   bool get isEditing => widget.isEditing;
 
@@ -75,21 +75,22 @@ class _AddTodoFormState extends State<AddTodoForm> {
                             ),
                             TextButton(
                               onPressed: () {
-                                if (_formKey.currentState.validate()) {
-                                  _formKey.currentState.save();
+                                if (_formKey.currentState!.validate()) {
+                                  _formKey.currentState!.save();
                                   widget.onSave(
-                                      _task,
-                                      _note,
-                                      _dateTime == null
-                                          ? 0
-                                          : _dateTime.millisecondsSinceEpoch);
+                                    _task,
+                                    _note,
+                                    _dateTime == null
+                                        ? 0
+                                        : _dateTime!.millisecondsSinceEpoch,
+                                  );
                                   Navigator.pop(context);
                                 }
                               },
                               style: TextButton.styleFrom(
                                 backgroundColor: Theme.of(context)
                                     .buttonTheme
-                                    .colorScheme
+                                    .colorScheme!
                                     .background,
                                 disabledBackgroundColor: Colors.grey,
                                 shape: RoundedRectangleBorder(
@@ -103,14 +104,14 @@ class _AddTodoFormState extends State<AddTodoForm> {
                         ),
                         SizedBox(height: 16.0),
                         TextFormField(
-                          initialValue: isEditing ? widget.todo.task : '',
+                          initialValue: isEditing ? widget.todo!.task : '',
                           autofocus: !isEditing,
                           validator: (val) {
-                            return val.trim().isEmpty
+                            return val!.trim().isEmpty
                                 ? 'Please enter some text'
                                 : null;
                           },
-                          onSaved: (value) => _task = value,
+                          onSaved: (value) => _task = value!,
                           cursorColor: Color(0xFF5d74e3),
                           style: Theme.of(context).textTheme.headline1,
                           decoration: InputDecoration(
@@ -134,9 +135,9 @@ class _AddTodoFormState extends State<AddTodoForm> {
                           ),
                           child: SingleChildScrollView(
                             child: TextFormField(
-                              initialValue: isEditing ? widget.todo.note : '',
+                              initialValue: isEditing ? widget.todo!.note : '',
                               maxLines: null,
-                              onSaved: (value) => _note = value,
+                              onSaved: (value) => _note = value!,
                               style: Theme.of(context).textTheme.headline1,
                               decoration: InputDecoration(
                                   fillColor: Theme.of(context)
@@ -198,7 +199,7 @@ class _AddTodoFormState extends State<AddTodoForm> {
                                           )
                                         : Text(
                                             DateFormat('EEE d MMM hh:mm a')
-                                                .format(_dateTime.toLocal()),
+                                                .format(_dateTime!.toLocal()),
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .headline1,

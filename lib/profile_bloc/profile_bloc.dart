@@ -4,7 +4,6 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:flutter/services.dart';
-import 'package:meta/meta.dart';
 
 part 'profile_event.dart';
 part 'profile_state.dart';
@@ -12,11 +11,10 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserRepository _userRepository;
 
-  StreamSubscription _profileSubscription;
+  late StreamSubscription _profileSubscription;
 
-  ProfileBloc({@required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
+  ProfileBloc({required UserRepository userRepository})
+      : _userRepository = userRepository,
         super(ProfileLoading()) {
     on<LoadProfile>(_onLoadProfile);
     on<UpdateProfile>(_onUpdateProfile);
@@ -27,10 +25,10 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     LoadProfile event,
     Emitter<ProfileState> emit,
   ) async {
-    _profileSubscription?.cancel();
+    _profileSubscription.cancel();
     final user = await _userRepository.getUser();
 
-    emit(ProfileLoaded(user: user));
+    emit(ProfileLoaded(user: user!));
   }
 
   Future<void> _onUpdateProfile(
@@ -39,11 +37,11 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   ) async {
     try {
       emit(ProfileLoading());
-      User user = await _userRepository.updateProfile(
+      User? user = await _userRepository.updateProfile(
           user: event.user, name: event.name, email: event.email);
       print('User : $user');
 
-      emit(ProfileLoaded(user: user));
+      emit(ProfileLoaded(user: user!));
     } catch (e) {
       print(e);
       emit(ProfileNotUpdated(e.toString()));
@@ -66,7 +64,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
 
       emit(ProfileLoaded(user: event.user));
     } on PlatformException catch (e) {
-      emit(ProfileNotUpdated(e.message));
+      emit(ProfileNotUpdated(e.toString()));
 
       await Future.delayed(Duration(milliseconds: 300));
 

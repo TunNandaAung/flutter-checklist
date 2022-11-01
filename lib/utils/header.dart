@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
-  final String image;
-  final String text;
+  final String? image;
+  final String? text;
 
-  const Header({Key key, this.image, this.text}) : super(key: key);
+  const Header({Key? key, this.image, this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class Header extends StatelessWidget {
               children: <Widget>[
                 image != null
                     ? Image.asset(
-                        image,
+                        image!,
                         width: 64.0,
                         fit: BoxFit.fitWidth,
                         alignment: Alignment.topCenter,
@@ -43,7 +43,7 @@ class Header extends StatelessWidget {
                         '$text',
                         style: Theme.of(context)
                             .textTheme
-                            .headline6
+                            .headline6!
                             .copyWith(fontSize: 30.0),
                       )
                     : Text(''),

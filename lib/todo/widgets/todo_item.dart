@@ -11,11 +11,11 @@ class TodoItem extends StatelessWidget {
   final Todo todo;
 
   TodoItem({
-    Key key,
-    @required this.onDismissed,
-    @required this.onTap,
-    @required this.onCheckboxChanged,
-    @required this.todo,
+    Key? key,
+    required this.onDismissed,
+    required this.onTap,
+    required this.onCheckboxChanged,
+    required this.todo,
   }) : super(key: key);
 
   @override
@@ -111,7 +111,7 @@ class TodoItem extends StatelessWidget {
                               style: todo.complete
                                   ? Theme.of(context)
                                       .textTheme
-                                      .bodyText1
+                                      .bodyText1!
                                       .copyWith(
                                           decoration:
                                               TextDecoration.lineThrough)

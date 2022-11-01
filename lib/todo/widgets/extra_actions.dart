@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ExtraActions extends StatelessWidget {
   final User user;
 
-  const ExtraActions({Key key, this.user}) : super(key: key);
+  const ExtraActions({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

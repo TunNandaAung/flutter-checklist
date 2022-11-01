@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 class DeleteTodoSnackBar extends SnackBar {
   DeleteTodoSnackBar({
-    Key key,
-    @required Todo todo,
-    @required VoidCallback onUndo,
+    Key? key,
+    required Todo todo,
+    required VoidCallback onUndo,
   }) : super(
           elevation: 6.0,
           behavior: SnackBarBehavior.floating,

@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 part 'todos_event.dart';
 part 'todos_state.dart';
@@ -12,11 +11,10 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
   final UserRepository _userRepository;
 
-  StreamSubscription _todosSubscription;
+  late StreamSubscription _todosSubscription;
 
-  TodosBloc(this._userRepository, {@required TodosRepository todosRepository})
-      : assert(todosRepository != null),
-        _todosRepository = todosRepository,
+  TodosBloc(this._userRepository, {required TodosRepository todosRepository})
+      : _todosRepository = todosRepository,
         super(TodosLoading()) {
     on<LoadTodos>(_onLoadTodos);
     on<AddTodo>(_onAddTodo);
@@ -28,9 +26,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Future<void> _onLoadTodos(LoadTodos event, Emitter<TodosState> emit) async {
-    _todosSubscription?.cancel();
+    _todosSubscription.cancel();
     final user = await _userRepository.getUser();
-    _todosSubscription = _todosRepository.todos(user.uid).listen(
+    _todosSubscription = _todosRepository.todos(user!.uid).listen(
           (todos) => add(TodosUpdated(todos)),
         );
   }
@@ -80,7 +78,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   @override
   Future<void> close() {
-    _todosSubscription?.cancel();
+    _todosSubscription.cancel();
     return super.close();
   }
 }

@@ -4,18 +4,16 @@ import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/model/models.dart';
 import 'package:checklist/todo/todos_repository/lib/src/models/models.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 part 'filtered_todos_event.dart';
 part 'filtered_todos_state.dart';
 
 class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   final TodosBloc _todosBloc;
-  StreamSubscription _todosSubscription;
+  late StreamSubscription _todosSubscription;
 
-  FilteredTodosBloc({@required TodosBloc todosBloc})
-      : assert(todosBloc != null),
-        _todosBloc = todosBloc,
+  FilteredTodosBloc({required TodosBloc todosBloc})
+      : _todosBloc = todosBloc,
         super(todosBloc.state is TodosLoaded
             ? FilteredTodosLoaded(
                 (todosBloc.state as TodosLoaded).todos,
@@ -79,7 +77,7 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
 
   @override
   Future<void> close() {
-    _todosSubscription?.cancel();
+    _todosSubscription.cancel();
     return super.close();
   }
 }

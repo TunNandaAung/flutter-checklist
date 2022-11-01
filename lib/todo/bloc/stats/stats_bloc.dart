@@ -8,11 +8,9 @@ part 'stats_event.dart';
 part 'stats_state.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
-  StreamSubscription _todosSubscription;
+  late StreamSubscription _todosSubscription;
 
-  StatsBloc({TodosBloc todosBloc})
-      : assert(todosBloc != null),
-        super(StatsLoading()) {
+  StatsBloc({required TodosBloc todosBloc}) : super(StatsLoading()) {
     void onTodosStateChanged(state) {
       if (state is TodosLoaded) {
         add(UpdateStats(state.todos));

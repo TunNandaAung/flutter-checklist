@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeScreen extends StatelessWidget {
   final User user;
 
-  HomeScreen({Key key, this.user}) : super(key: key);
+  HomeScreen({Key? key, this.user}) : super(key: key);
 
   final _scaffoldMessengerKey = new GlobalKey<ScaffoldMessengerState>();
 

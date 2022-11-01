@@ -1,16 +1,15 @@
 import 'package:checklist/data/user_repository.dart';
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'bloc.dart';
-import 'package:meta/meta.dart';
 
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   final UserRepository _userRepository;
 
-  AuthenticationBloc({@required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
+  AuthenticationBloc({required UserRepository userRepository})
+      : _userRepository = userRepository,
         super(Uninitialized()) {
     on<AppStarted>(_onAppStarted);
     on<LoggedIn>(_onLoggedIn);
@@ -23,7 +22,7 @@ class AuthenticationBloc
       final isSignedIn = await _userRepository.isSignedIn();
       if (isSignedIn) {
         final name = await _userRepository.getUser();
-        emit(Authenticated(name));
+        emit(Authenticated(name!));
       } else {
         emit(Unauthenticated());
       }
@@ -34,7 +33,8 @@ class AuthenticationBloc
 
   Future<void> _onLoggedIn(
       LoggedIn event, Emitter<AuthenticationState> emit) async {
-    emit(Authenticated(await _userRepository.getUser()));
+    User? user = await _userRepository.getUser();
+    emit(Authenticated(user!));
   }
 
   Future<void> _onLoggedOut(
