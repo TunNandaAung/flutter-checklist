@@ -58,10 +58,6 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(
-      designSize: Size(750, 1250),
-    );
-
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -86,7 +82,8 @@ class _LoginFormState extends State<LoginForm> {
                         elevation: 6.0,
                         behavior: SnackBarBehavior.floating,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
                         content: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

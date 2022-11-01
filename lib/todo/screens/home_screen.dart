@@ -82,7 +82,9 @@ class HomeScreen extends StatelessWidget {
                               child: Container(
                                 height: null,
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).appBarTheme.color,
+                                  color: Theme.of(context)
+                                      .appBarTheme
+                                      .backgroundColor,
                                   borderRadius: BorderRadius.only(
                                     bottomRight: Radius.circular(30.0),
                                     bottomLeft: Radius.circular(30.0),
@@ -132,10 +134,14 @@ class HomeScreen extends StatelessWidget {
                               child: Container(
                                 height: null,
                                 decoration: BoxDecoration(
-                                    color: Theme.of(context).appBarTheme.color,
-                                    borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(20.0),
-                                        bottomLeft: Radius.circular(20.0))),
+                                  color: Theme.of(context)
+                                      .appBarTheme
+                                      .backgroundColor,
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(20.0),
+                                    bottomLeft: Radius.circular(20.0),
+                                  ),
+                                ),
                                 child: AppBar(
                                   backgroundColor: Colors.transparent,
                                   elevation: 0.0,

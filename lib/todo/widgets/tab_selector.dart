@@ -35,6 +35,14 @@ class TabSelector extends StatelessWidget {
                     : MdiIcons.accountOutline,
             color: Theme.of(context).dividerColor,
           ),
+          activeIcon: Icon(
+            tab == AppTab.todos
+                ? MdiIcons.formatListCheckbox
+                : tab == AppTab.stats
+                    ? MdiIcons.chartLineVariant
+                    : MdiIcons.accountOutline,
+            color: Theme.of(context).primaryColor,
+          ),
           title: Text(
             tab == AppTab.stats
                 ? 'Stats'

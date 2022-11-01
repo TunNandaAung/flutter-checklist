@@ -104,9 +104,11 @@ class _EditTodoFormState extends State<EditTodoForm> {
                                     }
                                   },
                                   style: TextButton.styleFrom(
-                                    backgroundColor:
-                                        Theme.of(context).buttonColor,
-                                    onSurface: Colors.grey,
+                                    backgroundColor: Theme.of(context)
+                                        .buttonTheme
+                                        .colorScheme
+                                        .background,
+                                    disabledBackgroundColor: Colors.grey,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(50.0),
                                     ),

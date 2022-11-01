@@ -16,7 +16,7 @@ class RegisterButton extends StatelessWidget {
         onPressed: _onPressed,
         style: TextButton.styleFrom(
           backgroundColor: Color(0xFF5d74e3),
-          onSurface: Colors.grey,
+          disabledBackgroundColor: Colors.grey,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
         ),

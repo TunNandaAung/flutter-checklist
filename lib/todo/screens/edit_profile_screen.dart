@@ -226,7 +226,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     backgroundColor: Theme.of(context)
                         .floatingActionButtonTheme
                         .backgroundColor,
-                    onSurface: Colors.grey,
+                    disabledBackgroundColor: Colors.grey,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50.0),
                     ),

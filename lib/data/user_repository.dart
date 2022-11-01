@@ -54,7 +54,7 @@ class UserRepository {
   Future<firebase_auth.User> updateProfile(
       {firebase_auth.User user, String name, String email}) async {
     await user.updateEmail(email);
-    await user.updateProfile(displayName: name);
+    await user.updateDisplayName(name);
 
     return this.getUser();
   }

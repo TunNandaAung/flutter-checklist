@@ -1,6 +1,6 @@
-import 'package:circular_check_box/circular_check_box.dart';
 import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/modal/edit_modal.dart';
+import 'package:checklist/todo/widgets/circular_checkbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -93,7 +93,7 @@ class DetailsScreen extends StatelessWidget {
                                           border: Border.all(width: 2),
                                           borderRadius:
                                               BorderRadius.circular(100)),
-                                      child: CircularCheckBox(
+                                      child: CircularCheckbox(
                                         value: todo.complete,
                                         onChanged: (_) {
                                           context.read<TodosBloc>().add(
