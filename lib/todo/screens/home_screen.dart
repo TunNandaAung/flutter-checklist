@@ -1,4 +1,5 @@
 import 'package:checklist/todo/bloc/tabs/tab_cubit.dart';
+import 'package:checklist/todo/widgets/custom_snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/todo/modal/add_modal.dart';
 import 'package:checklist/todo/model/models.dart';
@@ -18,41 +19,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<ConnectivityBloc, ConnectivityState>(
-      listener: (context, state) {
-        if (state is Offline) {
-          _scaffoldMessengerKey.currentState!
+      listenWhen: (previousState, currentState) {
+        if (previousState is Offline &&
+            (currentState is WiFi || currentState is Mobile)) {
+          print(currentState);
+
+          ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              SnackBar(
-                duration: Duration(minutes: 2),
-                elevation: 6.0,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Icon(Icons.error),
-                    SizedBox(
-                      width: 8.0,
-                    ),
-                    Text(
-                      'No Internet connection',
-                      style: TextStyle(fontFamily: 'Poppins-Bold'),
-                    ),
-                  ],
-                ),
-                backgroundColor: Colors.red,
-                action: SnackBarAction(
-                  label: 'Dismiss',
-                  textColor: Colors.white,
-                  onPressed: () =>
-                      _scaffoldMessengerKey.currentState!.hideCurrentSnackBar(),
-                ),
+              CustomSnackBar.showActionSnackBar(
+                title: 'Connection Restored!',
+                icon: Icons.done,
+                backgroundColor: Colors.green,
+                actionLabel: 'Dismiss',
+                onActionPressed: () =>
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar(),
               ),
             );
         } else {
-          _scaffoldMessengerKey.currentState!.hideCurrentSnackBar();
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+        }
+        return true;
+      },
+      listener: (context, state) {
+        if (state is Offline) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              CustomSnackBar.showActionSnackBar(
+                title: 'No Internet connection',
+                icon: Icons.error,
+                backgroundColor: Colors.red,
+                actionLabel: 'Dismiss',
+                duration: Duration(minutes: 1),
+                onActionPressed: () =>
+                    ScaffoldMessenger.of(context).hideCurrentSnackBar(),
+              ),
+            );
+        } else {
+          ScaffoldMessenger.of(context).hideCurrentSnackBar();
         }
       },
       child: BlocBuilder<ConnectivityBloc, ConnectivityState>(

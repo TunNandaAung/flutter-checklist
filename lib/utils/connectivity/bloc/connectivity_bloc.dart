@@ -12,10 +12,17 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   StreamSubscription? _connectivitySubscription;
 
   ConnectivityBloc({required this.result}) : super(Offline()) {
+    on<CheckConnectivity>(_onCheckConnectivity);
+    on<ConnectivityChanged>(_onConnectivityChanged);
+  }
+
+  Future<void> _onCheckConnectivity(
+    CheckConnectivity event,
+    Emitter<ConnectivityState> emit,
+  ) async {
     Connectivity().onConnectivityChanged.listen((result) {
       add(ConnectivityChanged(result: result));
     });
-    on<ConnectivityChanged>(_onConnectivityChanged);
   }
 
   Future<void> _onConnectivityChanged(

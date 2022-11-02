@@ -66,8 +66,11 @@ class _ChecklistState extends State<Checklist> {
       providers: [
         BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
         BlocProvider<ConnectivityBloc>(
-            create: (context) =>
-                ConnectivityBloc(result: ConnectivityResult.none)),
+          create: (context) => ConnectivityBloc(result: ConnectivityResult.none)
+            ..add(
+              CheckConnectivity(),
+            ),
+        ),
         BlocProvider<TodosBloc>(
           create: (context) {
             return TodosBloc(
