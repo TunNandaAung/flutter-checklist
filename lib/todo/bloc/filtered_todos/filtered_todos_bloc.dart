@@ -10,7 +10,7 @@ part 'filtered_todos_state.dart';
 
 class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   final TodosBloc _todosBloc;
-  late StreamSubscription _todosSubscription;
+  StreamSubscription? _todosSubscription;
 
   FilteredTodosBloc({required TodosBloc todosBloc})
       : _todosBloc = todosBloc,
@@ -20,13 +20,14 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
                 VisibilityFilter.all,
               )
             : FilteredTodosLoading()) {
+    on<UpdateFilter>(_onUpdateFilter);
+    on<UpdateTodos>(_onTodosUpdated);
+
     _todosSubscription = todosBloc.stream.listen((state) {
       if (state is TodosLoaded) {
         add(UpdateTodos((todosBloc.state as TodosLoaded).todos));
       }
     });
-    on<UpdateFilter>(_onUpdateFilter);
-    on<UpdateTodos>(_onTodosUpdated);
   }
 
   Future<void> _onUpdateFilter(
@@ -77,7 +78,7 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
 
   @override
   Future<void> close() {
-    _todosSubscription.cancel();
+    _todosSubscription?.cancel();
     return super.close();
   }
 }

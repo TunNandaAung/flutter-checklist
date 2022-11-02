@@ -8,9 +8,11 @@ part 'stats_event.dart';
 part 'stats_state.dart';
 
 class StatsBloc extends Bloc<StatsEvent, StatsState> {
-  late StreamSubscription _todosSubscription;
+  StreamSubscription? _todosSubscription;
 
   StatsBloc({required TodosBloc todosBloc}) : super(StatsLoading()) {
+    on<UpdateStats>(_onUpdateStats);
+
     void onTodosStateChanged(state) {
       if (state is TodosLoaded) {
         add(UpdateStats(state.todos));
@@ -19,12 +21,12 @@ class StatsBloc extends Bloc<StatsEvent, StatsState> {
 
     onTodosStateChanged(todosBloc.state);
     _todosSubscription = todosBloc.stream.listen(onTodosStateChanged);
-
-    on<UpdateStats>(_onUpdateStats);
   }
 
   Future<void> _onUpdateStats(
-      UpdateStats event, Emitter<StatsState> emit) async {
+    UpdateStats event,
+    Emitter<StatsState> emit,
+  ) async {
     final numActive =
         event.todos.where((todo) => !todo.complete).toList().length;
     final numCompleted =
@@ -34,7 +36,7 @@ class StatsBloc extends Bloc<StatsEvent, StatsState> {
 
   @override
   Future<void> close() {
-    _todosSubscription.cancel();
+    _todosSubscription?.cancel();
     return super.close();
   }
 }

@@ -49,7 +49,9 @@ class TabSelector extends StatelessWidget {
                 : tab == AppTab.todos
                     ? 'Todos'
                     : 'Profile',
-            style: Theme.of(context).textTheme.headline3,
+            style: Theme.of(context).textTheme.headline3!.copyWith(
+                  color: Theme.of(context).primaryColor,
+                ),
           ),
         );
       }).toList(),

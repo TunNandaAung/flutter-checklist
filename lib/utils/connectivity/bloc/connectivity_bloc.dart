@@ -9,7 +9,7 @@ part 'connectivity_state.dart';
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   final ConnectivityResult result;
 
-  late StreamSubscription _connectivitySubscription;
+  StreamSubscription? _connectivitySubscription;
 
   ConnectivityBloc({required this.result}) : super(Offline()) {
     Connectivity().onConnectivityChanged.listen((result) {
@@ -32,7 +32,7 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
 
   @override
   Future<void> close() {
-    _connectivitySubscription.cancel();
+    _connectivitySubscription?.cancel();
     return super.close();
   }
 }

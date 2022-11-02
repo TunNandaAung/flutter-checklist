@@ -21,14 +21,16 @@ class DetailsScreen extends StatelessWidget {
             );
         return Container(
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [
+            gradient: LinearGradient(
+              colors: [
                 Theme.of(context).backgroundColor,
                 Theme.of(context).canvasColor,
               ],
-                  begin: Alignment.bottomCenter,
-                  end: Alignment.topCenter,
-                  tileMode: TileMode.clamp)),
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              tileMode: TileMode.clamp,
+            ),
+          ),
           child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
@@ -69,18 +71,21 @@ class DetailsScreen extends StatelessWidget {
                 ? Container()
                 : Stack(children: <Widget>[
                     Hero(
-                        tag: '${todo.id}__bgheroTag',
-                        child: Container(
-                            width: double.infinity,
-                            height: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).cardColor,
-                              //color: Colors.white,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(50.0),
-                                  topRight: Radius.circular(50.0),
-                                  bottomLeft: Radius.circular(50.0)),
-                            ))),
+                      tag: '${todo.id}__bgheroTag',
+                      child: Container(
+                        width: double.infinity,
+                        height: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          //color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50.0),
+                            topRight: Radius.circular(50.0),
+                            bottomLeft: Radius.circular(50.0),
+                          ),
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: EdgeInsets.all(16.0),
                       child: ListView(

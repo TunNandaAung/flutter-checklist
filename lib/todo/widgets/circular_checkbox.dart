@@ -16,7 +16,9 @@ class CircularCheckbox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Checkbox(
       checkColor: this.activeColor ?? Color(0xFF17ead9),
-      // fillColor: MaterialStateProperty.resolveWith(getColor),
+      fillColor: MaterialStateProperty.resolveWith((states) {
+        return Color(0xFF17ead9).withOpacity(0.5);
+      }),
       value: value,
       shape: CircleBorder(),
       onChanged: onChanged,

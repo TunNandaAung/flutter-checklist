@@ -16,6 +16,7 @@ import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:checklist/utils/bloc_observer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'authentication_bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -65,9 +66,8 @@ class _ChecklistState extends State<Checklist> {
       providers: [
         BlocProvider<ThemeCubit>(create: (context) => ThemeCubit()),
         BlocProvider<ConnectivityBloc>(
-          create: (context) => ConnectivityBloc(result: ConnectivityResult.none)
-            ..add(CheckConnectivity()),
-        ),
+            create: (context) =>
+                ConnectivityBloc(result: ConnectivityResult.none)),
         BlocProvider<TodosBloc>(
           create: (context) {
             return TodosBloc(
@@ -78,59 +78,66 @@ class _ChecklistState extends State<Checklist> {
         ),
       ],
       child: BlocBuilder<ThemeCubit, AppTheme>(builder: (context, appTheme) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Firestore Todos',
-          theme: appThemeData[appTheme],
-          routes: {
-            '/': (context) {
-              return BlocBuilder<AuthenticationBloc, AuthenticationState>(
-                builder: (context, state) {
-                  if (state is Authenticated) {
-                    context.watch<TodosBloc>().add(LoadTodos());
-                    return MultiBlocProvider(
-                      providers: [
-                        BlocProvider<TabCubit>(
-                          create: (context) => TabCubit(),
-                        ),
-                        BlocProvider<FilteredTodosBloc>(
-                          create: (context) => FilteredTodosBloc(
-                            todosBloc: context.read<TodosBloc>(),
-                          ),
-                        ),
-                        BlocProvider<StatsBloc>(
-                          create: (context) => StatsBloc(
-                            todosBloc: context.read<TodosBloc>(),
-                          ),
-                        ),
-                        BlocProvider<ProfileBloc>(
-                          create: (context) => ProfileBloc(
-                            userRepository: widget._userRepository,
-                          )..add(LoadProfile()),
-                        ),
-                      ],
-                      child: HomeScreen(user: state.displayUser),
+        return ScreenUtilInit(
+            designSize: const Size(800, 1600),
+            minTextAdapt: true,
+            splitScreenMode: true,
+            builder: (context, child) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Firestore Todos',
+                theme: appThemeData[appTheme],
+                routes: {
+                  '/': (context) {
+                    return BlocBuilder<AuthenticationBloc, AuthenticationState>(
+                      builder: (context, state) {
+                        if (state is Authenticated) {
+                          context.watch<TodosBloc>().add(LoadTodos());
+                          return MultiBlocProvider(
+                            providers: [
+                              BlocProvider<TabCubit>(
+                                create: (context) => TabCubit(),
+                              ),
+                              BlocProvider<FilteredTodosBloc>(
+                                create: (context) => FilteredTodosBloc(
+                                  todosBloc: context.read<TodosBloc>(),
+                                ),
+                              ),
+                              BlocProvider<StatsBloc>(
+                                create: (context) => StatsBloc(
+                                  todosBloc: context.read<TodosBloc>(),
+                                ),
+                              ),
+                              BlocProvider<ProfileBloc>(
+                                create: (context) => ProfileBloc(
+                                  userRepository: widget._userRepository,
+                                )..add(LoadProfile()),
+                              ),
+                            ],
+                            child: HomeScreen(user: state.displayUser),
+                          );
+                        }
+                        if (state is Unauthenticated) {
+                          return LoginPage(
+                              userRepository: widget._userRepository);
+                        }
+                        return SplashScreen();
+                      },
                     );
-                  }
-                  if (state is Unauthenticated) {
-                    return LoginPage(userRepository: widget._userRepository);
-                  }
-                  return SplashScreen();
+                  },
+                  '/addTodo': (context) {
+                    return AddEditScreen(
+                      onSave: (task, note) {
+                        context.read<TodosBloc>().add(
+                              AddTodo(Todo(task, note: note)),
+                            );
+                      },
+                      isEditing: false,
+                    );
+                  },
                 },
               );
-            },
-            '/addTodo': (context) {
-              return AddEditScreen(
-                onSave: (task, note) {
-                  context.read<TodosBloc>().add(
-                        AddTodo(Todo(task, note: note)),
-                      );
-                },
-                isEditing: false,
-              );
-            },
-          },
-        );
+            });
       }),
     );
   }

@@ -11,7 +11,7 @@ part 'profile_state.dart';
 class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
   final UserRepository _userRepository;
 
-  late StreamSubscription _profileSubscription;
+  StreamSubscription? _profileSubscription;
 
   ProfileBloc({required UserRepository userRepository})
       : _userRepository = userRepository,
@@ -25,7 +25,7 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
     LoadProfile event,
     Emitter<ProfileState> emit,
   ) async {
-    _profileSubscription.cancel();
+    _profileSubscription?.cancel();
     final user = await _userRepository.getUser();
 
     emit(ProfileLoaded(user: user!));

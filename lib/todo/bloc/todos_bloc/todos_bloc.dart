@@ -11,7 +11,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   final TodosRepository _todosRepository;
   final UserRepository _userRepository;
 
-  late StreamSubscription _todosSubscription;
+  StreamSubscription? _todosSubscription;
 
   TodosBloc(this._userRepository, {required TodosRepository todosRepository})
       : _todosRepository = todosRepository,
@@ -26,7 +26,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   Future<void> _onLoadTodos(LoadTodos event, Emitter<TodosState> emit) async {
-    _todosSubscription.cancel();
+    _todosSubscription?.cancel();
     final user = await _userRepository.getUser();
     _todosSubscription = _todosRepository.todos(user!.uid).listen(
           (todos) => add(TodosUpdated(todos)),
@@ -78,7 +78,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   @override
   Future<void> close() {
-    _todosSubscription.cancel();
+    _todosSubscription?.cancel();
     return super.close();
   }
 }
