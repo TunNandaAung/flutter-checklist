@@ -23,7 +23,7 @@ class TabSelector extends StatelessWidget {
       iconSize: 27.0,
       elevation: 0.0,
       currentIndex: AppTab.values.indexOf(activeTab),
-      onTap: (index) => onTabSelected(AppTab.values[index]),
+      onTap: (index) => onTabSelected(AppTab.values[index!]),
       items: AppTab.values.map((tab) {
         return BubbleBottomBarItem(
           backgroundColor: Theme.of(context).bottomAppBarTheme.color,

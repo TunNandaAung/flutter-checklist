@@ -14,8 +14,9 @@ class AddModal {
           return AddTodoForm(
             onSave: (task, note, time) {
               context.read<TodosBloc>().add(
-                    AddTodo(Todo(task,
-                        note: note, userId: userId, time: time ?? 0)),
+                    AddTodo(
+                      Todo(task, note: note, userId: userId, time: time ?? 0),
+                    ),
                   );
             },
             isEditing: false,

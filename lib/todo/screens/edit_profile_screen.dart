@@ -23,8 +23,8 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _EditProfileScreenState extends State<EditProfileScreen> {
-  String _name;
-  String _email;
+  late String _name;
+  late String _email;
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -93,11 +93,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   initialValue: widget.user.displayName,
                                   autofocus: false,
                                   validator: (val) {
-                                    return val.trim().isEmpty
+                                    return val!.trim().isEmpty
                                         ? 'Please enter your name'
                                         : null;
                                   },
-                                  onSaved: (value) => _name = value,
+                                  onSaved: (value) => _name = value!,
                                   cursorColor: Color(0xFF5d74e3),
                                   style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
@@ -133,9 +133,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 padding: EdgeInsets.only(left: 18.0, right: 12),
                                 child: TextFormField(
                                   initialValue: widget.user.email,
-                                  onSaved: (value) => _email = value,
+                                  onSaved: (value) => _email = value!,
                                   validator: (val) {
-                                    return val.trim().isEmpty
+                                    return val!.trim().isEmpty
                                         ? 'Please enter your email'
                                         : null;
                                   },
@@ -216,8 +216,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 height: 40.0,
                 child: TextButton(
                   onPressed: () {
-                    if (_formKey.currentState.validate()) {
-                      _formKey.currentState.save();
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
                       widget.onSave(widget.user, _name, _email);
                       Navigator.of(context).pop();
                     }

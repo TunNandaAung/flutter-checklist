@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class HomeScreen extends StatelessWidget {
   final User user;
 
-  HomeScreen({Key? key, this.user}) : super(key: key);
+  HomeScreen({Key? key, required this.user}) : super(key: key);
 
   final _scaffoldMessengerKey = new GlobalKey<ScaffoldMessengerState>();
 
@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
     return BlocListener<ConnectivityBloc, ConnectivityState>(
       listener: (context, state) {
         if (state is Offline) {
-          _scaffoldMessengerKey.currentState
+          _scaffoldMessengerKey.currentState!
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
@@ -47,12 +47,12 @@ class HomeScreen extends StatelessWidget {
                   label: 'Dismiss',
                   textColor: Colors.white,
                   onPressed: () =>
-                      _scaffoldMessengerKey.currentState.hideCurrentSnackBar(),
+                      _scaffoldMessengerKey.currentState!.hideCurrentSnackBar(),
                 ),
               ),
             );
         } else {
-          _scaffoldMessengerKey.currentState.hideCurrentSnackBar();
+          _scaffoldMessengerKey.currentState!.hideCurrentSnackBar();
         }
       },
       child: BlocBuilder<ConnectivityBloc, ConnectivityState>(

@@ -3,7 +3,6 @@ import 'package:bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/utils/validators.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:stream_transform/stream_transform.dart';
 
@@ -22,8 +21,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final UserRepository _userRepository;
 
   RegisterBloc({required UserRepository userRepository})
-      : assert(userRepository != null),
-        _userRepository = userRepository,
+      : _userRepository = userRepository,
         super(RegisterState.empty()) {
     on<EmailChanged>(
       _onEmailChanged,

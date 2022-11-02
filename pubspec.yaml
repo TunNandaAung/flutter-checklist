@@ -20,6 +20,7 @@ dependencies:
   bloc_concurrency: ^0.2.0
   bubble_bottom_bar: ^2.0.0
   cloud_firestore: ^4.0.3
+  collection: ^1.17.0
   connectivity_plus: ^3.0.2
   cupertino_icons: ^1.0.5
   equatable: ^2.0.5

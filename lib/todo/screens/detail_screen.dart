@@ -1,9 +1,11 @@
 import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/modal/edit_modal.dart';
+import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:checklist/todo/widgets/circular_checkbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:collection/collection.dart';
 
 class DetailsScreen extends StatelessWidget {
   final String id;
@@ -14,9 +16,8 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<TodosBloc, TodosState>(
       builder: (context, state) {
-        final todo = (state as TodosLoaded).todos.firstWhere(
+        final Todo? todo = (state as TodosLoaded).todos.firstWhereOrNull(
               (todo) => todo.id == id,
-              orElse: () => null,
             );
         return Container(
           decoration: BoxDecoration(
@@ -46,18 +47,22 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
               actions: [
-                IconButton(
-                  tooltip: 'Delete Todo',
-                  icon: Icon(
-                    Icons.delete,
-                    size: 30.0,
-                    color: Theme.of(context).dividerColor,
-                  ),
-                  onPressed: () {
-                    context.read<TodosBloc>().add(DeleteTodo(todo));
-                    Navigator.pop(context, todo);
-                  },
-                )
+                todo != null
+                    ? IconButton(
+                        tooltip: 'Delete Todo',
+                        icon: Icon(
+                          Icons.delete,
+                          size: 30.0,
+                          color: Theme.of(context).dividerColor,
+                        ),
+                        onPressed: () {
+                          context.read<TodosBloc>().add(DeleteTodo(
+                                todo,
+                              ));
+                          Navigator.pop(context, todo);
+                        },
+                      )
+                    : const SizedBox()
               ],
             ),
             body: todo == null
@@ -170,7 +175,7 @@ class DetailsScreen extends StatelessWidget {
                                       width: double.infinity,
                                       height: null,
                                       decoration: BoxDecoration(
-                                        color: todo.time + 60 >
+                                        color: todo.time! + 60 >
                                                 DateTime.now()
                                                     .millisecondsSinceEpoch
                                             ? Color(0xFF1dc3f5).withOpacity(.8)
@@ -202,9 +207,9 @@ class DetailsScreen extends StatelessWidget {
                                               Text(
                                                 DateFormat('EEE, d MMM hh:mm a')
                                                     .format(DateTime
-                                                            .fromMillisecondsSinceEpoch(
-                                                                todo.time)
-                                                        .toLocal()),
+                                                        .fromMillisecondsSinceEpoch(
+                                                  todo.time!,
+                                                ).toLocal()),
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontFamily:

@@ -8,7 +8,7 @@ class Todo {
   final String note;
   final String task;
   final String userId;
-  final int time;
+  final int? time;
 
   Todo(
     this.task, {
@@ -22,13 +22,14 @@ class Todo {
         this.userId = userId ?? '',
         this.time = time ?? 0;
 
-  Todo copyWith(
-      {bool complete,
-      String id,
-      String note,
-      String task,
-      String userId,
-      int time}) {
+  Todo copyWith({
+    bool? complete,
+    String? id,
+    String? note,
+    String? task,
+    String? userId,
+    int? time,
+  }) {
     return Todo(task ?? this.task,
         complete: complete ?? this.complete,
         id: id ?? this.id,

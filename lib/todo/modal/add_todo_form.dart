@@ -3,7 +3,7 @@ import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-typedef OnSaveCallback = Function(String task, String note, int time);
+typedef OnSaveCallback = Function(String task, String note, int? time);
 
 class AddTodoForm extends StatefulWidget {
   final bool isEditing;

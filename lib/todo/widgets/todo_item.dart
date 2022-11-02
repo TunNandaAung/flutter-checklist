@@ -7,7 +7,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 class TodoItem extends StatelessWidget {
   final DismissDirectionCallback onDismissed;
   final GestureTapCallback onTap;
-  final ValueChanged<bool> onCheckboxChanged;
+  final ValueChanged<bool?>? onCheckboxChanged;
   final Todo todo;
 
   TodoItem({
@@ -132,9 +132,9 @@ class TodoItem extends StatelessWidget {
   }
 
   Widget dateTime() {
-    return todo.time + 60 > DateTime.now().millisecondsSinceEpoch
+    return todo.time! + 60 > DateTime.now().millisecondsSinceEpoch
         ? Text(
-            convertEpochtoDateString(todo.time),
+            convertEpochtoDateString(todo.time!),
             style: TextStyle(
               fontSize: 14.0,
               color: todo.complete ? Colors.grey : Color(0xFF1dc3f5),
@@ -142,7 +142,7 @@ class TodoItem extends StatelessWidget {
             ),
           )
         : Text(
-            convertEpochtoDateString(todo.time),
+            convertEpochtoDateString(todo.time!),
             style: TextStyle(
               fontSize: 14.0,
               color: todo.complete ? Colors.grey : Colors.red.withOpacity(.8),

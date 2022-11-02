@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
-import 'package:meta/meta.dart';
 
 part 'connectivity_event.dart';
 part 'connectivity_state.dart';
@@ -10,7 +9,7 @@ part 'connectivity_state.dart';
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   final ConnectivityResult result;
 
-  StreamSubscription _connectivitySubscription;
+  late StreamSubscription _connectivitySubscription;
 
   ConnectivityBloc({required this.result}) : super(Offline()) {
     Connectivity().onConnectivityChanged.listen((result) {
@@ -33,7 +32,7 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
 
   @override
   Future<void> close() {
-    _connectivitySubscription?.cancel();
+    _connectivitySubscription.cancel();
     return super.close();
   }
 }

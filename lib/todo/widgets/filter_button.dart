@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FilterButton extends StatelessWidget {
   final bool visible;
 
-  FilterButton({this.visible, Key key}) : super(key: key);
+  FilterButton({required this.visible, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

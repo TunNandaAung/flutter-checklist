@@ -14,17 +14,17 @@ import 'edit_profile_screen.dart';
 class Profile extends StatefulWidget {
   final User user;
 
-  Profile({Key? key, this.user}) : super(key: key);
+  Profile({Key? key, required this.user}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
-  AnimationController animController;
-  Animation<Offset> animation;
+  late AnimationController animController;
+  late Animation<Offset> animation;
   int themeIndex = 1;
-  double _scale;
+  late double _scale;
 
   final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -117,7 +117,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
             );
         } else if (state is ProfileNotUpdated) {
           if (state.error.trim().length != 0) {
-            _scaffoldMessengerKey.currentState.showSnackBar(
+            _scaffoldMessengerKey.currentState!.showSnackBar(
               SnackBar(
                 elevation: 6.0,
                 behavior: SnackBarBehavior.floating,
@@ -183,14 +183,14 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     child: Column(
                       children: <Widget>[
                         Text(
-                            state.user == null || state.user.displayName == null
+                            state.user.displayName == null
                                 ? 'No Name'
-                                : state.user.displayName,
+                                : state.user.displayName!,
                             style: Theme.of(context).textTheme.headline5),
                         Text(
-                            state.user == null || state.user.email == null
+                            state.user.email == null
                                 ? 'No Email'
-                                : state.user.email,
+                                : state.user.email!,
                             style: Theme.of(context).textTheme.headline2),
                         Transform.translate(
                           offset: Offset(0.0,

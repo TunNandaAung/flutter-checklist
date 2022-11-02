@@ -34,7 +34,7 @@ class _EditTodoFormState extends State<EditTodoForm> {
   void initState() {
     _dateTime = widget.todo.time == 0
         ? null
-        : DateTime.fromMillisecondsSinceEpoch(widget.todo.time);
+        : DateTime.fromMillisecondsSinceEpoch(widget.todo.time!);
     super.initState();
   }
 
