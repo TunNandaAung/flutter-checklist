@@ -1,6 +1,7 @@
 import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/register/bloc/register_bloc.dart';
 import 'package:checklist/register/ui/register_button.dart';
+import 'package:checklist/todo/widgets/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,26 +48,11 @@ class _RegisterFormState extends State<RegisterForm> {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              SnackBar(
-                elevation: 6.0,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                //backgroundColor: Color(0xFF2d3447),
-                backgroundColor: Color(0xFF5d74e3),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Registering...',
-                      style: TextStyle(fontFamily: 'Poppins-Bold'),
-                    ),
-                    CircularProgressIndicator(),
-                  ],
-                ),
+              CustomSnackBar.show(
+                title: 'Registering...',
+                icon: CircularProgressIndicator(),
               ),
             );
-          CircularProgressIndicator();
         }
         if (state.isSuccess) {
           context.read<AuthenticationBloc>().add(LoggedIn());
@@ -76,22 +62,10 @@ class _RegisterFormState extends State<RegisterForm> {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              SnackBar(
-                elevation: 6.0,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Register Failure',
-                      style: TextStyle(fontFamily: 'Poppins-Bold'),
-                    ),
-                    Icon(Icons.error)
-                  ],
-                ),
+              CustomSnackBar.show(
+                title: 'Register Failure!',
                 backgroundColor: Colors.red,
+                icon: Icon(Icons.error),
               ),
             );
         }

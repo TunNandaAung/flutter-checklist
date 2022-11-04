@@ -1,4 +1,5 @@
 import 'package:checklist/theme/cubit/theme_cubit.dart';
+import 'package:checklist/todo/widgets/custom_snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/preferences/preferences.dart';
@@ -96,23 +97,9 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              SnackBar(
-                elevation: 6.0,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0)),
-                //backgroundColor: Color(0xFF2d3447),
-                backgroundColor: Color(0xFF5d74e3),
-                duration: Duration(seconds: 2),
-                content: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Password Successfully Changed!',
-                      style: TextStyle(fontFamily: 'Poppins-Bold'),
-                    ),
-                  ],
-                ),
+              CustomSnackBar.show(
+                title: 'Password Successfully Changed!',
+                icon: Icon(Icons.check),
               ),
             );
         } else if (state is ProfileNotUpdated) {

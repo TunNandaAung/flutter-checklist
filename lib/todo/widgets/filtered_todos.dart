@@ -48,10 +48,14 @@ class FilteredTodos extends StatelessWidget {
                 todo: todo,
                 onDismissed: (direction) {
                   context.read<TodosBloc>().add(DeleteTodo(todo));
-                  ScaffoldMessenger.of(context).showSnackBar(DeleteTodoSnackBar(
-                    todo: todo,
-                    onUndo: () => context.read<TodosBloc>().add(AddTodo(todo)),
-                  ));
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    DeleteTodoSnackBar(
+                      todo: todo,
+                      onUndo: () => context.read<TodosBloc>().add(
+                            AddTodo(todo),
+                          ),
+                    ),
+                  );
                 },
                 onTap: () async {
                   final removedTodo = await Navigator.of(context).push(

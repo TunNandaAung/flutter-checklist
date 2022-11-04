@@ -41,4 +41,27 @@ class CustomSnackBar {
       ),
     );
   }
+
+  static SnackBar show({
+    required String title,
+    Color? backgroundColor,
+    Widget? icon,
+  }) {
+    return SnackBar(
+      elevation: 6.0,
+      behavior: SnackBarBehavior.floating,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+      backgroundColor: backgroundColor ?? Color(0xFF5d74e3),
+      content: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontFamily: 'Poppins-Bold'),
+          ),
+          icon != null ? icon : SizedBox()
+        ],
+      ),
+    );
+  }
 }

@@ -2,6 +2,7 @@ import 'package:checklist/authentication_bloc/bloc.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/login/bloc/login_bloc.dart';
 import 'package:checklist/register/ui/register_screen.dart';
+import 'package:checklist/todo/widgets/custom_snack_bar.dart';
 import 'package:checklist/todo/widgets/dialogs.dart';
 import 'package:checklist/utils/custom_icons.dart';
 import 'package:checklist/utils/header.dart';
@@ -77,23 +78,10 @@ class _LoginFormState extends State<LoginForm> {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
-                      SnackBar(
-                        elevation: 6.0,
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Login Failure',
-                              style: TextStyle(fontFamily: 'Poppins-Bold'),
-                            ),
-                            Icon(Icons.error)
-                          ],
-                        ),
+                      CustomSnackBar.show(
+                        title: 'Login Failure',
                         backgroundColor: Colors.red,
+                        icon: Icon(Icons.error),
                       ),
                     );
                 }
@@ -101,23 +89,10 @@ class _LoginFormState extends State<LoginForm> {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
-                      SnackBar(
-                        elevation: 6.0,
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Failed to send password reset email',
-                              style: TextStyle(fontFamily: 'Poppins-Bold'),
-                            ),
-                            Icon(Icons.error)
-                          ],
-                        ),
+                      CustomSnackBar.show(
+                        title: 'Failed to send password reset email.',
                         backgroundColor: Colors.red,
+                        icon: Icon(Icons.error),
                       ),
                     );
                 }
@@ -125,22 +100,10 @@ class _LoginFormState extends State<LoginForm> {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
-                      SnackBar(
-                        elevation: 6.0,
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Password reset mail has been sent to your email address',
-                              style: TextStyle(fontFamily: 'Poppins-Bold'),
-                            ),
-                            Icon(Icons.check)
-                          ],
-                        ),
-                        backgroundColor: Colors.red,
+                      CustomSnackBar.show(
+                        title:
+                            'Password reset mail has been sent to your email address',
+                        icon: Icon(Icons.check),
                       ),
                     );
                 }
@@ -148,22 +111,9 @@ class _LoginFormState extends State<LoginForm> {
                   ScaffoldMessenger.of(context)
                     ..hideCurrentSnackBar()
                     ..showSnackBar(
-                      SnackBar(
-                        elevation: 6.0,
-                        behavior: SnackBarBehavior.floating,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10.0)),
-                        backgroundColor: Color(0xFF5d74e3),
-                        content: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Logging In...',
-                              style: TextStyle(fontFamily: 'Poppins-Bold'),
-                            ),
-                            CircularProgressIndicator(),
-                          ],
-                        ),
+                      CustomSnackBar.show(
+                        title: 'Logging In...',
+                        icon: CircularProgressIndicator(),
                       ),
                     );
                 }

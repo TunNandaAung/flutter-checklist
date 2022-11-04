@@ -12,10 +12,12 @@ class DeleteTodoSnackBar extends SnackBar {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           key: key,
-          content: Text('Deleted ${todo.task}',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontFamily: 'Poppins-Bold')),
+          content: Text(
+            'Deleted ${todo.task}',
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontFamily: 'Poppins-Bold'),
+          ),
           backgroundColor: Color(0xFF5d74e3),
           duration: Duration(seconds: 2),
           action: SnackBarAction(
