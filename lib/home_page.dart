@@ -6,16 +6,16 @@ import 'authentication_bloc/bloc.dart';
 class HomePage extends StatelessWidget {
   final String name;
 
-  HomePage({Key? key, required this.name}) : super(key: key);
+  const HomePage({Key? key, required this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.exit_to_app),
+            icon: const Icon(Icons.exit_to_app),
             onPressed: () {
               context.read<AuthenticationBloc>().add(
                     LoggedOut(),

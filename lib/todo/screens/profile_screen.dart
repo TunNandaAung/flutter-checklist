@@ -12,16 +12,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'edit_profile_screen.dart';
 
-class Profile extends StatefulWidget {
+class ProfileScreen extends StatefulWidget {
   final User user;
 
-  Profile({Key? key, required this.user}) : super(key: key);
+  const ProfileScreen({Key? key, required this.user}) : super(key: key);
 
   @override
-  _ProfileState createState() => _ProfileState();
+  ProfileScreenState createState() => ProfileScreenState();
 }
 
-class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
+class ProfileScreenState extends State<ProfileScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController animController;
   late Animation<Offset> animation;
   int themeIndex = 1;
@@ -33,7 +34,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
   void initState() {
     animController = AnimationController(
         vsync: this,
-        duration: Duration(
+        duration: const Duration(
           milliseconds: 200,
         ),
         lowerBound: 0.0,
@@ -72,21 +73,21 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    void _onThemeDarkTapUp(TapUpDetails details) {
+    void onThemeDarkTapUp(TapUpDetails details) {
       animController.forward();
       context.read<ThemeCubit>().changeTheme(AppTheme.Dark);
     }
 
-    void _onThemeDarkTapDown(TapDownDetails details) {
+    void onThemeDarkTapDown(TapDownDetails details) {
       animController.reverse();
     }
 
-    void _onThemeLightTapUp(TapUpDetails details) {
+    void onThemeLightTapUp(TapUpDetails details) {
       animController.forward();
       context.read<ThemeCubit>().changeTheme(AppTheme.Light);
     }
 
-    void _onThemeLightTapDown(TapDownDetails details) {
+    void onThemeLightTapDown(TapDownDetails details) {
       animController.reverse();
     }
 
@@ -99,11 +100,11 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
             ..showSnackBar(
               CustomSnackBar.show(
                 title: 'Password Successfully Changed!',
-                icon: Icon(Icons.check),
+                icon: const Icon(Icons.check),
               ),
             );
         } else if (state is ProfileNotUpdated) {
-          if (state.error.trim().length != 0) {
+          if (state.error.trim().isNotEmpty) {
             _scaffoldMessengerKey.currentState!.showSnackBar(
               SnackBar(
                 elevation: 6.0,
@@ -112,8 +113,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10.0)),
                 //backgroundColor: Color(0xFF2d3447),
                 backgroundColor: Colors.red,
-                duration: Duration(seconds: 2),
-                content: Container(
+                duration: const Duration(seconds: 2),
+                content: SizedBox(
                   height: null,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -121,7 +122,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                       Expanded(
                         child: Text(
                           state.error,
-                          style: TextStyle(fontFamily: 'Poppins-Bold'),
+                          style: const TextStyle(fontFamily: 'Poppins-Bold'),
                         ),
                       ),
                     ],
@@ -149,7 +150,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         BoxShadow(
                             color: Theme.of(context).highlightColor,
                             blurRadius: 30.0,
-                            offset: Offset(0, -30))
+                            offset: const Offset(0, -30))
                       ],
                       gradient: Prefer.prefs.getInt('theme') == 0
                           ? LinearGradient(
@@ -166,7 +167,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           : null,
                       borderRadius: BorderRadius.circular(30.0)),
                   child: Padding(
-                    padding: EdgeInsets.only(top: 60.0),
+                    padding: const EdgeInsets.only(top: 60.0),
                     child: Column(
                       children: <Widget>[
                         Text(
@@ -183,14 +184,14 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                           offset: Offset(0.0,
                               -1 * MediaQuery.of(context).viewInsets.bottom),
                           child: Padding(
-                            padding: EdgeInsets.only(top: 50.0),
-                            child: Container(
+                            padding: const EdgeInsets.only(top: 50.0),
+                            child: SizedBox(
                               width: 50.0,
                               height: 50.0,
                               child: Prefer.prefs.getInt('theme') == 0
                                   ? GestureDetector(
-                                      onTapUp: _onThemeDarkTapUp,
-                                      onTapDown: _onThemeDarkTapDown,
+                                      onTapUp: onThemeDarkTapUp,
+                                      onTapDown: onThemeDarkTapDown,
                                       // onTap: () {
                                       //   animController.forward();
                                       //   context.read<ThemeBloc>()
@@ -199,7 +200,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                       // },
                                       child: Transform.scale(
                                         scale: _scale,
-                                        child: Image(
+                                        child: const Image(
                                           image: AssetImage(
                                               'assets/btn_icon/btn-moon-96.png'),
                                           height: 50,
@@ -208,8 +209,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                       ),
                                     )
                                   : GestureDetector(
-                                      onTapUp: _onThemeLightTapUp,
-                                      onTapDown: _onThemeLightTapDown,
+                                      onTapUp: onThemeLightTapUp,
+                                      onTapDown: onThemeLightTapDown,
                                       // onTap: () {
                                       //   animController.reverse();
                                       //   context.read<ThemeBloc>()
@@ -217,7 +218,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                       // },
                                       child: Transform.scale(
                                         scale: _scale,
-                                        child: Image(
+                                        child: const Image(
                                           image: AssetImage(
                                               'assets/btn_icon/btn-sun-128.png'),
                                           height: 50,
@@ -247,12 +248,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         boxShadow: [
                           BoxShadow(
                               color: Theme.of(context).highlightColor,
-                              offset: Offset(0.0, 8.0),
+                              offset: const Offset(0.0, 8.0),
                               blurRadius: 8.0)
                         ]),
                     child: RawMaterialButton(
-                      shape: CircleBorder(),
-                      child: Icon(
+                      shape: const CircleBorder(),
+                      child: const Icon(
                         Icons.edit,
                         size: 25.0,
                         color: Colors.white,
@@ -291,12 +292,12 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         boxShadow: [
                           BoxShadow(
                               color: Theme.of(context).highlightColor,
-                              offset: Offset(0.0, 8.0),
+                              offset: const Offset(0.0, 8.0),
                               blurRadius: 8.0)
                         ]),
                     child: RawMaterialButton(
-                      shape: CircleBorder(),
-                      child: Icon(
+                      shape: const CircleBorder(),
+                      child: const Icon(
                         Icons.exit_to_app,
                         size: 25.0,
                         color: Colors.white,
@@ -320,9 +321,9 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                         BoxShadow(
                             color: Theme.of(context).highlightColor,
                             blurRadius: 30.0,
-                            offset: Offset(0, 10))
+                            offset: const Offset(0, 10))
                       ],
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage('assets/Darth-Vader-Avatar.png'))),
                 ),
               )
@@ -341,7 +342,7 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: const <Widget>[
                         LoadingIndicator(),
                         SizedBox(height: 9.0),
                         Text(

@@ -41,15 +41,15 @@ Future<void> main() async {
 class Checklist extends StatefulWidget {
   final UserRepository _userRepository;
 
-  Checklist({Key? key, required UserRepository userRepository})
+  const Checklist({Key? key, required UserRepository userRepository})
       : _userRepository = userRepository,
         super(key: key);
 
   @override
-  _ChecklistState createState() => _ChecklistState();
+  ChecklistState createState() => ChecklistState();
 }
 
-class _ChecklistState extends State<Checklist> {
+class ChecklistState extends State<Checklist> {
   late AuthenticationBloc _authenticationBloc;
 
   @override
@@ -124,7 +124,7 @@ class _ChecklistState extends State<Checklist> {
                           return LoginPage(
                               userRepository: widget._userRepository);
                         }
-                        return SplashScreen();
+                        return const SplashScreen();
                       },
                     );
                   },

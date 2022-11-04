@@ -7,13 +7,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class RegisterForm extends StatefulWidget {
-  RegisterForm({Key? key}) : super(key: key);
+  const RegisterForm({Key? key}) : super(key: key);
 
   @override
-  _RegisterFormState createState() => _RegisterFormState();
+  RegisterFormState createState() => RegisterFormState();
 }
 
-class _RegisterFormState extends State<RegisterForm> {
+class RegisterFormState extends State<RegisterForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -50,7 +50,7 @@ class _RegisterFormState extends State<RegisterForm> {
             ..showSnackBar(
               CustomSnackBar.show(
                 title: 'Registering...',
-                icon: CircularProgressIndicator(),
+                icon: const CircularProgressIndicator(),
               ),
             );
         }
@@ -65,7 +65,7 @@ class _RegisterFormState extends State<RegisterForm> {
               CustomSnackBar.show(
                 title: 'Register Failure!',
                 backgroundColor: Colors.red,
-                icon: Icon(Icons.error),
+                icon: const Icon(Icons.error),
               ),
             );
         }
@@ -76,131 +76,127 @@ class _RegisterFormState extends State<RegisterForm> {
           child: Padding(
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).viewInsets.bottom),
-            child: Container(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Form(
-                    key: _formKey,
-                    child: Padding(
-                      padding:
-                          EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: <Widget>[
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text("Cancel",
-                                      style: TextStyle(
-                                          fontSize: ScreenUtil().setSp(30),
-                                          fontFamily: "Poppins-Medium",
-                                          letterSpacing: .6,
-                                          color: Color(0xFF5d74e3))),
-                                ),
-                                RegisterButton(
-                                  onPressed: isRegisterButtonEnabled(state)
-                                      ? _onFormSubmitted
-                                      : null,
-                                ),
-                              ]),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Form(
+                  key: _formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20.0, right: 20.0, top: 10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
-                              Text("Create Account",
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  "Cancel",
                                   style: TextStyle(
-                                      fontSize: ScreenUtil().setSp(42),
-                                      fontFamily: "Poppins-Bold",
-                                      letterSpacing: .6,
-                                      color: Theme.of(context).dividerColor)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: ScreenUtil().setHeight(30),
-                          ),
-                          TextFormField(
-                            controller: _nameController,
-                            autocorrect: false,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (_) {
-                              return !state.isNameValid
-                                  ? 'Plase enter a name'
-                                  : null;
-                            },
-                            cursorColor: Color(0xFF5d74e3),
-                            autofocus: true,
-                            style: Theme.of(context).textTheme.headline1,
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                hintText: "name",
-                                errorStyle:
-                                    TextStyle(fontFamily: 'Poppins-Medium'),
-                                hintStyle: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle),
-                          ),
-                          SizedBox(
-                            height: ScreenUtil().setHeight(15),
-                          ),
-                          TextFormField(
-                            controller: _emailController,
-                            autocorrect: false,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (_) {
-                              return !state.isEmailValid
-                                  ? 'Invalid Email'
-                                  : null;
-                            },
-                            cursorColor: Color(0xFF5d74e3),
-                            autofocus: true,
-                            style: Theme.of(context).textTheme.headline1,
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                hintText: "email",
-                                errorStyle:
-                                    TextStyle(fontFamily: 'Poppins-Medium'),
-                                hintStyle: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle),
-                          ),
-                          SizedBox(
-                            height: ScreenUtil().setHeight(15),
-                          ),
-                          TextFormField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            autocorrect: false,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (_) {
-                              return !state.isPasswordValid
-                                  ? 'Invalid Password'
-                                  : null;
-                            },
-                            style: Theme.of(context).textTheme.headline1,
-                            decoration: InputDecoration(
-                                hintText: "Password",
-                                errorStyle:
-                                    TextStyle(fontFamily: 'Poppins-Medium'),
-                                hintStyle: Theme.of(context)
-                                    .inputDecorationTheme
-                                    .hintStyle),
-                          ),
-                        ],
-                      ),
+                                    fontSize: ScreenUtil().setSp(30),
+                                    fontFamily: "Poppins-Medium",
+                                    letterSpacing: .6,
+                                    color: const Color(0xFF5d74e3),
+                                  ),
+                                ),
+                              ),
+                              RegisterButton(
+                                onPressed: isRegisterButtonEnabled(state)
+                                    ? _onFormSubmitted
+                                    : null,
+                              ),
+                            ]),
+                        const SizedBox(
+                          height: 5.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text("Create Account",
+                                style: TextStyle(
+                                    fontSize: ScreenUtil().setSp(42),
+                                    fontFamily: "Poppins-Bold",
+                                    letterSpacing: .6,
+                                    color: Theme.of(context).dividerColor)),
+                          ],
+                        ),
+                        SizedBox(
+                          height: ScreenUtil().setHeight(30),
+                        ),
+                        TextFormField(
+                          controller: _nameController,
+                          autocorrect: false,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (_) {
+                            return !state.isNameValid
+                                ? 'Plase enter a name'
+                                : null;
+                          },
+                          cursorColor: const Color(0xFF5d74e3),
+                          autofocus: true,
+                          style: Theme.of(context).textTheme.headline1,
+                          decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              hintText: "name",
+                              errorStyle:
+                                  const TextStyle(fontFamily: 'Poppins-Medium'),
+                              hintStyle: Theme.of(context)
+                                  .inputDecorationTheme
+                                  .hintStyle),
+                        ),
+                        SizedBox(
+                          height: ScreenUtil().setHeight(15),
+                        ),
+                        TextFormField(
+                          controller: _emailController,
+                          autocorrect: false,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (_) {
+                            return !state.isEmailValid ? 'Invalid Email' : null;
+                          },
+                          cursorColor: const Color(0xFF5d74e3),
+                          autofocus: true,
+                          style: Theme.of(context).textTheme.headline1,
+                          decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              hintText: "email",
+                              errorStyle:
+                                  const TextStyle(fontFamily: 'Poppins-Medium'),
+                              hintStyle: Theme.of(context)
+                                  .inputDecorationTheme
+                                  .hintStyle),
+                        ),
+                        SizedBox(
+                          height: ScreenUtil().setHeight(15),
+                        ),
+                        TextFormField(
+                          controller: _passwordController,
+                          obscureText: true,
+                          autocorrect: false,
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (_) {
+                            return !state.isPasswordValid
+                                ? 'Invalid Password'
+                                : null;
+                          },
+                          style: Theme.of(context).textTheme.headline1,
+                          decoration: InputDecoration(
+                              hintText: "Password",
+                              errorStyle:
+                                  const TextStyle(fontFamily: 'Poppins-Medium'),
+                              hintStyle: Theme.of(context)
+                                  .inputDecorationTheme
+                                  .hintStyle),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         );

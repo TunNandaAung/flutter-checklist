@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checklist/todo/model/models.dart';
 
 class TabCubit extends Cubit<AppTab> {

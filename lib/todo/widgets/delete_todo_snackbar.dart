@@ -16,13 +16,13 @@ class DeleteTodoSnackBar extends SnackBar {
             'Deleted ${todo.task}',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: TextStyle(fontFamily: 'Poppins-Bold'),
+            style: const TextStyle(fontFamily: 'Poppins-Bold'),
           ),
-          backgroundColor: Color(0xFF5d74e3),
-          duration: Duration(seconds: 2),
+          backgroundColor: const Color(0xFF5d74e3),
+          duration: const Duration(seconds: 2),
           action: SnackBarAction(
             label: 'Undo',
-            textColor: Color(0xFF17ead9),
+            textColor: const Color(0xFF17ead9),
             onPressed: onUndo,
           ),
         );

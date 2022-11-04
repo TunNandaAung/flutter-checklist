@@ -10,7 +10,7 @@ import 'package:collection/collection.dart';
 class DetailsScreen extends StatelessWidget {
   final String id;
 
-  DetailsScreen({Key? key, required this.id}) : super(key: key);
+  const DetailsScreen({Key? key, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class DetailsScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.headline4,
               ),
               leading: Container(
-                decoration: BoxDecoration(shape: BoxShape.circle),
+                decoration: const BoxDecoration(shape: BoxShape.circle),
                 child: IconButton(
                   icon: Icon(Icons.arrow_back_ios,
                       size: 28.0, color: Theme.of(context).dividerColor),
@@ -78,7 +78,7 @@ class DetailsScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Theme.of(context).cardColor,
                           //color: Colors.white,
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(50.0),
                             topRight: Radius.circular(50.0),
                             bottomLeft: Radius.circular(50.0),
@@ -87,7 +87,7 @@ class DetailsScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: ListView(
                         children: [
                           Row(
@@ -115,13 +115,13 @@ class DetailsScreen extends StatelessWidget {
                                                 ),
                                               );
                                         },
-                                        activeColor: Color(0xFF17ead9),
+                                        activeColor: const Color(0xFF17ead9),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 30.0,
                               ),
                               Expanded(
@@ -133,14 +133,14 @@ class DetailsScreen extends StatelessWidget {
                                       child: Container(
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        padding: EdgeInsets.only(
+                                        padding: const EdgeInsets.only(
                                           top: 8.0,
                                           bottom: 16.0,
                                         ),
                                         child: Text(
                                           todo.task,
                                           style: todo.complete
-                                              ? TextStyle(
+                                              ? const TextStyle(
                                                   fontFamily: 'Poppins-Bold',
                                                   color: Colors.grey,
                                                   fontSize: 23.0,
@@ -152,7 +152,7 @@ class DetailsScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 8.0),
+                                    const SizedBox(height: 8.0),
                                     Hero(
                                       tag: '${todo.id}__noteheroTag',
                                       child: Text(
@@ -175,7 +175,7 @@ class DetailsScreen extends StatelessWidget {
                               ? Column()
                               : Column(
                                   children: <Widget>[
-                                    SizedBox(height: 30.0),
+                                    const SizedBox(height: 30.0),
                                     Container(
                                       width: double.infinity,
                                       height: null,
@@ -183,39 +183,40 @@ class DetailsScreen extends StatelessWidget {
                                         color: todo.time! + 60 >
                                                 DateTime.now()
                                                     .millisecondsSinceEpoch
-                                            ? Color(0xFF1dc3f5).withOpacity(.8)
+                                            ? const Color(0xFF1dc3f5)
+                                                .withOpacity(.8)
                                             : Colors.red.withOpacity(.8),
                                         borderRadius: BorderRadius.circular(8),
                                         boxShadow: [
                                           BoxShadow(
                                             color: Theme.of(context)
                                                 .highlightColor,
-                                            offset: Offset(0, 10),
+                                            offset: const Offset(0, 10),
                                             blurRadius: 30,
                                           ),
                                         ],
                                       ),
                                       child: Center(
                                         child: Padding(
-                                          padding: EdgeInsets.symmetric(
+                                          padding: const EdgeInsets.symmetric(
                                               vertical: 15.0, horizontal: 15.0),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceEvenly,
                                             children: <Widget>[
-                                              Icon(
+                                              const Icon(
                                                 Icons.calendar_today,
                                                 size: 25.0,
                                                 color: Colors.white,
                                               ),
-                                              SizedBox(width: 15.0),
+                                              const SizedBox(width: 15.0),
                                               Text(
                                                 DateFormat('EEE, d MMM hh:mm a')
                                                     .format(DateTime
                                                         .fromMillisecondsSinceEpoch(
                                                   todo.time!,
                                                 ).toLocal()),
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.white,
                                                     fontFamily:
                                                         'Poppins-Medium',
@@ -223,8 +224,8 @@ class DetailsScreen extends StatelessWidget {
                                                     decoration:
                                                         TextDecoration.none),
                                               ),
-                                              SizedBox(width: 30.0),
-                                              Spacer(),
+                                              const SizedBox(width: 30.0),
+                                              const Spacer(),
                                             ],
                                           ),
                                         ),
@@ -240,23 +241,18 @@ class DetailsScreen extends StatelessWidget {
               width: 65.0,
               height: 65.0,
               decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                     colors: [Color(0xFF17ead9), Color(0xFF6078ea)],
                   ),
                   shape: BoxShape.circle,
                   boxShadow: [
                     BoxShadow(
-                        color: Color(0xFF6078ea).withOpacity(.3),
-                        offset: Offset(0.0, 8.0),
+                        color: const Color(0xFF6078ea).withOpacity(.3),
+                        offset: const Offset(0.0, 8.0),
                         blurRadius: 8.0)
                   ]),
               child: RawMaterialButton(
-                shape: CircleBorder(),
-                child: Icon(
-                  Icons.edit,
-                  size: 35.0,
-                  color: Colors.white,
-                ),
+                shape: const CircleBorder(),
                 onPressed: todo == null
                     ? null
                     : () {
@@ -279,6 +275,11 @@ class DetailsScreen extends StatelessWidget {
                         // );
                         EditModal().mainBottomSheet(context, todo);
                       },
+                child: const Icon(
+                  Icons.edit,
+                  size: 35.0,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
@@ -291,7 +292,7 @@ class DetailsScreen extends StatelessWidget {
 class MClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
     path.lineTo(0.0, size.height - 100);
 
     var controlpoint = Offset(35.0, size.height);

@@ -7,34 +7,32 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FilteredTodos extends StatelessWidget {
   final String userId;
-  FilteredTodos({Key? key, required this.userId}) : super(key: key);
+  const FilteredTodos({Key? key, required this.userId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(
       builder: (context, state) {
         if (state is FilteredTodosLoading) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         } else if (state is FilteredTodosLoaded) {
           final todos = state.filteredTodos;
           if (todos.isEmpty) {
             return SingleChildScrollView(
               child: Center(
-                child: Container(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 30.0, vertical: 60.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Image.asset('assets/task-complete.png'),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        Text('You have no task! Enjoy your day',
-                            style: Theme.of(context).textTheme.bodyText1)
-                      ],
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 30.0, vertical: 60.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.asset('assets/task-complete.png'),
+                      const SizedBox(
+                        height: 10.0,
+                      ),
+                      Text('You have no task! Enjoy your day',
+                          style: Theme.of(context).textTheme.bodyText1)
+                    ],
                   ),
                 ),
               ),

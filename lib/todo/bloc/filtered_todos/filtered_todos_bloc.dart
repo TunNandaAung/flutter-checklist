@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checklist/todo/bloc/todos_bloc/todos_bloc.dart';
 import 'package:checklist/todo/model/models.dart';
 import 'package:checklist/todo/todos_repository/lib/src/models/models.dart';

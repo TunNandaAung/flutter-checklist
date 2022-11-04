@@ -7,7 +7,7 @@ class TabSelector extends StatelessWidget {
   final AppTab activeTab;
   final Function(AppTab) onTabSelected;
 
-  TabSelector({
+  const TabSelector({
     Key? key,
     required this.activeTab,
     required this.onTabSelected,
@@ -17,8 +17,10 @@ class TabSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return BubbleBottomBar(
       backgroundColor: Theme.of(context).cardColor,
-      borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0)),
+      borderRadius: const BorderRadius.only(
+        topLeft: Radius.circular(20.0),
+        topRight: Radius.circular(20.0),
+      ),
       opacity: .3,
       iconSize: 27.0,
       elevation: 0.0,

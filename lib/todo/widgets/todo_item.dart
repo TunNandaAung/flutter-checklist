@@ -10,7 +10,7 @@ class TodoItem extends StatelessWidget {
   final ValueChanged<bool?>? onCheckboxChanged;
   final Todo todo;
 
-  TodoItem({
+  const TodoItem({
     Key? key,
     required this.onDismissed,
     required this.onTap,
@@ -27,10 +27,10 @@ class TodoItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             color: Colors.transparent),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 36.0),
+          padding: const EdgeInsets.symmetric(horizontal: 36.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
+            children: const <Widget>[
               Icon(
                 MdiIcons.deleteOutline,
                 color: Colors.red,
@@ -43,7 +43,7 @@ class TodoItem extends StatelessWidget {
       key: Key('__todo_item_${todo.id}'),
       onDismissed: onDismissed,
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Stack(
           children: <Widget>[
             Hero(
@@ -57,7 +57,7 @@ class TodoItem extends StatelessWidget {
                     boxShadow: [
                       BoxShadow(
                           color: Colors.black12.withOpacity(0.01),
-                          offset: Offset(0, 10),
+                          offset: const Offset(0, 10),
                           blurRadius: 10.0)
                     ]),
               ),
@@ -81,7 +81,7 @@ class TodoItem extends StatelessWidget {
                             child: CircularCheckbox(
                               value: todo.complete,
                               onChanged: onCheckboxChanged,
-                              activeColor: Color(0xFF17ead9),
+                              activeColor: const Color(0xFF17ead9),
                             ),
                           ),
                         ),
@@ -89,11 +89,11 @@ class TodoItem extends StatelessWidget {
                     ),
                     title: Hero(
                       tag: '${todo.id}__heroTag',
-                      child: Container(
+                      child: SizedBox(
                         width: MediaQuery.of(context).size.width,
                         child: Text(todo.task,
                             style: todo.complete
-                                ? TextStyle(
+                                ? const TextStyle(
                                     fontFamily: 'Poppins-Bold',
                                     color: Colors.grey,
                                     fontSize: 23.0,
@@ -120,7 +120,7 @@ class TodoItem extends StatelessWidget {
                         : null,
                     trailing: todo.time != 0 || todo.time != null
                         ? dateTime()
-                        : Text(""),
+                        : const Text(""),
                   ),
                 ],
               ),
@@ -137,7 +137,7 @@ class TodoItem extends StatelessWidget {
             convertEpochtoDateString(todo.time!),
             style: TextStyle(
               fontSize: 14.0,
-              color: todo.complete ? Colors.grey : Color(0xFF1dc3f5),
+              color: todo.complete ? Colors.grey : const Color(0xFF1dc3f5),
               decoration: TextDecoration.none,
             ),
           )

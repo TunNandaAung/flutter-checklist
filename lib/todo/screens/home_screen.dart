@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   HomeScreen({Key? key, required this.user}) : super(key: key);
 
-  final _scaffoldMessengerKey = new GlobalKey<ScaffoldMessengerState>();
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                 icon: Icons.error,
                 backgroundColor: Colors.red,
                 actionLabel: 'Dismiss',
-                duration: Duration(minutes: 1),
+                duration: const Duration(minutes: 1),
                 onActionPressed: () =>
                     ScaffoldMessenger.of(context).hideCurrentSnackBar(),
               ),
@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                     ? null
                     : activeTab == AppTab.stats
                         ? PreferredSize(
-                            preferredSize: Size.fromHeight(90.0),
+                            preferredSize: const Size.fromHeight(90.0),
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),
                               child: Container(
@@ -90,7 +90,7 @@ class HomeScreen extends StatelessWidget {
                                   color: Theme.of(context)
                                       .appBarTheme
                                       .backgroundColor,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     bottomRight: Radius.circular(30.0),
                                     bottomLeft: Radius.circular(30.0),
                                   ),
@@ -116,6 +116,7 @@ class HomeScreen extends StatelessWidget {
                                     )
                                   ],
                                   bottom: PreferredSize(
+                                    preferredSize: const Size(0.0, 0.0),
                                     child: Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           8.0, 0.0, 150.0, 0.0),
@@ -126,14 +127,13 @@ class HomeScreen extends StatelessWidget {
                                             .headline4,
                                       ),
                                     ),
-                                    preferredSize: Size(0.0, 0.0),
                                   ),
                                 ),
                               ),
                             ),
                           )
                         : PreferredSize(
-                            preferredSize: Size.fromHeight(90.0),
+                            preferredSize: const Size.fromHeight(90.0),
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 8.0),
                               child: Container(
@@ -142,7 +142,7 @@ class HomeScreen extends StatelessWidget {
                                   color: Theme.of(context)
                                       .appBarTheme
                                       .backgroundColor,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     bottomRight: Radius.circular(20.0),
                                     bottomLeft: Radius.circular(20.0),
                                   ),
@@ -168,6 +168,7 @@ class HomeScreen extends StatelessWidget {
                                     )
                                   ],
                                   bottom: PreferredSize(
+                                    preferredSize: const Size(0.0, 0.0),
                                     child: Align(
                                       alignment: Alignment.centerLeft,
                                       child: Padding(
@@ -181,7 +182,6 @@ class HomeScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    preferredSize: Size(0.0, 0.0),
                                   ),
                                 ),
                               ),
@@ -190,8 +190,8 @@ class HomeScreen extends StatelessWidget {
                 body: activeTab == AppTab.todos
                     ? FilteredTodos(userId: user.uid)
                     : activeTab == AppTab.stats
-                        ? Stats()
-                        : Profile(
+                        ? const Stats()
+                        : ProfileScreen(
                             user: user,
                           ),
                 // floatingActionButton: FloatingActionButton(
@@ -206,19 +206,20 @@ class HomeScreen extends StatelessWidget {
                         width: 65.0,
                         height: 65.0,
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: [Color(0xFF17ead9), Color(0xFF6078ea)],
                             ),
                             shape: BoxShape.circle,
                             boxShadow: [
                               BoxShadow(
-                                  color: Color(0xFF6078ea).withOpacity(.3),
-                                  offset: Offset(0.0, 8.0),
+                                  color:
+                                      const Color(0xFF6078ea).withOpacity(.3),
+                                  offset: const Offset(0.0, 8.0),
                                   blurRadius: 8.0)
                             ]),
                         child: RawMaterialButton(
-                          shape: CircleBorder(),
-                          child: Icon(
+                          shape: const CircleBorder(),
+                          child: const Icon(
                             Icons.add,
                             size: 35.0,
                             color: Colors.white,

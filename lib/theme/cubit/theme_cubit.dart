@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checklist/preferences/preferences.dart';
 import 'package:checklist/theme/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';

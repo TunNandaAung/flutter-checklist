@@ -39,7 +39,7 @@ class PasswordChanged extends ProfileState {}
 class ProfileNotUpdated extends ProfileState {
   final String error;
 
-  ProfileNotUpdated(this.error);
+  const ProfileNotUpdated(this.error);
 
   @override
   List<Object> get props => [error];

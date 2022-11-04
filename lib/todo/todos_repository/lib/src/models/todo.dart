@@ -10,17 +10,17 @@ class Todo {
   final String userId;
   final int? time;
 
-  Todo(
+  const Todo(
     this.task, {
     this.complete = false,
     String? note,
     String? id,
     String? userId,
     int? time,
-  })  : this.note = note ?? '',
-        this.id = id ?? '',
-        this.userId = userId ?? '',
-        this.time = time ?? 0;
+  })  : note = note ?? '',
+        id = id ?? '',
+        userId = userId ?? '',
+        time = time ?? 0;
 
   Todo copyWith({
     bool? complete,

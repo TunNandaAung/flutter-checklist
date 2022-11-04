@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LoginPage extends StatelessWidget {
   final UserRepository _userRepository;
 
-  LoginPage({Key? key, required UserRepository userRepository})
+  const LoginPage({Key? key, required UserRepository userRepository})
       : _userRepository = userRepository,
         super(key: key);
 

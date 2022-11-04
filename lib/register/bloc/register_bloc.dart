@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/utils/validators.dart';
 import 'package:equatable/equatable.dart';

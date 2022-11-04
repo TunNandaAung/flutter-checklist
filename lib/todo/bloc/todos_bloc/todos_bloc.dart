@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checklist/data/user_repository.dart';
 import 'package:checklist/todo/todos_repository/lib/todos_barrel.dart';
 import 'package:equatable/equatable.dart';
@@ -53,9 +53,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
           .map((todo) =>
               todo.copyWith(complete: !allComplete, userId: event.userId))
           .toList();
-      updatedTodos.forEach((updatedTodo) {
+      for (var updatedTodo in updatedTodos) {
         _todosRepository.updateTodo(updatedTodo);
-      });
+      }
     }
   }
 
@@ -65,9 +65,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     if (currentState is TodosLoaded) {
       final List<Todo> completedTodos =
           currentState.todos.where((todo) => todo.complete).toList();
-      completedTodos.forEach((completedTodo) {
+      for (var completedTodo in completedTodos) {
         _todosRepository.deleteTodo(completedTodo);
-      });
+      }
     }
   }
 

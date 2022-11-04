@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:checklist/data/user_repository.dart';
@@ -60,13 +60,13 @@ class ProfileBloc extends Bloc<ProfileEvent, ProfileState> {
           newPassword: event.newPassword);
       emit(PasswordChanged());
 
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 300));
 
       emit(ProfileLoaded(user: event.user));
     } on PlatformException catch (e) {
       emit(ProfileNotUpdated(e.toString()));
 
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 300));
 
       emit(ProfileLoaded(user: event.user));
     }

@@ -5,12 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Stats extends StatelessWidget {
+  const Stats({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<StatsBloc, StatsState>(
       builder: (context, state) {
         if (state is StatsLoading) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         } else if (state is StatsLoaded) {
           return Center(
             child: Column(
@@ -23,7 +25,7 @@ class Stats extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20.0),
                         //color: Color(0xFF4293f5),
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                             colors: [Color(0xff00C9FF), Color(0xff78fa85)],
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
@@ -32,7 +34,7 @@ class Stats extends StatelessWidget {
                           BoxShadow(
                             color: Theme.of(context).highlightColor,
                             blurRadius: 10.0,
-                            offset: Offset(0, 10),
+                            offset: const Offset(0, 10),
                           )
                         ],
                       ),
@@ -40,7 +42,7 @@ class Stats extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 15.0, top: 12.0, bottom: 5.0),
                             child: Row(
                               children: <Widget>[
@@ -48,10 +50,10 @@ class Stats extends StatelessWidget {
                                   MdiIcons.checkAll,
                                   color: Colors.grey[200],
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 8.0,
                                 ),
-                                Text(
+                                const Text(
                                   'Completed Todos',
                                   style: TextStyle(
                                       fontFamily: 'Poppins-Medium',
@@ -63,21 +65,21 @@ class Stats extends StatelessWidget {
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 21.0),
+                            padding: const EdgeInsets.only(left: 21.0),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.baseline,
                               textBaseline: TextBaseline.alphabetic,
                               children: <Widget>[
                                 Text(
                                   '${state.numCompleted}',
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontFamily: 'Poppins-Bold',
                                       color: Colors.white,
                                       fontSize: 39.0,
                                       decoration: TextDecoration.none),
                                 ),
-                                SizedBox(width: 8.0),
-                                Text(
+                                const SizedBox(width: 8.0),
+                                const Text(
                                   'Done',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -97,7 +99,7 @@ class Stats extends StatelessWidget {
                         height: 115,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                                 colors: [Color(0xffE55D87), Color(0xff5FC3E4)],
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
@@ -108,14 +110,14 @@ class Stats extends StatelessWidget {
                               BoxShadow(
                                 color: Theme.of(context).highlightColor,
                                 blurRadius: 10.0,
-                                offset: Offset(0, 10),
+                                offset: const Offset(0, 10),
                               )
                             ]),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 15.0, top: 12.0, bottom: 5.0),
                               child: Row(
                                 children: <Widget>[
@@ -123,10 +125,10 @@ class Stats extends StatelessWidget {
                                     MdiIcons.bellRing,
                                     color: Colors.grey[200],
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8.0,
                                   ),
-                                  Text(
+                                  const Text(
                                     'Active Todos',
                                     style: TextStyle(
                                         fontFamily: 'Poppins-Medium',
@@ -138,21 +140,21 @@ class Stats extends StatelessWidget {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 21.0),
+                              padding: const EdgeInsets.only(left: 21.0),
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.baseline,
                                 textBaseline: TextBaseline.alphabetic,
                                 children: <Widget>[
                                   Text(
                                     '${state.numActive}',
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontFamily: 'Poppins-Bold',
                                         color: Colors.white,
                                         fontSize: 39.0,
                                         decoration: TextDecoration.none),
                                   ),
-                                  SizedBox(width: 8.0),
-                                  Text(
+                                  const SizedBox(width: 8.0),
+                                  const Text(
                                     'Left',
                                     textAlign: TextAlign.center,
                                     style: TextStyle(

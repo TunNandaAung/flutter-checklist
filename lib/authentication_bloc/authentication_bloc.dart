@@ -1,7 +1,7 @@
 import 'package:checklist/data/user_repository.dart';
 import 'dart:async';
-import 'package:bloc/bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'bloc.dart';
 
 class AuthenticationBloc

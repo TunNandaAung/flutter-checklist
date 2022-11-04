@@ -11,10 +11,10 @@ class Header extends StatelessWidget {
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
-        padding: EdgeInsets.only(left: 20.0, top: 90.0, right: 20.0),
+        padding: const EdgeInsets.only(left: 20.0, top: 90.0, right: 20.0),
         height: 350,
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
@@ -37,7 +37,7 @@ class Header extends StatelessWidget {
                         fit: BoxFit.fitWidth,
                         alignment: Alignment.topCenter,
                       )
-                    : Text(''),
+                    : const Text(''),
                 text != null
                     ? Text(
                         '$text',
@@ -46,7 +46,7 @@ class Header extends StatelessWidget {
                             .headline6!
                             .copyWith(fontSize: 30.0),
                       )
-                    : Text(''),
+                    : const Text(''),
                 Container(),
               ],
             ),
@@ -60,7 +60,7 @@ class Header extends StatelessWidget {
 class MyClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    var path = new Path();
+    var path = Path();
 
     path.lineTo(0.0, size.height - 80);
     path.quadraticBezierTo(

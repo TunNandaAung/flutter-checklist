@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 
@@ -33,8 +33,9 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
       emit(Mobile());
     } else if (event.result == ConnectivityResult.wifi) {
       emit(WiFi());
-    } else
+    } else {
       emit(Offline());
+    }
   }
 
   @override

@@ -63,7 +63,7 @@ class UserRepository {
     await user.updateEmail(email);
     await user.updateDisplayName(name);
 
-    return this.getUser();
+    return getUser();
   }
 
   Future<void> resetPassword(String email) async {
@@ -82,7 +82,7 @@ class UserRepository {
       user.updatePassword(newPassword).then((_) {
         print("Succesfully changed password");
       }).catchError((error) {
-        print("Password can't be changed" + error.toString());
+        print("Password can't be changed$error");
       });
     });
   }

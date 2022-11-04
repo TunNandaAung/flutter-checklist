@@ -8,7 +8,7 @@ class AddEditScreen extends StatefulWidget {
   final OnSaveCallback onSave;
   final Todo? todo;
 
-  AddEditScreen({
+  const AddEditScreen({
     Key? key,
     required this.onSave,
     required this.isEditing,
@@ -16,10 +16,10 @@ class AddEditScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AddEditScreenState createState() => _AddEditScreenState();
+  AddEditScreenState createState() => AddEditScreenState();
 }
 
-class _AddEditScreenState extends State<AddEditScreen> {
+class AddEditScreenState extends State<AddEditScreen> {
   static final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   late String _task;
@@ -38,7 +38,7 @@ class _AddEditScreenState extends State<AddEditScreen> {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: ListView(
@@ -47,7 +47,7 @@ class _AddEditScreenState extends State<AddEditScreen> {
                 initialValue: isEditing ? widget.todo!.task : '',
                 autofocus: !isEditing,
                 style: textTheme.headline5,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'What needs to be done?',
                 ),
                 validator: (val) {
@@ -59,7 +59,7 @@ class _AddEditScreenState extends State<AddEditScreen> {
                 initialValue: isEditing ? widget.todo!.note : '',
                 maxLines: 10,
                 style: textTheme.subtitle1,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Additional Notes...',
                 ),
                 onSaved: (value) => _note = value!,

@@ -15,15 +15,15 @@ import 'signin_button.dart';
 class LoginForm extends StatefulWidget {
   final UserRepository _userRepository;
 
-  LoginForm({Key? key, required UserRepository userRepository})
+  const LoginForm({Key? key, required UserRepository userRepository})
       : _userRepository = userRepository,
         super(key: key);
 
   @override
-  _LoginFormState createState() => _LoginFormState();
+  LoginFormState createState() => LoginFormState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class LoginFormState extends State<LoginForm> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -81,7 +81,7 @@ class _LoginFormState extends State<LoginForm> {
                       CustomSnackBar.show(
                         title: 'Login Failure',
                         backgroundColor: Colors.red,
-                        icon: Icon(Icons.error),
+                        icon: const Icon(Icons.error),
                       ),
                     );
                 }
@@ -92,7 +92,7 @@ class _LoginFormState extends State<LoginForm> {
                       CustomSnackBar.show(
                         title: 'Failed to send password reset email.',
                         backgroundColor: Colors.red,
-                        icon: Icon(Icons.error),
+                        icon: const Icon(Icons.error),
                       ),
                     );
                 }
@@ -103,7 +103,7 @@ class _LoginFormState extends State<LoginForm> {
                       CustomSnackBar.show(
                         title:
                             'Password reset mail has been sent to your email address',
-                        icon: Icon(Icons.check),
+                        icon: const Icon(Icons.check),
                       ),
                     );
                 }
@@ -113,7 +113,7 @@ class _LoginFormState extends State<LoginForm> {
                     ..showSnackBar(
                       CustomSnackBar.show(
                         title: 'Logging In...',
-                        icon: CircularProgressIndicator(),
+                        icon: const CircularProgressIndicator(),
                       ),
                     );
                 }
@@ -124,24 +124,13 @@ class _LoginFormState extends State<LoginForm> {
               child:
                   BlocBuilder<LoginBloc, LoginState>(builder: (context, state) {
                 return Column(children: <Widget>[
-                  // Padding(
-                  //   padding: EdgeInsets.only(top: 63.0),
-                  //   child: Image(
-                  //     image: AssetImage(
-                  //       'assets/app_icon/app-icon-tick-box-128.png',
-                  //     ),
-                  //     width: 64,
-                  //     height: 64,
-                  //   ),
-                  // ),
-
                   Stack(
                     children: <Widget>[
-                      Header(
+                      const Header(
                         text: 'Checklist',
                       ),
                       Align(
-                        alignment: Alignment(-0.9, -0.9),
+                        alignment: const Alignment(-0.9, -0.9),
                         child: Padding(
                           padding: EdgeInsets.only(
                             left: 28.0,
@@ -162,18 +151,18 @@ class _LoginFormState extends State<LoginForm> {
                                       BoxShadow(
                                           color:
                                               Theme.of(context).highlightColor,
-                                          offset: Offset(0.0, 15.0),
+                                          offset: const Offset(0.0, 15.0),
                                           blurRadius: 15.0),
                                       BoxShadow(
                                           color:
                                               Theme.of(context).highlightColor,
-                                          offset: Offset(0.0, -10.0),
+                                          offset: const Offset(0.0, -10.0),
                                           blurRadius: 10.0),
                                     ]),
                                 child: Form(
                                   key: _formKey,
                                   child: Padding(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                         left: 16.0, right: 16.0, top: 16.0),
                                     child: SingleChildScrollView(
                                       child: Column(
@@ -214,15 +203,17 @@ class _LoginFormState extends State<LoginForm> {
                                               }
                                               return null;
                                             },
-                                            cursorColor: Color(0xFF5d74e3),
-                                            decoration: InputDecoration(
-                                                hintText: "email",
-                                                errorStyle: TextStyle(
-                                                    fontFamily:
-                                                        'Poppins-Medium'),
-                                                hintStyle: TextStyle(
-                                                    color: Colors.grey,
-                                                    fontSize: 12.0)),
+                                            cursorColor:
+                                                const Color(0xFF5d74e3),
+                                            decoration: const InputDecoration(
+                                              hintText: "email",
+                                              errorStyle: TextStyle(
+                                                  fontFamily: 'Poppins-Medium'),
+                                              hintStyle: TextStyle(
+                                                color: Colors.grey,
+                                                fontSize: 12.0,
+                                              ),
+                                            ),
                                           ),
                                           SizedBox(
                                             height: ScreenUtil().setHeight(20),
@@ -248,8 +239,9 @@ class _LoginFormState extends State<LoginForm> {
                                               return null;
                                             },
                                             obscureText: true,
-                                            cursorColor: Color(0xFF5d74e3),
-                                            decoration: InputDecoration(
+                                            cursorColor:
+                                                const Color(0xFF5d74e3),
+                                            decoration: const InputDecoration(
                                                 errorStyle: TextStyle(
                                                     fontFamily:
                                                         'Poppins-Medium'),
@@ -286,7 +278,8 @@ class _LoginFormState extends State<LoginForm> {
                                                 child: Text(
                                                   "Forgot Password?",
                                                   style: TextStyle(
-                                                      color: Color(0xFF5d74e3),
+                                                      color: const Color(
+                                                          0xFF5d74e3),
                                                       fontFamily:
                                                           "Poppins-Medium",
                                                       fontSize: ScreenUtil()
@@ -295,7 +288,7 @@ class _LoginFormState extends State<LoginForm> {
                                               )
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             height: 10.0,
                                           )
                                         ],
@@ -338,7 +331,7 @@ class _LoginFormState extends State<LoginForm> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
                                   SocialIcon(
-                                    colors: [
+                                    colors: const [
                                       Color(0xFF102397),
                                       Color(0xFF187adf),
                                       Color(0xFF00eaf8)
@@ -347,7 +340,7 @@ class _LoginFormState extends State<LoginForm> {
                                     onPressed: () {},
                                   ),
                                   SocialIcon(
-                                    colors: [
+                                    colors: const [
                                       Color(0xFFff4f38),
                                       Color(0xFFff355d)
                                     ],
@@ -357,7 +350,7 @@ class _LoginFormState extends State<LoginForm> {
                                     },
                                   ),
                                   SocialIcon(
-                                    colors: [
+                                    colors: const [
                                       Color(0xFF17ead9),
                                       Color(0xFF6078ea)
                                     ],
@@ -365,7 +358,7 @@ class _LoginFormState extends State<LoginForm> {
                                     onPressed: () {},
                                   ),
                                   SocialIcon(
-                                    colors: [
+                                    colors: const [
                                       Color(0xFF00c6fb),
                                       Color(0xFF005bea)
                                     ],
@@ -396,7 +389,7 @@ class _LoginFormState extends State<LoginForm> {
                                             userRepository: _userRepository);
                                       }));
                                     },
-                                    child: Text(
+                                    child: const Text(
                                       'SignUp',
                                       style: TextStyle(
                                           color: Color(0xFF5d74e3),
@@ -420,7 +413,7 @@ class _LoginFormState extends State<LoginForm> {
   }
 
   Widget horizontalLine() => Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Container(
         width: ScreenUtil().setHeight(120),
         height: 1.0,

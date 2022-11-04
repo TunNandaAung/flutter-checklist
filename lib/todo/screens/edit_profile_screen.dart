@@ -11,18 +11,18 @@ class EditProfileScreen extends StatefulWidget {
   final OnSaveCallback onSave;
   final OnPasswordChangedCallBack onPasswordChanged;
 
-  EditProfileScreen(
-      {Key? key,
-      required this.user,
-      required this.onSave,
-      required this.onPasswordChanged})
-      : super(key: key);
+  const EditProfileScreen({
+    Key? key,
+    required this.user,
+    required this.onSave,
+    required this.onPasswordChanged,
+  }) : super(key: key);
 
   @override
-  _EditProfileScreenState createState() => _EditProfileScreenState();
+  EditProfileScreenState createState() => EditProfileScreenState();
 }
 
-class _EditProfileScreenState extends State<EditProfileScreen> {
+class EditProfileScreenState extends State<EditProfileScreen> {
   late String _name;
   late String _email;
 
@@ -32,14 +32,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [
+        gradient: LinearGradient(
+          colors: [
             Theme.of(context).backgroundColor,
             Theme.of(context).canvasColor,
           ],
-              begin: Alignment.bottomCenter,
-              end: Alignment.topCenter,
-              tileMode: TileMode.clamp)),
+          begin: Alignment.bottomCenter,
+          end: Alignment.topCenter,
+          tileMode: TileMode.clamp,
+        ),
+      ),
       child: Scaffold(
           backgroundColor: Colors.transparent,
           body: Form(
@@ -55,9 +57,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                   decoration: BoxDecoration(
                       boxShadow: [
                         BoxShadow(
-                            color: Theme.of(context).highlightColor,
-                            blurRadius: 30.0,
-                            offset: Offset(0, -30))
+                          color: Theme.of(context).highlightColor,
+                          blurRadius: 30.0,
+                          offset: const Offset(0, -30),
+                        )
                       ],
                       gradient: LinearGradient(
                           colors: [
@@ -69,18 +72,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           tileMode: TileMode.clamp),
                       borderRadius: BorderRadius.circular(30.0)),
                   child: Padding(
-                    padding: EdgeInsets.only(top: 60.0),
+                    padding: const EdgeInsets.only(top: 60.0),
                     child: ListView(children: <Widget>[
                       Column(
                         children: <Widget>[
                           Container(
                             width: double.infinity,
                             height: null,
-                            margin: EdgeInsets.symmetric(horizontal: 22),
+                            margin: const EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
                                 color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black26,
                                       offset: Offset(0, 10),
@@ -88,7 +91,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ]),
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.only(left: 18.0, right: 12),
+                                padding: const EdgeInsets.only(
+                                    left: 18.0, right: 12),
                                 child: TextFormField(
                                   initialValue: widget.user.displayName,
                                   autofocus: false,
@@ -98,14 +102,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         : null;
                                   },
                                   onSaved: (value) => _name = value!,
-                                  cursorColor: Color(0xFF5d74e3),
+                                  cursorColor: const Color(0xFF5d74e3),
                                   style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    suffixIcon: Icon(Icons.person_outline),
+                                    suffixIcon:
+                                        const Icon(Icons.person_outline),
                                     hintText: "Darth Vader",
-                                    errorStyle:
-                                        TextStyle(fontFamily: 'Poppins-Medium'),
+                                    errorStyle: const TextStyle(
+                                        fontFamily: 'Poppins-Medium'),
                                     hintStyle: Theme.of(context)
                                         .inputDecorationTheme
                                         .hintStyle,
@@ -114,15 +119,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 30.0),
+                          const SizedBox(height: 30.0),
                           Container(
                             width: double.infinity,
                             height: null,
-                            margin: EdgeInsets.symmetric(horizontal: 22),
+                            margin: const EdgeInsets.symmetric(horizontal: 22),
                             decoration: BoxDecoration(
                                 color: Theme.of(context).cardColor,
                                 borderRadius: BorderRadius.circular(8),
-                                boxShadow: [
+                                boxShadow: const [
                                   BoxShadow(
                                       color: Colors.black26,
                                       offset: Offset(0, 10),
@@ -130,7 +135,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 ]),
                             child: Center(
                               child: Padding(
-                                padding: EdgeInsets.only(left: 18.0, right: 12),
+                                padding: const EdgeInsets.only(
+                                    left: 18.0, right: 12),
                                 child: TextFormField(
                                   initialValue: widget.user.email,
                                   onSaved: (value) => _email = value!,
@@ -139,14 +145,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         ? 'Please enter your email'
                                         : null;
                                   },
-                                  cursorColor: Color(0xFF5d74e3),
+                                  cursorColor: const Color(0xFF5d74e3),
                                   style: Theme.of(context).textTheme.headline1,
                                   decoration: InputDecoration(
                                     border: InputBorder.none,
-                                    suffixIcon: Icon(Icons.alternate_email),
+                                    suffixIcon:
+                                        const Icon(Icons.alternate_email),
                                     hintText: "you@example.com",
-                                    errorStyle:
-                                        TextStyle(fontFamily: 'Poppins-Medium'),
+                                    errorStyle: const TextStyle(
+                                        fontFamily: 'Poppins-Medium'),
                                     hintStyle: Theme.of(context)
                                         .inputDecorationTheme
                                         .hintStyle,
@@ -155,7 +162,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 30.0),
+                          const SizedBox(height: 30.0),
                           InkWell(
                             onTap: () {
                               EditPasswordModal().mainBottomSheet(
@@ -171,11 +178,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             child: Container(
                               width: double.infinity,
                               height: 60,
-                              margin: EdgeInsets.symmetric(horizontal: 22),
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 22),
                               decoration: BoxDecoration(
                                   color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(8),
-                                  boxShadow: [
+                                  boxShadow: const [
                                     BoxShadow(
                                         color: Colors.black26,
                                         offset: Offset(0, 10),
@@ -183,8 +191,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                   ]),
                               child: Center(
                                 child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 18.0, right: 20),
+                                    padding: const EdgeInsets.only(
+                                        left: 18.0, right: 20),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -195,7 +203,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                               .textTheme
                                               .headline1,
                                         ),
-                                        Icon(
+                                        const Icon(
                                           Icons.arrow_forward_ios,
                                           color: Color(0xFF5d74e3),
                                         )
@@ -231,8 +239,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       borderRadius: BorderRadius.circular(50.0),
                     ),
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(0.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(0.0),
                     child: Text('Update',
                         style: TextStyle(
                             fontFamily: 'Poppins-Bold',
@@ -254,11 +262,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         boxShadow: [
                           BoxShadow(
                               color: Theme.of(context).highlightColor,
-                              offset: Offset(0.0, 8.0),
+                              offset: const Offset(0.0, 8.0),
                               blurRadius: 8.0)
                         ]),
                     child: RawMaterialButton(
-                      child: Text(
+                      child: const Text(
                         'Cancel',
                         style: TextStyle(
                             color: Colors.white,
@@ -283,9 +291,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                         BoxShadow(
                             color: Theme.of(context).highlightColor,
                             blurRadius: 30.0,
-                            offset: Offset(0, 10))
+                            offset: const Offset(0, 10))
                       ],
-                      image: DecorationImage(
+                      image: const DecorationImage(
                           image: AssetImage('assets/Darth-Vader-Avatar.png'))),
                 ),
               ),
@@ -297,9 +305,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                     child: Container(
                         width: 30,
                         height: 30,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                             shape: BoxShape.circle, color: Colors.white),
-                        child: Icon(
+                        child: const Icon(
                           Icons.camera_alt,
                           color: Color(0xFF5d74e3),
                         )),

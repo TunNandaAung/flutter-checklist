@@ -1,5 +1,5 @@
 import 'package:checklist/data/user_repository.dart';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:checklist/utils/validators.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
@@ -17,7 +17,7 @@ EventTransformer<E> throttleDroppable<E>(Duration duration) {
 }
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  UserRepository _userRepository;
+  final UserRepository _userRepository;
 
   LoginBloc({
     required UserRepository userRepository,

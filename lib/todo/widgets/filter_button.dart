@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class FilterButton extends StatelessWidget {
   final bool visible;
 
-  FilterButton({required this.visible, Key? key}) : super(key: key);
+  const FilterButton({required this.visible, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class FilterButton extends StatelessWidget {
       );
       return AnimatedOpacity(
         opacity: visible ? 1.0 : 0.0,
-        duration: Duration(milliseconds: 150),
+        duration: const Duration(milliseconds: 150),
         child: visible ? button : IgnorePointer(child: button),
       );
     });

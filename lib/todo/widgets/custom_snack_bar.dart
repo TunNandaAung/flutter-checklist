@@ -11,7 +11,7 @@ class CustomSnackBar {
     required Function() onActionPressed,
   }) {
     return SnackBar(
-      duration: duration ?? Duration(seconds: 30),
+      duration: duration ?? const Duration(seconds: 30),
       elevation: 6.0,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(
@@ -24,12 +24,12 @@ class CustomSnackBar {
             icon,
             color: iconColor ?? Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             width: 8.0,
           ),
           Text(
             title,
-            style: TextStyle(fontFamily: 'Poppins-Bold'),
+            style: const TextStyle(fontFamily: 'Poppins-Bold'),
           ),
         ],
       ),
@@ -51,15 +51,15 @@ class CustomSnackBar {
       elevation: 6.0,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      backgroundColor: backgroundColor ?? Color(0xFF5d74e3),
+      backgroundColor: backgroundColor ?? const Color(0xFF5d74e3),
       content: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
             title,
-            style: TextStyle(fontFamily: 'Poppins-Bold'),
+            style: const TextStyle(fontFamily: 'Poppins-Bold'),
           ),
-          icon != null ? icon : SizedBox()
+          icon ?? const SizedBox()
         ],
       ),
     );

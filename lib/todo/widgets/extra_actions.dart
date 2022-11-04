@@ -16,7 +16,7 @@ class ExtraActions extends StatelessWidget {
         if (state is TodosLoaded) {
           bool allComplete = state.todos.every((todo) => todo.complete);
           return Padding(
-            padding: EdgeInsets.only(right: 10.0),
+            padding: const EdgeInsets.only(right: 10.0),
             child: PopupMenuButton<ExtraAction>(
               icon: Icon(
                 Icons.more_horiz,

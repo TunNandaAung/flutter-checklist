@@ -6,29 +6,30 @@ final appThemeData = {
   AppTheme.Light: ThemeData(
     scaffoldBackgroundColor: Colors.transparent,
     brightness: Brightness.light,
-    primaryColor: Color(0xFF5d74e3),
+    primaryColor: const Color(0xFF5d74e3),
+    primarySwatch: Colors.indigo,
+    colorScheme: ThemeData().colorScheme.copyWith(
+          primary: const Color(0xFF5d74e3),
+        ),
     highlightColor: Colors.black26,
-    appBarTheme: AppBarTheme(backgroundColor: Color(0xfff5f9ff)),
-    backgroundColor: Color(0xFFf3f6fb),
-    canvasColor: Color(0xFFf3f6fb),
-    popupMenuTheme: PopupMenuThemeData(color: Color(0xFFEDF0F6)),
+    appBarTheme: const AppBarTheme(backgroundColor: Color(0xfff5f9ff)),
+    backgroundColor: const Color(0xFFf3f6fb),
+    canvasColor: const Color(0xFFf3f6fb),
+    popupMenuTheme: const PopupMenuThemeData(color: Color(0xFFEDF0F6)),
     cardColor: Colors.white,
     dialogTheme: DialogTheme(
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
     ),
     dividerColor: Colors.black,
-    bottomAppBarTheme: BottomAppBarTheme(color: Color(0xFF98c6f5)),
+    bottomAppBarTheme: const BottomAppBarTheme(color: Color(0xFF98c6f5)),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: Colors.black.withOpacity(.75)),
-    // buttonTheme: ButtonThemeData(
-    //   colorScheme: ButtonThemeData().colorScheme.copyWith(
-    //         background: Color(0xFF5d74e3),
-    //       ),
-    // ),
-    bottomSheetTheme: BottomSheetThemeData(backgroundColor: Color(0xFFf3f6fb)),
+    primaryColorLight: const Color(0xFF5d74a1),
+    bottomSheetTheme:
+        const BottomSheetThemeData(backgroundColor: Color(0xFFf3f6fb)),
     hintColor: Colors.black38,
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
       fillColor: Colors.black,
       hintStyle: TextStyle(
         fontFamily: 'Poppins-Medium',
@@ -37,7 +38,7 @@ final appThemeData = {
         decoration: TextDecoration.none,
       ),
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
         headline6: TextStyle(
           fontFamily: 'Poppins-Bold',
           color: Colors.black,
@@ -96,43 +97,42 @@ final appThemeData = {
   AppTheme.Dark: ThemeData(
     scaffoldBackgroundColor: Colors.transparent,
     brightness: Brightness.light,
-    primaryColor: Color(0xFF5d74e3),
-    // backgroundColor: Color(0xFF1b1e44),
-    // canvasColor: Color(0xFF1b1e44),
+    primaryColor: const Color(0xFF5d74e3),
+    primarySwatch: Colors.indigo,
+    colorScheme: ThemeData().colorScheme.copyWith(
+          primary: const Color(0xFF5d74e3),
+        ),
     highlightColor: Colors.transparent,
-    appBarTheme: AppBarTheme(backgroundColor: Colors.transparent),
-    backgroundColor: Color(0xFF1A202C),
-    canvasColor: Color(0xFF1A202C),
-    popupMenuTheme: PopupMenuThemeData(color: Color(0xFF2d3447)),
-    cardColor: Color(0xFF2d3447),
+    appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+    backgroundColor: const Color(0xFF1A202C),
+    canvasColor: const Color(0xFF1A202C),
+    popupMenuTheme: const PopupMenuThemeData(color: Color(0xFF2d3447)),
+    cardColor: const Color(0xFF2d3447),
     dialogTheme: DialogTheme(
-      backgroundColor: Color(0xFF2d3447),
+      backgroundColor: const Color(0xFF2d3447),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.0),
       ),
     ),
     dividerColor: Colors.white,
-    bottomAppBarTheme: BottomAppBarTheme(color: Colors.black),
+    bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
     floatingActionButtonTheme:
-        FloatingActionButtonThemeData(backgroundColor: Colors.black),
-    // buttonTheme: ButtonThemeData(
-    //   colorScheme: ButtonThemeData().colorScheme.copyWith(
-    //         background: Colors.black.withOpacity(.40),
-    //       ),
-    // ),
-    bottomSheetTheme: BottomSheetThemeData(
+        const FloatingActionButtonThemeData(backgroundColor: Colors.black),
+    primaryColorLight: Colors.black.withOpacity(.50),
+    bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: Color(0xFF2d3447),
     ),
     hintColor: Colors.white30,
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
       fillColor: Colors.white,
       hintStyle: TextStyle(
-          fontFamily: 'Poppins-Medium',
-          color: Colors.white30,
-          fontSize: 21.0,
-          decoration: TextDecoration.none),
+        fontFamily: 'Poppins-Medium',
+        color: Colors.white30,
+        fontSize: 21.0,
+        decoration: TextDecoration.none,
+      ),
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       headline6: TextStyle(
         fontFamily: 'Poppins-Bold',
         color: Colors.white,
@@ -146,10 +146,11 @@ final appThemeData = {
         color: Colors.white,
       ),
       bodyText2: TextStyle(
-          fontFamily: 'Poppins-Medium',
-          fontSize: 16.0,
-          decoration: TextDecoration.none,
-          color: Colors.grey),
+        fontFamily: 'Poppins-Medium',
+        fontSize: 16.0,
+        decoration: TextDecoration.none,
+        color: Colors.grey,
+      ),
       headline4: TextStyle(
         fontFamily: 'Poppins-Bold',
         color: Colors.white,
@@ -190,6 +191,5 @@ final appThemeData = {
         decoration: TextDecoration.none,
       ),
     ),
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.red),
   )
 };
